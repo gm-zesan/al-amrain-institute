@@ -48,6 +48,27 @@
             });
         }
         sticky_header();
+        
+        function helpArea(){
+            var wind = $(window);
+            var fiexd = $('#course_right');
+            wind.on('scroll', function () {
+                var scroll = wind.scrollTop();
+                if (scroll < 500) {
+                  fiexd.removeClass('possition_fixed');
+                  fiexd.removeClass('d-none');
+                }
+                else {
+                    fiexd.addClass('possition_fixed');
+                    fiexd.removeClass('d-none');
+                    if (scroll > 1300) {
+                      fiexd.removeClass('possition_fixed');
+                      fiexd.addClass('d-none');
+                    }
+                }
+            });
+        }
+        helpArea();
         //===== Back to top
 
         // Show or hide the sticky footer button

@@ -19,6 +19,9 @@
 	.container{
 		max-width: 1300px;
 	}
+	.possition_fixed {
+		width: 50.3rem;
+	}
 }
 @media (min-width: 1200px) and (max-width: 1365.99px){
 	html{

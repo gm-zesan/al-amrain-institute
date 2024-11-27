@@ -198,26 +198,61 @@
                                     </div>
                                 </div>
                             </div>
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                  <button class="nav-link active" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Learn about career paths</button>
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                  <button class="nav-link active" id="pills-paths-tab" data-toggle="pill" data-target="#pills-paths" type="button" aria-controls="pills-paths" aria-selected="true">About this course</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                  <button class="nav-link" id="pills-profile-tab" data-toggle="pill" data-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+                                <li class="nav-item">
+                                  <button class="nav-link" id="pills-learn-tab" data-toggle="pill" data-target="#pills-learn" type="button" aria-controls="pills-learn" aria-selected="false">what you will learn</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                  <button class="nav-link" id="pills-contact-tab" data-toggle="pill" data-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+                                <li class="nav-item">
+                                  <button class="nav-link" id="pills-for-tab" data-toggle="pill" data-target="#pills-for" type="button" aria-controls="pills-for" aria-selected="false">pre requisite</button>
+                                </li>
+                                <li class="nav-item">
+                                  <button class="nav-link" id="pills-time-tab" data-toggle="pill" data-target="#pills-time" type="button" aria-controls="pills-time" aria-selected="false">Time & schedule</button>
                                 </li>
                               </ul>
-                              <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">1</div>
-                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">2</div>
-                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">3</div>
+                              <div class="tab-content">
+                                <div class="tab-pane fade show active" id="pills-paths" aria-labelledby="pills-paths-tab">
+                                    <ul class="this_course_cont">
+                                        <li>
+                                            Nam vel lacus eu nisl bibendum accumsan vitae vitae nibh. Nam nec eros id magna hendrerit sagittis. Nullam sed mi non odio feugiat volutpat sit amet nec elit. Maecenas id hendrerit ipsum. Sed eget auctor metus, ac dapibus dolor. Nam vel lacus eu nisl bibendum accumsan vitae vitae nibh.
+                                        </li>
+                                        <li>Himenaeos. Vestibulum sollicitudin varius mauris non dignissim. Sed quis iaculis est. Nulla quam neque, interdum vitae fermentum lacinia, interdum eu magna. Mauris non posuere tellus. Donec quis euismod tellus. Nam vel lacus eu nisl bibendum accumsan vitae vitae nibh. Nam nec eros id magna hendrerit sagittis. Nullam sed mi non odio feugiat volutpat sit amet nec elit. Maecenas id hendrerit ipsum. Sed eget auctor metus, ac dapibus dolo</li>
+                                        <li>Nam vel lacus eu nisl bibendum accumsan vitae vitae nibh. Nam nec eros id magna hendrerit sagittis. Nullam sed mi non odio feugiat volutpat sit amet nec elit. Maecenas id hendrerit ipsum. Sed eget auctor metus, ac dapibus dolor. Nam vel lacus eu nisl bibendum accumsan vitae vitae nibh.</li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane fade" id="pills-learn" aria-labelledby="pills-learn-tab">
+                                    <ul class="this_course_cont">
+                                       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?</li>
+                                       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?</li>
+                                       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?</li>
+                                       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?</li>
+                                       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?</li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane fade" id="pills-for" aria-labelledby="pills-for-tab">
+                                    <ul class="this_course_cont">
+                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?</li>
+                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?</li>
+                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?</li>
+                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?</li>
+                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?</li>
+                                     </ul>
+                                </div>
+                                <div class="tab-pane fade" id="pills-time" aria-labelledby="pills-time-tab">
+                                    <ul class="time_course">
+                                        <li><strong>Class Starts:</strong> October 15</li>
+                                        <li><strong>Class Time:</strong></li>
+                                        <li><strong>Monday:</strong> 9 PM - 10:30PM</li>
+                                        <li><strong>Wednesday:</strong> 9 PM - 10.30 PM</li>
+                                    </ul>
+                                </div>
                               </div>
                         </div>
                     </div>
                     <div class="col-lg-4 mt_50">
-                        <div class="path_box">
+                        <div class="path_box possition_fixed" id="course_right">
                             <h2>What is this career path?</h2>
                             <ul>
                                 <li>50+ live classes</li>
@@ -320,6 +355,22 @@
     <script src="assets/js/jquery-3.4.1.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+    <script>
+        window.addEventListener('scroll', () => {
+  const stickyCard = document.getElementById('stickyCard');
+  const offsetTop = 20; // Distance from the top
+  const containerTop = stickyCard.parentElement.getBoundingClientRect().top;
+
+  if (containerTop <= offsetTop) {
+    stickyCard.style.position = 'fixed';
+    stickyCard.style.top = `${offsetTop}px`;
+    stickyCard.style.width = `${stickyCard.parentElement.offsetWidth}px`; // Maintain width
+  } else {
+    stickyCard.style.position = 'static'; // Reset to normal flow
+    stickyCard.style.width = 'auto'; // Reset width
+  }
+});
+    </script>
+
 </body>
 </html>
