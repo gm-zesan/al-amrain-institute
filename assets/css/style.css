@@ -1853,4 +1853,196 @@ ul.list li:before {
     transform: rotate3d(0, 0, 1, 0deg);
   }
 }
+/* donate_from_area */
+.donate_from_area{
+	margin: 7rem 0 0;
+}
+.donate_from_cart {
+    border: 0.1rem solid var(--dark_blue);
+    padding: 3rem;
+    height: 100%;
+}
+.donate_from_cart ul li{
+	font-size: 2.5rem;
+	color: #444;
+}
+.bank_wrap,
+.bkash_wrap{
+	display: flex;
+	align-items: center;
+}
+.bank_wrap img {
+    width: 9rem;
+    object-fit: cover;
+	margin-right: 3rem;
+}
+.bkash_wrap img{
+	width: 9rem;
+	object-fit: cover;
+	margin-right: 3rem;
+}
+.donate_from_cart input,
+.donate_from_cart select,
+.donate_from_cart textarea{
+	width: 100%;
+	margin-bottom: 3.5rem;
+	padding: 1rem 2rem;
+	font-size: 2.5rem;
+	color: #444;
+	border: 0.1rem solid #444;
+	border-radius: 0.3rem;
+}
+.donate_from_cart textarea{
+	height: 20rem;
+	resize: none;
+}
+.donate_from_cart input::placeholder{
+	color: #444;
+}
+.donate_from_cart input:focus,
+.donate_from_cart select:focus,
+.donate_from_cart textarea:focus{
+	border-color: var(--yellow);
+}
+/* contact_area */
+.contact_area{
+	padding: 7rem 0;
+}
+.contact-us {
+    margin-bottom: 1.7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10.0rem;
+    border-top-left-radius: 0;
+    padding: 4.0rem;
+	background-color: var(--dark_blue);
+}
+.contact-us h4 {
+    color: #fff;
+    padding-bottom: 1.0rem;
+	font-size: 3.4rem;
+	font-weight: 600;
+}
+.contact-us a {
+    color: #fff;
+    display: block;
+	font-size: 2rem;
+}
+.contact-us p {
+    color: #fff;
+	font-size: 2rem;
+}
+.contact-us a:hover{
+	color: var(--yellow);
+}
+.contact-us i {
+    width: 10rem;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--yellow);
+    border-radius: 50%;
+}
+.contact-us i img{
+	width: 7rem;
+}
+.contact_area .donate_from_cart{
+	height: auto;
+	padding: 4.5rem 3rem;
+}
+.contact_area .donate_from_cart input{
+	margin-bottom: 4.5rem;
+}
 
+/* login_area */
+.login_area{
+	padding: 10rem 0 7rem;
+}
+.login_main {
+    width: 63rem;
+    height: 67rem;
+    background: var(--dark_blue);
+    overflow: hidden;
+    border-radius: 1.0rem;
+    box-shadow: rgba(0, 0, 0, 0.24) .0rem .3rem .8rem;
+    margin: 0 auto;
+}
+#chk{
+	display: none;
+}
+.login_main .signup{
+	position: relative;
+	width:100%;
+	height: 100%;
+}
+.login_main label{
+	color: #fff;
+	font-size: 2.3em;
+	justify-content: center;
+	display: flex;
+	margin: 5.0rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .5s ease-in-out;
+	user-select: none;
+}
+.login_main input {
+    width: 77%;
+    height: 6rem;
+    background: #e0dede;
+    justify-content: center;
+    display: flex;
+    margin: 2.0rem auto;
+    padding: 1.2rem 2rem;
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+    font-size: 2rem;
+}
+.login_main button{
+	width: 77%;
+	height: 6.0rem;
+	margin: 1.0rem auto;
+	justify-content: center;
+	display: block;
+	color: #fff;
+	background: var(--yellow);
+	font-size: 2rem;
+	font-weight: bold;
+	margin-top: 3.0rem;
+	outline: none;
+	border: none;
+	border-radius: .5rem;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+.login_main button:hover{
+	background: #444;
+}
+.login_main .login {
+    height: 62rem;
+    background: #eee;
+    border-radius: 60% / 10%;
+    transform: translateY(-18.0rem);
+    transition: .8s ease-in-out;
+}
+.login_main .login label{
+	color: #444;
+	transform: scale(.6);
+	user-select: none;
+}
+
+#chk:checked ~ .login{
+	transform: translateY(-66.0rem);
+}
+#chk:checked ~ .login label{
+	transform: scale(1);	
+}
+#chk:checked ~ .signup label{
+	transform: scale(.6);
+}
+.line-opacity{
+	opacity: 0.5;
+}

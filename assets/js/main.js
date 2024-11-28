@@ -35,11 +35,11 @@
     $(document).ready(function () {
         //05. sticky header
         function sticky_header(){
-            var wind = $(window);
+            var wind = $(window);   
             var sticky = $('header');
             var top_head = $('.top_header').height();
             wind.on('scroll', function () {
-                var scroll = wind.scrollTop();
+                var scroll = wind.scrollTop(); 
                 if (scroll <= top_head) {
                     sticky.removeClass('sticky');
                 } else {
