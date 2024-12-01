@@ -26,14 +26,35 @@
 <body>
     <div class="cursor"></div>
     <!-- Preloader Start -->
-    <!-- <div id="preloader">
-        <div class="loader3">
-            <span></span>
-            <span></span>
+    <div id="preloader"> 
+        <div class="book">
+            <div class="inner">
+                <div class="left"></div>
+                <div class="middle"></div>
+                <div class="right"></div>
+            </div>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
         </div>
-    </div> -->
-    <!-- Preloader End -->
-
+    </div>
     <!-- header area -->
     <div class="top_header">
         <div class="container">
@@ -635,6 +656,15 @@
                 </div>
             </div>
          </div>
+         <!-- counter_area -->
+          <div class="counter_area">
+            <div class="container">
+                <div class="loader">
+                    <div><span class="count">202</span>+</div>
+                    <span class="count">202</span>
+                  </div>
+            </div>
+          </div>
          <!-- Reviews_area -->
         <div class="reviews_area" style="background-image: url(assets/img/parallax2.jpg);">
             <div class="container">
@@ -776,5 +806,18 @@
     <script src="assets/js/jquery-3.4.1.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        $('.count').each(function () {
+    $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+    }, {
+        duration: 3000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
+        }
+    });
+});
+    </script>
 </body>
 </html>
