@@ -4,7 +4,7 @@
             <div>
                 <i class="ri-menu-2-line" id="btn" style="font-size: 22px;"></i>
             </div>
-            <a target="_blank" href="{{ route('home') }}" class="website-visit">
+            <a target="_blank" href="{{ route('frontend.home') }}" class="website-visit">
                 <i class="ri-global-line"></i>
             </a>
             <a href="{{ route('cache-clear') }}" class="clear-cache"><i class="ri-hard-drive-3-line"></i> Clear Cache</a>
