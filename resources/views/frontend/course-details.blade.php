@@ -141,5 +141,90 @@
                 </div>
             </div>
         </div>
+         <!-- course_share -->
+         <div class="course_review_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="review_share">
+                            <h2>User reviews</h2>
+                            <div class="share_wrap">
+                                <h3>Share</h3>
+                                <div class="icon_box">
+                                    <a href="#" target="_blank">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" target="_blank">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>                        
+                                    <a href="#" target="_blank">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#" target="_blank">
+                                        <i class="fab fa-instagram"></i>
+                                    </a> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comments-box-wrapper">
+                            <div class="comments-count">
+                                <h2>02 Comments</h2>
+                            </div>
+                            <div class="single-comment my-2">
+                                <div class="authors-info">
+                                    <div class="author-thumb">
+                                        <a href="#"><img src="{{ asset('frontend/img/author-4.png') }}" alt=""></a>
+                                    </div>
+                                    <div class="author-data">
+                                        <a href="#">Angel Mela</a>
+                                        <p>05 October, 2023</p>
+                                        <div class="comment">
+                                            <p>Proactively envisioned multimedia based expertise and cross-media growth strategies. Seamlessly ize quality intellectual capital without superior collaboration and idea-sharing. Holistically pontificate installed</p>
+                                        </div>
+                                        <a href="#" class="reply-btn">Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-comment my-2">
+                                <div class="authors-info">
+                                    <div class="author-thumb">
+                                        <a href="#"><img src="{{ asset('frontend/img/author-4.png') }}" alt=""></a>
+                                    </div>
+                                    <div class="author-data">
+                                        <a href="#">Jhon Deo</a>
+                                        <p>05 October, 2023</p>
+                                        <div class="comment">
+                                            <p>Proactively envisioned multimedia based expertise and cross-media growth strategies. Seamlessly ize quality intellectual capital without superior collaboration and idea-sharing. Holistically pontificate installed</p>
+                                        </div>
+                                        <a href="#" class="reply-btn">Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-form-wrapper mt_30">
+                            <h2> Write Your Comment</h2>
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="form-control" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <textarea name="comment_message" id="comment_message" cols="30" rows="10" class="form-control" placeholder="Write Your Comment"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="submit" class="button">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
     </main>
 @endsection

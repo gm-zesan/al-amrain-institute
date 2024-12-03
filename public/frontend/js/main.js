@@ -80,6 +80,33 @@
             }
         });
 
+        // magnificPopup
+        $('.proje_img').magnificPopup({
+            type: 'image',
+            gallery: {
+                enabled: true
+            },        
+        });
+
+        function videoPopupInit() {
+            $('#play-video').magnificPopup({
+                type: 'iframe',
+                iframe: {
+                    patterns: {
+                        youtube: {
+                          index: 'youtube.com/', 
+
+                          id: 'v=',
+                          src: 'https://www.youtube.com/embed/%id%?autoplay=1'
+                        },
+                    },
+
+                  srcAction: 'iframe_src',
+                }
+            });
+        }
+        videoPopupInit();
+
         //Animate the scroll to yop
         $('.back-to-top').on('click', function (event) {
             event.preventDefault();
@@ -125,6 +152,18 @@
                 },
             }
         });  
+        // count
+        $('.count').each(function () {
+            $(this).prop('Counter',0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 9000,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
 
     });
 

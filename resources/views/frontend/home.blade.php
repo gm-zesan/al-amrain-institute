@@ -7,6 +7,12 @@
 
 
 @section('content')
+<div class="whats-float">
+    <a href=""
+       target="_blank">
+        <i class="fa fa-whatsapp"></i><span>WhatsApp<br><small>+90 12 123456</small></span>
+    </a>
+</div>
     <main class="overflow-hidden">
         <!-- home area -->
         <div class="home_area" style="background-image: url({{ asset('frontend/img/banner-bg.png') }});">
@@ -242,8 +248,8 @@
                                 </ul>
                                 <div class="course-block_two-lower d-flex justify-content-between flex-wrap">
                                     <div class="course-block_two-author">
-                                        <div class="course-block_two-author_image"><img src="{{ asset('frontend/img/author-4.png') }}"
-                                                alt=""></div>
+                                        <div class="course-block_two-author_image">
+                                            <img src="{{ asset('frontend/img/author-4.png') }}" alt=""></div>
                                         <strong>Habib Al Noor</strong>
                                         <p>Arabic Teacher</p>
                                     </div>
@@ -502,6 +508,31 @@
                                     <div class="course-block_two-price">2000৳ <span>course free</span></div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="counter_area">
+            <div class="container">
+                <div class="heading text-center mb_70">
+                    <img src="http://127.0.0.1:8000/frontend/img/heading-img.png" alt="icon">
+                    <p>Al Amrain Institute Admission Success for 2022-24 academic year</p>
+                    <h2>Your success is our inspiration</h2>
+                </div>
+                <div class="total_student loader">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="count_flex"><h2 class="count">15712</h2> +</div>
+                            <p>Total Student</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="count_flex"><h2 class="count">120</h2> +</div>
+                            <p>All Teachers</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="count_flex"><h2 class="count">12</h2> +</div>
+                            <p>Total Courses</p>
                         </div>
                     </div>
                 </div>
