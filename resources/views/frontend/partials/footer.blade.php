@@ -17,11 +17,9 @@
                 </a>
             </div>
             <div class="col footer_item mt_50">
-                <h3>BEZOEKADRES</h3>
+                <h3>Follow Us</h3>
                 <p>
-                    Kloosterweg 1, <br>
-                    6412 CN Heerlen<br>
-                    (Carbon 6, derde etage)
+                    Interactive Cares is Bangladesh’s leading Upskilling & Job Placement Platform
                 </p>
 
                 <div class="icon_box mt_30">
@@ -40,10 +38,9 @@
                 </div>
             </div>
             <div class="col footer_item mt_50">
-                <h3>Postadres</h3>
+                <h3>Contact Us</h3>
                 <p>
-                    Postbus 200, <br>
-                    6400 AE Heerlen
+                    Address: House-15 (3rd floor), Road-21, Sector-11, Uttara, Dhaka-1230
                 </p>
 
                 <p>
@@ -52,25 +49,24 @@
                 </p>
             </div>
             <div class="col footer_item mt_50">
-                <h3>SNEL NAAR</h3>
+                <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Over ons</a></li>
-                    <li><a href="#">Onze focus</a></li>
-                    <li><a href="#">Regiodeal</a></li>
-                    <li><a href="#">Nieuws</a></li>
-                    <li><a href="#">Bibliotheek</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Hire Talents</a></li>
+                    <li><a href="#">Affiliation</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
                 </ul>
             </div>
             <div class="col footer_item links mt_50">
                 <h3>LINKS</h3>
                 <ul>
-                    <li><a href="#">Disclaimer en privacyverklaring</a></li>
-                    <li><a href="#">Wet Open Overheid (WOO)</a></li>
-                    <li><a href="#">Toegankelijkheid</a></li>
+                    <li><a href="#">Enrolment</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
-
-                <img src="{{ asset('frontend/img/iba.svg') }}" class="iba" alt="">
+                <img src="{{ asset('frontend/img/sslcom.png') }}" alt="" class="w-100 mt_30">
             </div>
         </div>
     </div>

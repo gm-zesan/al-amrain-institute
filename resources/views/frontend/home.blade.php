@@ -7,12 +7,6 @@
 
 
 @section('content')
-<div class="whats-float">
-    <a href=""
-       target="_blank">
-        <i class="fa fa-whatsapp"></i><span>WhatsApp<br><small>+90 12 123456</small></span>
-    </a>
-</div>
     <main class="overflow-hidden">
         <!-- home area -->
         <div class="home_area" style="background-image: url({{ asset('frontend/img/banner-bg.png') }});">
@@ -408,6 +402,14 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="cont_link_area">
+            <div class="container">
+                <div class="cont_wrap_link" style="background-image: url({{ asset('frontend/img/cta-one_bg.png') }});">
+                    <h2> Do not let Shaitan delay you from starting to learn your deen</h2>
+                    <a href="#" class="button">Quick Start Now</a>
                 </div>
             </div>
         </div>

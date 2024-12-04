@@ -107,6 +107,7 @@
         }
         videoPopupInit();
 
+
         //Animate the scroll to yop
         $('.back-to-top').on('click', function (event) {
             event.preventDefault();
