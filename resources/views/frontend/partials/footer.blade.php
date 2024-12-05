@@ -62,7 +62,7 @@
             <div class="col footer_item links mt_50">
                 <h3>LINKS</h3>
                 <ul>
-                    <li><a href="#">Enrolment</a></li>
+                    <li><a href="#">Enrollment</a></li>
                     <li><a href="#">Our Team</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
