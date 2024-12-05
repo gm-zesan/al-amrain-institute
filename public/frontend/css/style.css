@@ -1908,7 +1908,7 @@ ul.list li:before {
 	padding: 1rem 2rem;
 	font-size: 2.5rem;
 	color: #444;
-	border: 0.1rem solid #444;
+	border: 0.1rem solid var(--dark_blue);
 	border-radius: 0.3rem;
 }
 .donate_from_cart textarea{
@@ -2536,4 +2536,22 @@ ul.list li:before {
 .cont_wrap_link h2{
 	font-size: 4.5rem;
 	color: #fff;
+}
+/* profile_list */
+.profile_list{
+	background-color: var(--dark_blue);
+}
+.profile_list li a {
+    padding: 1rem 1.5rem;
+    color: #fff;
+    display: block;
+    font-size: 2.7rem;
+    font-weight: 500;
+}
+.profile_list li:not(:last-child) a{
+	border-bottom: 0.1rem solid #fff;
+}
+.profile_list li a.active,
+.profile_list li a:hover{
+	background-color: var(--yellow);
 }
