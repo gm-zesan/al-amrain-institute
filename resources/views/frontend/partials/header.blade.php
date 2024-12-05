@@ -59,6 +59,7 @@
                         </ul>
                     </div>
                     <a href="{{ route('student.login') }}" class="button">Login</a>
+                    <a href="{{ route('student.my-account') }}" class="button">My Account</a>
                 </div>
                 <div class="mobile_content d-lg-none">
                     <!-- menu toggler -->
