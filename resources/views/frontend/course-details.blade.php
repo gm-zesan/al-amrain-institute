@@ -124,7 +124,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 mt_50">
-                        <div class="path_box possition_fixed" id="course_right">
+                        <div class="path_box possition_fixed"> //id="course_right"//
                             <h2>What is this career path?</h2>
                             <ul>
                                 <li>50+ live classes</li>

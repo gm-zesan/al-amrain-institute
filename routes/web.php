@@ -16,6 +16,8 @@ use App\Http\Controllers\backend\ReviewController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\student\AuthenticationController;
 use App\Http\Controllers\student\AccountController;
+use App\Http\Controllers\student\CoursesController;
+use App\Http\Controllers\student\CertificateController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('frontend.home');
@@ -30,6 +32,8 @@ Route::get('/enroll', [FrontendEnrollmentController::class, 'index'])->name('fro
 
 Route::get('/student-login', [AuthenticationController::class, 'index'])->name('student.login');
 Route::get('/my-account', [AccountController::class, 'index'])->name('student.my-account');
+Route::get('/courses', [CoursesController::class, 'index'])->name('student.courses');
+Route::get('/certificate', [CertificateController::class, 'index'])->name('student.certificate');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
