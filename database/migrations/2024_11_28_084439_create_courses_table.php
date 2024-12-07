@@ -20,7 +20,10 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->date('starting_date');
             $table->date('end_date');
-            $table->integer('total_seats');
+            $table->text('what_will_learn')->nullable();
+            $table->text('prerequisites')->nullable();
+            $table->text('time_schedule')->nullable();
+            $table->integer('total_seats')->nullable();
             $table->timestamps();
         });
     }

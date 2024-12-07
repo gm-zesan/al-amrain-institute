@@ -52,7 +52,7 @@
                                     <li><a href="{{ route('frontend.course.details') }}">Course - 2</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{{ route('frontend.enroll') }}">Enrolment</a></li>
+                            <li><a href="{{ route('frontend.enroll') }}">Enrollment</a></li>
                             <li><a href="{{ route('frontend.team') }}">Our Team</a></li>
                             <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
                             <li><a href="{{ route('frontend.contact') }}">Contact</a></li>

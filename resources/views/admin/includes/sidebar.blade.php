@@ -57,6 +57,22 @@
             </li>
         @endcan
 
+        <li>
+            <a href="{{ route('courses.index') }}"
+               class="{{ in_array(Route::currentRouteName(), ['courses.index', 'courses.create', 'courses.edit']) ? 'active-focus' : '' }}">
+                <i class="ri-git-repository-line"></i>
+                <span class="link_names">Course</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('enrollments.index') }}"
+               class="{{ in_array(Route::currentRouteName(), ['enrollments.index', 'enrollments.create', 'enrollments.edit']) ? 'active-focus' : '' }}">
+                <i class="ri-git-repository-line"></i>
+                <span class="link_names">Enrollments</span>
+            </a>
+        </li>
+        
+
         
 
         <li class="category-li">

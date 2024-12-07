@@ -15,7 +15,8 @@ class RoleSeeder extends Seeder
     {
         $datas = array(
             array('id' => '1','name' => 'superadmin', 'description' => 'All permission and access are enabled for this role', 'guard_name' => 'web'),
-            array('id' => '3','name' => 'admin', 'description' => 'Admin can observe everything without role', 'guard_name' => 'web'),
+            array('id' => '2','name' => 'admin', 'description' => 'Admin can observe everything without role', 'guard_name' => 'web'),
+            array('id' => '3','name' => 'student', 'description' => 'Student can observe everything without role', 'guard_name' => 'web'),
         );
         foreach($datas as $data)
         {

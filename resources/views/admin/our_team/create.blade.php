@@ -148,7 +148,7 @@
                                         <input type="hidden" id="cover_image_data" class="form-control custom-input" name="cover_image_data">
                                         <input type="file" id="cover_image" class="form-file-input form-control custom-input d-none" onchange="imageUpload(this)" name="image">
                                         <div class="user-image">
-                                            <img id="cover_imagePreview" src="{{asset('images/admin/default.jpg')}}" alt="" class="image-preview">
+                                            <img id="cover_imagePreview" src="{{asset('admin/images/default.jpg')}}" alt="" class="image-preview">
                                             <span class="formate-error cover_imageerror"></span>
                                         </div>
                                         <span class="upload-btn">Upload Image</span>
@@ -222,10 +222,10 @@
                 };
             }
         }
+        var noImage = "{{asset('admin/images/default.jpg')}}";
         function removeImage(id) {
             $( "#" + id ).val( null );
-            // $( '#' + id + 'Preview' ).attr( 'class', noImage  );
-            $( '#' + id + 'Preview' ).addClass( 'd-none' );
+            $( '#' + id + 'Preview' ).attr( 'src', noImage );
             $( '#' + id + 'PreviewNo' ).removeClass( 'd-none' );
             $( "#" + id + "_data").attr("value", "");
             $( '#' + id + 'Name' ).html( 'Not selected' );

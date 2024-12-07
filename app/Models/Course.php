@@ -14,12 +14,15 @@ class Course extends Model
         'image',
         'starting_date',
         'end_date',
+        'what_will_learn',
+        'prerequisites',
+        'time_schedule',
         'total_seats',
     ];
 
-    public function enrolments()
+    public function enrollments()
     {
-        return $this->hasMany(Enrolment::class);
+        return $this->hasMany(Enrollment::class);
     }
 
     public function students()

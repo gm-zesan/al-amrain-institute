@@ -8,7 +8,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -26,6 +25,15 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        $user = Auth::user();
+
+        if ($user->hasRole('student')) {
+            Auth::logout();
+            return redirect()->route('student.login')->withErrors([
+                'email' => 'You are not allowed to access the admin panel.',
+            ]);
+        }
+        
         $request->session()->regenerate();
 
         return redirect()->intended(route('dashboard', absolute: false));
