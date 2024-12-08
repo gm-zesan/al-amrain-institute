@@ -81,33 +81,33 @@ table.dataTable tbody tr td a {
 table.dataTable tbody tr td .btn-show {
     margin-left: 5px;
     color: #5adf73;
-    background-color: #eefcf2;
+    background-color: #c9f3d5;
     height: 28px;
     width: 28px;
     border-radius: 5px;
     @include flex-box(flex, center, center);
     &.btn-checked {
-        color: #5adf5a;
-        background-color: #eefcf0;
+        color: #47d347;
+        background-color: #c9f3d5;
         &:hover {
             color: #fff;
-            background-color: #5adf5a;
+            background-color: #47d347;
         }
     }
 }
 table.dataTable tbody tr td .btn-edit {
     color: #845adf;
-    background-color: #f2eefc;
+    background-color: #e4def5;
     height: 28px;
     width: 28px;
     border-radius: 5px;
     @include flex-box(flex, center, center);
     &.btn-checked {
-        color: #5adf5a;
+        color: #47d347;
         background-color: #eefcf0;
         &:hover {
             color: #fff;
-            background-color: #5adf5a;
+            background-color: #47d347;
         }
     }
 }
@@ -117,7 +117,7 @@ table.dataTable tbody tr td .btn-edit:hover {
 }
 table.dataTable tbody tr td .btn-show:hover {
     color: #fff;
-    background-color: #5adf5a;
+    background-color: #47d347;
 }
 
 table.dataTable tbody tr td .btn-delete {

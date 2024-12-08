@@ -67,8 +67,15 @@
         <li>
             <a href="{{ route('enrollments.index') }}"
                class="{{ in_array(Route::currentRouteName(), ['enrollments.index', 'enrollments.create', 'enrollments.edit']) ? 'active-focus' : '' }}">
-                <i class="ri-git-repository-line"></i>
+               <i class="ri-arrow-up-line"></i>
                 <span class="link_names">Enrollments</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('reviews.index') }}"
+               class="{{ in_array(Route::currentRouteName(), ['reviews.index', 'reviews.create', 'reviews.edit']) ? 'active-focus' : '' }}">
+               <i class="ri-shining-line"></i>
+                <span class="link_names">Reviews</span>
             </a>
         </li>
         
@@ -89,6 +96,16 @@
                 </a>
             </li>
         @endcan
+
+        @canany(['contact-list', 'contact-delete'])
+            <li>
+                <a href="{{ route('message') }}"
+                    class="{{ in_array(Route::currentRouteName(), ['message']) ? 'active-focus' : '' }}">
+                    <i class="ri-mail-open-line"></i>
+                    <span class="link_names">Contact Message</span>
+                </a>
+            </li>
+        @endcan 
 
         
 

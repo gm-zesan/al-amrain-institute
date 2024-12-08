@@ -83,8 +83,11 @@
                         orderable: false, 
                         render: function (data) {
                             var btns = '<div class="action-btn">';
-
-                                
+                            btns += '<form action="' + SITEURL + '/dashboard/enrollments/' + data + '" method="POST" style="display: inline;">' +
+                                '@csrf' +
+                                '@method("PUT")' +
+                                '<button type="submit" class="btn btn-edit" title="update status"><i class="ri-loop-right-line"></i></button>' +
+                            '</form>';
                             btns += '<form action="' + SITEURL + '/dashboard/enrollments/' + data + '" method="POST" style="display: inline;" onsubmit="return confirm(\'Are you sure to delete this enrollment?\');">' +
                                 '@csrf' +
                                 '@method("DELETE")' +

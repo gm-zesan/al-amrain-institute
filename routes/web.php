@@ -13,6 +13,7 @@ use App\Http\Controllers\frontend\TeamController;
 use App\Http\Controllers\frontend\GalleryController;
 use App\Http\Controllers\backend\OurTeamController;
 use App\Http\Controllers\backend\ReviewController;
+use App\Http\Controllers\backend\ContactFormController as BackendContactFormController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\student\AuthenticationController;
 use App\Http\Controllers\student\AccountController;
@@ -59,8 +60,11 @@ Route::middleware('auth')->group(function () {
 
     // course resourse routes
     Route::resource('/dashboard/courses', BackendCourseController::class)->except(['show']);
-    Route::resource('/dashboard/enrollments', BackendEnrollmentController::class)->except(['show']);
-    Route::resource('/dashboard/reviews', ReviewController::class)->except(['show']);
+    Route::resource('/dashboard/enrollments', BackendEnrollmentController::class)->except(['show', 'edit']);
+    Route::resource('/dashboard/reviews', ReviewController::class)->except(['show', 'edit']);
+
+    //message Route
+    Route::get('/dashboard/message', [BackendContactFormController::class,'index'])->name('message');
 });
 
 require __DIR__.'/auth.php';

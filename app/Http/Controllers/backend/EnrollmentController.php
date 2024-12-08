@@ -20,7 +20,7 @@ class EnrollmentController extends Controller
                     return $row->course->title;
                 })
                 ->addColumn('student_id', function($row){
-                    return $row->student->name;
+                    return $row->student->name  . ' (' . $row->student->email . ')';
                 })
                 ->addColumn('action-btn', function($row){
                     return $row->id;
@@ -54,11 +54,10 @@ class EnrollmentController extends Controller
     }
 
     // Update the specified enrollment in storage
-    public function update(EnrollmentRequest $request, Enrollment $enrollment)
+    public function update(Request $request, Enrollment $enrollment)
     {
-        dd($enrollment);
-        $validated = $request->validated();
-        $enrollment->update($validated);
+        $enrollment->status = $enrollment->status === 'pending' ? 'approved' : 'pending';
+        $enrollment->save();
         return redirect()->route('enrollments.index')->with('success', 'Enrollment updated successfully.');
     }
 
