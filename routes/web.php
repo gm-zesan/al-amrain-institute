@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\AssignRoleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\frontend\AboutController;
 use App\Http\Controllers\frontend\ContactController;
@@ -14,6 +15,9 @@ use App\Http\Controllers\frontend\GalleryController;
 use App\Http\Controllers\backend\OurTeamController;
 use App\Http\Controllers\backend\ReviewController;
 use App\Http\Controllers\backend\ContactFormController as BackendContactFormController;
+use App\Http\Controllers\backend\RoleController;
+use App\Http\Controllers\backend\StudentController;
+use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\student\AuthenticationController;
 use App\Http\Controllers\student\AccountController;
@@ -66,9 +70,24 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dashboard/courses', BackendCourseController::class)->except(['show']);
     Route::resource('/dashboard/enrollments', BackendEnrollmentController::class)->except(['show', 'edit']);
     Route::resource('/dashboard/reviews', ReviewController::class)->except(['show', 'edit']);
+    Route::resource('/dashboard/students', StudentController::class)->except(['show']);
 
     //message Route
     Route::get('/dashboard/message', [BackendContactFormController::class,'index'])->name('message');
+
+
+    // users and roles
+    // User Route
+    Route::get('/dashboard/users', [UserController::class,'index'])->name('users');
+    Route::get('/dashboard/user/create', [UserController::class,'create'])->name('user.create');
+    Route::post('/dashboard/user/store', [UserController::class,'store'])->name('user.store');
+    Route::get('/dashboard/user/edit/{id}', [UserController::class,'edit'])->name('user.edit');
+    Route::post('/dashboard/user/update/{id}', [UserController::class,'update'])->name('user.update');
+    Route::get('/dashboard/user/delete/{id}', [UserController::class,'delete'])->name('user.delete');
+
+    // Assign Role Route
+    Route::get('/dashboard/assign-role', [AssignRoleController::class,'index'])->name('assignrole.index');
+    Route::post('/dashboard/assign-role/store', [AssignRoleController::class,'assignRole'])->name('assignrole.store');
 });
 
 require __DIR__.'/auth.php';

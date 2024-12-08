@@ -31,23 +31,12 @@
                         <div class="card-body custom-form">
                             
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label for="first_name" class="form-label custom-label">First Name</label>
-                                    <input type="text" class="form-control custom-input" name="first_name" placeholder="First Name" id="first_name">
-                                    @if($errors->has('first_name'))
+                                <div class="col-12">
+                                    <label for="name" class="form-label custom-label">Name</label>
+                                    <input type="name" class="form-control custom-input" name="name" placeholder="Name" id="name">
+                                    @if($errors->has('name'))
                                         <div class="error_msg">
-                                            {{ $errors->first('first_name') }}
-                                        </div>
-                                    @endif
-                                </div>
-
-                                
-                                <div class="col-md-6">
-                                    <label for="last_name" class="form-label custom-label">Last Name</label>
-                                    <input type="text" class="form-control custom-input" name="last_name" placeholder="Last Name" id="last_name">
-                                    @if($errors->has('last_name'))
-                                        <div class="error_msg">
-                                            {{ $errors->first('last_name') }}
+                                            {{ $errors->first('name') }}
                                         </div>
                                     @endif
                                 </div>
@@ -60,6 +49,17 @@
                                     @if($errors->has('email'))
                                         <div class="error_msg">
                                             {{ $errors->first('email') }}
+                                        </div>
+                                    @endif
+                                </div>
+
+                                
+                                <div class="col-md-6">
+                                    <label for="" class="form-label custom-label">Phone No</label>
+                                    <input type="text" class="form-control custom-input" name="phone_no" placeholder="Phone No">
+                                    @if($errors->has('phone_no'))
+                                        <div class="error_msg">
+                                            {{ $errors->first('phone_no') }}
                                         </div>
                                     @endif
                                 </div>
@@ -84,77 +84,13 @@
                                     @endif
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label for="" class="form-label custom-label">Phone No</label>
-                                    <input type="text" class="form-control custom-input" name="phone_no" placeholder="Phone No">
-                                    @if($errors->has('phone_no'))
-                                        <div class="error_msg">
-                                            {{ $errors->first('phone_no') }}
-                                        </div>
-                                    @endif
-                                </div>
 
-                                {{-- date_of_birth --}}
-                                <div class="col-md-6">
-                                    <label for="" class="form-label custom-label">Date of Birth</label>
-                                    <input type="date" class="form-control custom-input" name="date_of_birth" placeholder="Date of Birth">
-                                    @if($errors->has('date_of_birth'))
-                                        <div class="error_msg">
-                                            {{ $errors->first('date_of_birth') }}
-                                        </div>
-                                    @endif
-                                </div>
-
-
-                                <div class="col-md-6">
-                                    <label for="nid" class="form-label custom-label">National Id</label>
-                                    <input type="text" class="form-control custom-input" name="nid" placeholder="National Id" id="nid">
-                                    @if($errors->has('nid'))
-                                        <div class="error_msg">
-                                            {{ $errors->first('nid') }}
-                                        </div>
-                                    @endif
-                                </div>
-
-                                
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <label for="" class="form-label custom-label">Address</label>
-                                    <input type="text" class="form-control custom-input" name="address" placeholder="Address">
+                                    <textarea name="address" class="form-control custom-input" id="address" cols="30" rows="5"></textarea>
                                     @if($errors->has('address'))
                                         <div class="error_msg">
                                             {{ $errors->first('address') }}
-                                        </div>
-                                    @endif
-                                </div>
-
-                                
-
-                                <div class="col-md-6">
-                                    <label for="" class="form-label custom-label">Gender</label>
-
-                                    <div class="settings-radio-input">
-                                        <div class="inner-settings-radio-input">
-                                            <input type="radio" name="gender" id="Male" value="Male">
-                                            <label for="Male">Male</label>
-                                        </div>
-                                        <div class="inner-settings-radio-input">
-                                            <input type="radio" name="gender" id="Female" value="Female">
-                                            <label for="Female">Female</label>
-                                        </div>
-                                        <div class="inner-settings-radio-input">
-                                            <input type="radio" name="gender" id="Other" value="Other">
-                                            <label for="Other">Other</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                
-                                <div class="col-12">
-                                    <label for="" class="form-label custom-label">Description</label>
-                                    <textarea class="form-control custom-input" name="description" id="description" rows="5"  placeholder="Description"  style="resize: none; height: auto"></textarea>
-                                    @if($errors->has('description'))
-                                        <div class="error_msg">
-                                            {{ $errors->first('description') }}
                                         </div>
                                     @endif
                                 </div>
@@ -242,35 +178,15 @@
         });
     </script>
 
-    {{-- CK Editor --}}
-    <script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
-    <script type="text/javascript">
-        setTimeout(function(){
-            CKEDITOR.replace('description', {
-                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form'
-            });
-        },100);
-    </script>
 
     <script>
         $(document).ready(function(){
-            $('#first_name').keyup(function(){
-                var firstName = $(this).val();
-                var lastName = $('#last_name').val();
-                if(firstName == '' && lastName == ''){
+            $('#name').keyup(function(){
+                var name = $(this).val();
+                if(name == ''){
                     $('#setName').html('Your Name');
                 }else{
-                    $('#setName').html(firstName + ' ' + lastName);
-                }
-            });
-            $('#last_name').keyup(function(){
-                var lastName = $(this).val();
-                var firstName = $('#first_name').val();
-                if(lastName == '' && firstName == ''){
-                    $('#setName').html('Your Name');
-                }else{
-                    $('#setName').html(firstName + ' ' + lastName);
+                    $('#setName').html(name);
                 }
             });
             $('#email').keyup(function(){

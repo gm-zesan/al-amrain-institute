@@ -1,49 +1,51 @@
 @extends('admin.app')
 @section('title')
-    User
+    Student
 @endsection
+
 @section('content')
+
     <div class="container-fluid my-3">
-        <form action="{{ route('user.update', ['id' => $user->id]) }}" method="POST"
-            enctype="multipart/form-data" autocomplete="off">
-            @csrf
+        <form action="{{ route('students.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+        @csrf
             <div class="row">
                 <div class="col-md-8 col-12">
                     <div class="card table-card">
                         <div class="card-header table-header">
                             <div class="title-with-breadcrumb">
-                                <div class="table-title">User</div>
+                                <div class="table-title">Student</div>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb mb-0">
                                         <li class="breadcrumb-item">
                                             <a href="{{route('dashboard')}}">Dashboard</a>
                                         </li>
                                         <li class="breadcrumb-item">
-                                            <a href="{{route('users')}}">User</a>
+                                            <a href="{{ route('students.index') }}">Student</a>
                                         </li>
-                                        <li class="breadcrumb-item active" aria-current="page"> Create User</li>
+                                        <li class="breadcrumb-item active" aria-current="page"> Create Student</li>
                                     </ol>
                                 </nav>
                             </div>
-                            <a href="{{route('users')}}" class="add-new">User List<i class="ms-1 ri-list-ordered-2"></i></a>
+                            <a href="{{ route('students.index') }}" class="add-new">Student List<i class="ms-1 ri-list-ordered-2"></i></a>
                         </div>
                         <div class="card-body custom-form">
                             
                             <div class="row">
                                 <div class="col-12">
                                     <label for="name" class="form-label custom-label">Name</label>
-                                    <input type="text" class="form-control custom-input" name="name" value="{{$user->name}}" id="name">
+                                    <input type="name" class="form-control custom-input" name="name" placeholder="Name" id="name">
                                     @if($errors->has('name'))
                                         <div class="error_msg">
                                             {{ $errors->first('name') }}
                                         </div>
                                     @endif
                                 </div>
-                                
+
+
 
                                 <div class="col-md-6">
                                     <label for="email" class="form-label custom-label">Email</label>
-                                    <input type="email" class="form-control custom-input" name="email" value="{{$user->email}}" id="email">
+                                    <input type="email" class="form-control custom-input" name="email" placeholder="Email" id="email">
                                     @if($errors->has('email'))
                                         <div class="error_msg">
                                             {{ $errors->first('email') }}
@@ -51,9 +53,10 @@
                                     @endif
                                 </div>
 
+                                
                                 <div class="col-md-6">
                                     <label for="" class="form-label custom-label">Phone No</label>
-                                    <input type="text" class="form-control custom-input" name="phone_no" value="{{$user->phone_no}}">
+                                    <input type="text" class="form-control custom-input" name="phone_no" placeholder="Phone No">
                                     @if($errors->has('phone_no'))
                                         <div class="error_msg">
                                             {{ $errors->first('phone_no') }}
@@ -61,23 +64,43 @@
                                     @endif
                                 </div>
 
+                                <div class="col-md-6">
+                                    <label for="" class="form-label custom-label">Password</label>
+                                    <input type="password" class="form-control custom-input" name="password" placeholder="Password">
+                                    @if($errors->has('password'))
+                                        <div class="error_msg">
+                                            {{ $errors->first('password') }}
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="" class="form-label custom-label">Confirm Password</label>
+                                    <input type="password" class="form-control custom-input" name="password_confirmation" placeholder="Confirm Password">
+                                    @if($errors->has('password_confirmation'))
+                                        <div class="error_msg">
+                                            {{ $errors->first('password_confirmation') }}
+                                        </div>
+                                    @endif
+                                </div>
+
 
                                 <div class="col-12">
                                     <label for="" class="form-label custom-label">Address</label>
-                                    <textarea name="address" class="form-control custom-input" id="" cols="30" rows="3">{{$user->address}}</textarea>
+                                    <textarea name="address" class="form-control custom-input" id="address" cols="30" rows="5"></textarea>
                                     @if($errors->has('address'))
                                         <div class="error_msg">
                                             {{ $errors->first('address') }}
                                         </div>
                                     @endif
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
 
+
+                
 
                 <div class="col-md-4 col-12">
                     <div class="row g-4">
@@ -89,19 +112,19 @@
                                 <div class="custom-form card-body">
                                     <div class="row">
                                         <div class="col-6">
-                                            <button type="submit" class="btn submit-button">Update
+                                            <button type="submit" class="btn submit-button">Save
                                                 <span class="ms-1 spinner-border spinner-border-sm d-none" role="status">
                                                 </span>
                                             </button>
                                         </div>
                                         <div class="col-6">
-                                            <a href="{{route('users')}}" class="btn leave-button">Leave</a>
+                                            <a href="{{ route('students.index') }}" class="btn leave-button">Leave</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
-
                         <div class="col-12">
                             <div class="card table-card">
                                 <div class="table-header">
@@ -113,16 +136,12 @@
                                             <input type="hidden" id="cover_image_data" class="form-control custom-input" name="cover_image_data">
                                             <input type="file" id="cover_image" class="form-file-input form-control custom-input d-none" onchange="imageUpload(this)" name="image">
                                             <div class="user-image">
-                                                @if($user->image)
-                                                    <img id="cover_imagePreview" src="{{asset('storage/'. $user->image)}}" alt="" class="image-preview">
-                                                @else
-                                                    <i id="cover_imagePreviewNo" class="ri-user-3-line no-image-preview"></i>
-                                                @endif
+                                                <i id="cover_imagePreviewNo" class="ri-user-3-line no-image-preview"></i>
                                                 <img id="cover_imagePreview" src="{{asset('admin/assets/images/default.jpg')}}" alt="" class="image-preview d-none">
                                                 <span class="formate-error cover_imageerror"></span>
                                                 <div class="user-info">
-                                                    <h5 id="setName">{{$user->first_name}} </h5>
-                                                    <p id="setEmail">{{$user->email}}</p>
+                                                    <h5 id="setName">Your Name</h5>
+                                                    <p id="setEmail">example@gmail.com</p>
                                                 </div>
                                             </div>
                                             <span class="upload-btn">Upload Iamge</span>
@@ -138,14 +157,15 @@
                                     @endif
                                 </div>
                             </div>
-                            
                         </div>
-                        
                     </div>
                 </div>
+
+
             </div>
         </form>
     </div>
+
 @endsection
 
 @push('custom-scripts')

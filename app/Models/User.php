@@ -24,6 +24,7 @@ class User extends Authenticatable
         'phone_no',
         'password',
         'image',
+        'address',
         'is_blocked',
         'is_certificate_enable',
     ];

@@ -65,6 +65,13 @@
             </a>
         </li>
         <li>
+            <a href="{{ route('students.index') }}"
+               class="{{ in_array(Route::currentRouteName(), ['students.index', 'students.create', 'students.edit']) ? 'active-focus' : '' }}">
+                <i class="ri-user-3-line"></i>
+                <span class="link_names">Students</span>
+            </a>
+        </li>
+        <li>
             <a href="{{ route('enrollments.index') }}"
                class="{{ in_array(Route::currentRouteName(), ['enrollments.index', 'enrollments.create', 'enrollments.edit']) ? 'active-focus' : '' }}">
                <i class="ri-arrow-up-line"></i>
@@ -79,7 +86,6 @@
             </a>
         </li>
         
-
         
 
         <li class="category-li">
@@ -105,7 +111,35 @@
                     <span class="link_names">Contact Message</span>
                 </a>
             </li>
-        @endcan 
+        @endcan
+
+        @if(Auth::user()->hasRole('superadmin'))
+            @canany(['user-list', 'user-create', 'user-edit', 'user-delete', 'role-list', 'role-create', 'role-edit',
+                'role-delete'])
+                <li class="category-li">
+                    <span class="link_names">Users</span>
+                </li>
+            @endcan
+            @canany(['user-list', 'user-create', 'user-edit', 'user-delete'])
+                <li class="drop-item">
+                    <a href="{{ route('users') }}"
+                        class="{{ in_array(Route::currentRouteName(), ['users', 'user.create', 'user.edit']) ? 'active-focus' : '' }}">
+                        <i class="ri-user-3-line"></i>
+                        <span class="link_names">User List</span>
+                    </a>
+                </li>
+            @endcan
+            @canany(['role-list', 'role-create', 'role-edit', 'role-delete'])
+                <li class="drop-item">
+                    <a href="{{ route('assignrole.index') }}"
+                        class="{{ in_array(Route::currentRouteName(), ['assignrole.index', 'assignrole.edit']) ? 'active-focus' : '' }}">
+                        <i class="ri-user-settings-line"></i>
+                        <span class="link_names">Assign Role</span>
+                    </a>
+                    <span class="tooltip">Assign Role</span>
+                </li>
+            @endcan
+        @endIf
 
         
 
