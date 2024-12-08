@@ -1417,7 +1417,7 @@ ul.list li:before {
 .circle-text figure.circle-img {
     width: 21.4rem;
     height: 21.4rem;
-    background-color: var(--yellow);
+    background-color: var(--dark_blue);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1425,10 +1425,11 @@ ul.list li:before {
     margin: auto;
 }
 .circle-img img {
-    border: .1rem solid #444;
+    border: .1rem solid #fff;
     width: 11.8rem;
     padding: 3.0rem;
     border-radius: 50%;
+	filter: brightness(0) invert(1);
 }
 @keyframes rotate {
 	0% {
@@ -1770,11 +1771,11 @@ ul.list li:before {
 	padding: 3rem 1.5rem;
 	background-color: var(--dark_blue);
 }
-.possition_fixed{
+/* .possition_fixed{
 	position: fixed;
 	top: 14.5rem;
 	width: 51.3rem;
-}
+} */
 .path_box h2 {
     color: #fff;
     text-transform: capitalize;
@@ -2555,3 +2556,42 @@ ul.list li:before {
 .profile_list li a:hover{
 	background-color: var(--yellow);
 }
+.avatar_img{
+	width: 12rem;
+	height: 12rem;
+	border-radius: 50%;
+	border: 0.1rem solid var(--dark_blue);
+	padding: 1rem;
+}
+.my_account_area hr{
+	background-color: var(--dark_blue);
+	margin-bottom: 4rem;
+}
+.my_account_area .course-block_two-image img {
+	height: 22rem;
+}
+.my_account_area .course-block_two-heading a {
+    font-size: 2.5rem;
+}
+.my_account_area .course-block_two-study {
+    top: -2.7rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.7rem;
+	left: 2rem;
+}
+.my_account_area .course-block_two-content {
+    padding: 4.0rem 2rem 3.0rem;
+}
+.my_account_area table {
+	border-collapse: collapse;
+	width: 100%;
+	font-size: 2.2rem;
+	color: #444;
+  }
+  
+  .my_account_area td,
+  .my_account_area th {
+	border: .1rem solid var(--dark_blue);
+	text-align: left;
+	padding: .8rem;
+  }

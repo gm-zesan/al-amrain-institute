@@ -24,7 +24,7 @@
                     <h2>Team Member</h2>
                 </div>
                 <div class="row mt_50">
-                    <div class="col-lg-4 mt_50">
+                    <div class="col-lg-4 col-md-6 mt_50">
                         <div class="team-two__item">
                             <div class="team-two__image">
                                 <img src="{{ asset('frontend/img/team-2-1.jpg') }}" alt="eduact">
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 mt_50">
+                    <div class="col-lg-4 col-md-6 mt_50">
                         <div class="team-two__item">
                             <div class="team-two__image">
                                 <img src="{{ asset('frontend/img/team-2-3.jpg') }}" alt="eduact">
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 mt_50">
+                    <div class="col-lg-4 col-md-6 mt_50">
                         <div class="team-two__item">
                             <div class="team-two__image">
                                 <img src="{{ asset('frontend/img/team-2-1.jpg') }}" alt="eduact">
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 mt_50">
+                    <div class="col-lg-4 col-md-6 mt_50">
                         <div class="team-two__item">
                             <div class="team-two__image">
                                 <img src="{{ asset('frontend/img/team-2-1.jpg') }}" alt="eduact">
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 mt_50">
+                    <div class="col-lg-4 col-md-6 mt_50">
                         <div class="team-two__item">
                             <div class="team-two__image">
                                 <img src="{{ asset('frontend/img/team-2-3.jpg') }}" alt="eduact">
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 mt_50">
+                    <div class="col-lg-4 col-md-6 mt_50">
                         <div class="team-two__item">
                             <div class="team-two__image">
                                 <img src="{{ asset('frontend/img/team-2-1.jpg') }}" alt="eduact">

@@ -49,7 +49,7 @@
                         <div class="row align-items-end">
                             <div class="col-lg-5 col-6">
                                 <div class="circle-text">
-                                    <img src="{{ asset('frontend/img/text-circle.png') }}" class="circle-text-img" alt="circle-img">
+                                    <img src="{{ asset('frontend/img/text-circle1.png') }}" class="circle-text-img" alt="circle-img">
                                     <figure class="circle-img">
                                         <img src="{{ asset('frontend/img/circle-img.png') }}" alt="circle-img">
                                     </figure>
@@ -77,7 +77,7 @@
             <div class="container">
                 <div class="row">
                     <!-- Feature Block -->
-                    <div class="feature-block col-lg-3 col-md-6 col-sm-6 mt_30">
+                    <div class="feature-block col-lg-3 col-md-6 col-6 mt_30">
                         <div class="inner-box ">
                             <img src="{{ asset('frontend/img/webinar-2.png') }}" alt="">
                             <h5 class="title">Online<br> Certifications</h5>
@@ -85,7 +85,7 @@
                     </div>
 
                     <!-- Feature Block -->
-                    <div class="feature-block col-lg-3 col-md-6 col-sm-6 mt_30">
+                    <div class="feature-block col-lg-3 col-md-6 col-6 mt_30">
                         <div class="inner-box ">
                             <img src="{{ asset('frontend/img/online-learning.png') }}" alt="">
                             <h5 class="title">Top<br> Instructors</h5>
@@ -93,7 +93,7 @@
                     </div>
 
                     <!-- Feature Block -->
-                    <div class="feature-block col-lg-3 col-md-6 col-sm-6 mt_30">
+                    <div class="feature-block col-lg-3 col-md-6 col-6 mt_30">
                         <div class="inner-box ">
                             <img src="{{ asset('frontend/img/webinar-1.png') }}" alt="">
                             <h5 class="title">Unlimited <br>Online Courses</h5>
@@ -101,7 +101,7 @@
                     </div>
 
                     <!-- Feature Block -->
-                    <div class="feature-block col-lg-3 col-md-6 col-sm-6 mt_30">
+                    <div class="feature-block col-lg-3 col-md-6 col-6 mt_30">
                         <div class="inner-box ">
                             <img src="{{ asset('frontend/img/webinar.png') }}" alt="">
                             <h5 class="title">Experienced <br>Members</h5>
@@ -128,7 +128,7 @@
                     <h2>Team Member</h2>
                 </div>
                 <div class="row mt_50">
-                    <div class="col-lg-4 mt_50">
+                    <div class="col-lg-4 col-md-6 mt_50">
                         <div class="team-two__item">
                             <div class="team-two__image">
                                 <img src="{{ asset('frontend/img/team-2-1.jpg') }}" alt="eduact">
@@ -146,7 +146,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 mt_50">
+                    <div class="col-lg-4 col-md-6 mt_50">
                         <div class="team-two__item">
                             <div class="team-two__image">
                                 <img src="{{ asset('frontend/img/team-2-3.jpg') }}" alt="eduact">
@@ -164,7 +164,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 mt_50">
+                    <div class="col-lg-4 col-md-6 mt_50">
                         <div class="team-two__item">
                             <div class="team-two__image">
                                 <img src="{{ asset('frontend/img/team-2-1.jpg') }}" alt="eduact">

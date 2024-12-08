@@ -57,7 +57,7 @@
                         <div class="row align-items-end">
                             <div class="col-lg-5 col-6">
                                 <div class="circle-text">
-                                    <img src="{{ asset('frontend/img/text-circle.png') }}" class="circle-text-img" alt="circle-img">
+                                    <img src="{{ asset('frontend/img/text-circle1.png') }}" class="circle-text-img" alt="circle-img">
                                     <figure class="circle-img">
                                         <img src="{{ asset('frontend/img/circle-img.png') }}" alt="circle-img">
                                     </figure>
