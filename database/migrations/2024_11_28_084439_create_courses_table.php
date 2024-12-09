@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->date('starting_date');
             $table->date('end_date');
+            $table->string('google_classroom_code')->nullable();
             $table->text('what_will_learn')->nullable();
             $table->text('prerequisites')->nullable();
             $table->text('time_schedule')->nullable();

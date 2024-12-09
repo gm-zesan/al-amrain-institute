@@ -14,6 +14,7 @@ class Course extends Model
         'image',
         'starting_date',
         'end_date',
+        'google_classroom_code',
         'what_will_learn',
         'prerequisites',
         'time_schedule',

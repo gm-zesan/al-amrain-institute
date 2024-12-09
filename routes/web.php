@@ -15,6 +15,7 @@ use App\Http\Controllers\frontend\GalleryController;
 use App\Http\Controllers\backend\OurTeamController;
 use App\Http\Controllers\backend\ReviewController;
 use App\Http\Controllers\backend\ContactFormController as BackendContactFormController;
+use App\Http\Controllers\backend\EmailController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\StudentController;
 use App\Http\Controllers\backend\UserController;
@@ -74,6 +75,10 @@ Route::middleware('auth')->group(function () {
 
     //message Route
     Route::get('/dashboard/message', [BackendContactFormController::class,'index'])->name('message');
+
+    // send-email Route
+    Route::get('/dashboard/courses/{course}/email', [EmailController::class,'index'])->name('course.email');
+    Route::post('/dashboard/courses/send-email', [EmailController::class,'sendEmail'])->name('course.send-email');
 
 
     // users and roles
