@@ -26,13 +26,14 @@ use App\Http\Controllers\student\CoursesController;
 use App\Http\Controllers\student\CertificateController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [HomeController::class, 'index'])->name('frontend.home');
+Route::get('/', HomeController::class)->name('frontend.home');
 Route::get('/about', [AboutController::class, 'index'])->name('frontend.about');
 Route::get('/contact', [ContactController::class, 'index'])->name('frontend.contact');
 Route::get('/team', [TeamController::class, 'index'])->name('frontend.team');
 Route::get('/gallery', [GalleryController::class, 'index'])->name('frontend.gallery');
 Route::get('/course', [FrontendCourseController::class, 'index'])->name('frontend.course');
-Route::get('/couese-details', [FrontendCourseController::class, 'details'])->name('frontend.course.details');
+Route::get('/course/{id}', [FrontendCourseController::class, 'details'])->name('frontend.course.details');
+
 Route::get('/enroll', [FrontendEnrollmentController::class, 'index'])->name('frontend.enroll');
 
 

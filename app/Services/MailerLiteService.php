@@ -14,49 +14,65 @@ class MailerLiteService
         $this->mailerlite = new MailerLite(['api_key' => env('MAILERLITE_API_KEY')]);
     }
 
-    /**
-     * Add a subscriber to MailerLite
-     */
-    public function getOrCreateMailerLiteGroup($course)
-    {
-        $response = $this->mailerlite->groups->get();
-        if (isset($response['body']['data'])) {
-            $groups = $response['body']['data'];
-            foreach ($groups as $group) {
-                if ($group['name'] == $course->name) {
-                    return $group['id'];
-                }
-            }
-        }
-        $newGroup = $this->mailerlite->groups->create([
-            'name' => $course->name,
-        ]);
-        return $newGroup['body']['data']['id'];
-    }
-
-    public function addStudentAsSubscriber($student)
-    {
-        $subscriber = $this->mailerlite->subscribers->create([
-            'email' => $student->email,
-            'name' => $student->name,
-            'fields' => [
-                'course_name' => $student->course_name,
-            ],
-        ]);
-        return $subscriber['body']['data']['id'];
-    }
 
     public function addStudentToMailerLiteGroup($student, $groupId)
     {
+        $subscriberId = $this->addStudentAsSubscriber($student);
+        $this->mailerlite->groups->assignSubscriber($groupId, $subscriberId);
+        $subscribers = $this->mailerlite->groups->getSubscribers($groupId);
+        return $subscribers['body']['data'];
+    }
+
+
+    public function sendMailViaMailerLite($student, $course, $groupId)
+    {
+        $emailContent = view('emails.course-enrolled', compact('student', 'course'))->render();
+        $campaignData = [
+            'name' => 'Course Enrollment',
+            'type' => 'regular',
+            'emails' => [
+                [
+                    'subject' => 'Course Enrollment Notification', 
+                    'from_name' => 'Al-Amrain Institute',
+                    'from' => 'gmzesan7767@gmail.com',
+                    'reply_to' => 'gmzesan7767@gmail.com',
+                    'content' => $emailContent,
+                ],
+            ],
+            'groups' => [$groupId],
+        ];
         try {
-            $existingSubscriber = $this->mailerlite->subscribers->find($student->email);
-            if (isset($existingSubscriber['body']['data']['id'])) {
-                $subscriberId = $existingSubscriber['body']['data']['id'];
+            $campaign = $this->mailerlite->campaigns->create($campaignData);
+            $campaignId = $campaign['body']['data']['id'];
+            $scheduleResponse = $this->mailerlite->campaigns->schedule($campaignId, ['delivery' => 'instant']);
+            return $scheduleResponse;
+            if ($scheduleResponse['status_code'] == 200) {
+                return "Campaign scheduled successfully!";
             } else {
-                $subscriberId = $this->addStudentAsSubscriber($student);
+                return "Failed to schedule the campaign.";
             }
-            $this->mailerlite->groups->assignSubscriber($groupId, $subscriberId);
-            return "Student added to the group successfully!";
+        } catch (\Exception $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
+
+    
+    protected function addStudentAsSubscriber($student)
+    {
+        try {
+            $subscriber = $this->mailerlite->subscribers->create([
+                'email' => $student->email,
+                'fields' => [
+                    'name' => $student->name,
+                ],
+            ]);
+
+            if ($subscriber['status_code'] == 201) {
+                return $subscriber['body']['data']['id'];
+            } else {
+                $subscriberId = $this->mailerlite->subscribers->find($student->email)['body']['data']['id'];
+                return $subscriberId;
+            }
         } catch (\Exception $e) {
             return "Error: " . $e->getMessage();
         }

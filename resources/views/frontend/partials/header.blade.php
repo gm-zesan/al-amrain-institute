@@ -48,8 +48,8 @@
                             <li class="dropdown_wrap">
                                 <a href="#">Courses</a>
                                 <ul>
-                                    <li><a href="{{ route('frontend.course.details') }}">Course - 1</a></li>
-                                    <li><a href="{{ route('frontend.course.details') }}">Course - 2</a></li>
+                                    <li><a href="{{ route('frontend.course.details', 1) }}">Course - 1</a></li>
+                                    <li><a href="{{ route('frontend.course.details', 1) }}">Course - 2</a></li>
                                 </ul>
                             </li>
                             <li><a href="{{ route('frontend.enroll') }}">Enrollment</a></li>

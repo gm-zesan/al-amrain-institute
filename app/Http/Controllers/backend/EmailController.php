@@ -15,6 +15,7 @@ use MailerLite\MailerLite;
 
 class EmailController extends Controller
 {
+    protected const AL_AMRAIN_INSTITUTE_GROUP_ID = '140310240129189679';
     protected $mailerLiteService;
     // protected $mailerLite;
 
@@ -22,16 +23,10 @@ class EmailController extends Controller
     {
         $this->mailerLiteService = $mailerLiteService;
     }
-    // public function __construct()
-    // {
-    //     $this->mailerLite = new MailerLite(['api_key' => env('MAILERLITE_API_KEY')]);
-    // }
     
     public function index(Course $course)
     {
         return view('admin.courses.email', compact('course'));
-        // $groups = $this->mailerLite->groups->get();
-        // dd($groups['body']['data']);
     }
 
     public function sendEmail(Request $request)
@@ -43,10 +38,13 @@ class EmailController extends Controller
         $course = Course::findOrFail($validated['course_id']);
         $course->google_classroom_code = $validated['google_classroom_code'];
         $course->save();
-        $groupId = $this->mailerLiteService->getOrCreateMailerLiteGroup($course);
-        $course->students()->chunk(50, function ($students) use ($course, $groupId) {
-            foreach ($students as $student) {
-                $this->mailerLiteService->addStudentToMailerLiteGroup($student, $groupId);
+
+        $groupId = self::AL_AMRAIN_INSTITUTE_GROUP_ID;
+        $course->enrollments()->where('status', 'approved')->chunk(50, function ($enrollments) use ($course, $groupId) {
+            foreach ($enrollments as $enrollment) {
+                $student = $enrollment->student;
+                // $this->mailerLiteService->addStudentToMailerLiteGroup($student, $groupId);
+                // $this->mailerLiteService->sendMailViaMailerLite($student, $course, $groupId);
                 $this->sendDirectEmail($student, $course);
             }
         });
@@ -55,10 +53,16 @@ class EmailController extends Controller
 
     protected function sendDirectEmail($student, $course)
     {
-        Mail::to($student->email)->queue(
-            new CourseEnrollmentMail($student->name, $course)
-        );
-
-        Log::info('Email queued for: ' . $student->email);
+        try {
+            Mail::to($student->email)->queue(
+                new CourseEnrollmentMail($student, $course)
+            );
+    
+            Log::info('Email queued for: ' . $student->email);
+            return 'Email successfully queued!';
+        } catch (\Exception $e) {
+            Log::error('Failed to queue email for ' . $student->email . ': ' . $e->getMessage());
+            return 'Failed to queue the email.';
+        }
     }
 }
