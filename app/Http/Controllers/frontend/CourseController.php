@@ -11,7 +11,8 @@ class CourseController extends Controller
 {
     public function index()
     {
-        return view('frontend.course');
+        $courses = Course::all();
+        return view('frontend.course', compact('courses'));
     }
 
     public function details($id)
@@ -23,7 +24,7 @@ class CourseController extends Controller
         $starting_date = Carbon::parse($course->starting_date);
         $ending_date = Carbon::parse($course->end_date);
         $course->weeks = ceil($starting_date->diffInDays($ending_date) / 7);
-    
+
         return view('frontend.course-details', compact('course'));
     }
 }

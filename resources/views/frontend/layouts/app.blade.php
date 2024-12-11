@@ -8,15 +8,11 @@
     <meta name="author" content="web-themes">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
-
-    <!-- title -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') || Al Amrain</title>
-
-    <!-- favicon -->
     <link href="assets/img/favicon.png" type="image/png" rel="icon">
-
-    <!-- all css here -->
     @include('frontend.partials.styles')
+    @stack('styles')
 </head>
 
 <body>
@@ -29,15 +25,11 @@
         </div>
     </div> -->
     <!-- Preloader End -->
-
     @include('frontend.partials.header')
-
     @yield('content')
-
     @include('frontend.partials.footer')
-
-    <!-- all js here -->
     @include('frontend.partials.scripts')
+    @stack('scripts')
 </body>
 
 </html>

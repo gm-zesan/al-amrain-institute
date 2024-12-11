@@ -29,11 +29,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('frontend.home');
 Route::get('/about', [AboutController::class, 'index'])->name('frontend.about');
 Route::get('/contact', [ContactController::class, 'index'])->name('frontend.contact');
+Route::post('/contact', [ContactController::class,'store'])->name('frontend.contact.store');
 Route::get('/team', [TeamController::class, 'index'])->name('frontend.team');
 Route::get('/gallery', [GalleryController::class, 'index'])->name('frontend.gallery');
 Route::get('/course', [FrontendCourseController::class, 'index'])->name('frontend.course');
 Route::get('/course/{id}', [FrontendCourseController::class, 'details'])->name('frontend.course.details');
-Route::get('/enroll', [FrontendEnrollmentController::class, 'index'])->name('frontend.enroll');
+Route::get('/enroll/{course}', [FrontendEnrollmentController::class, 'index'])->name('frontend.enroll');
 
 
 Route::get('/student-login', [AuthenticationController::class, 'index'])->name('student.login');
@@ -75,6 +76,9 @@ Route::middleware('auth')->group(function () {
 
     //message Route
     Route::get('/dashboard/message', [BackendContactFormController::class,'index'])->name('message');
+    Route::get('/dashboard/message/read/', [BackendContactFormController::class, 'read'])->name('message.read');
+    Route::get('/dashboard/message/important/', [BackendContactFormController::class, 'important'])->name('message.important');
+    Route::get('/dashboard/message/delete/{id}', [BackendContactFormController::class,'delete'])->name('message.delete');
 
     // send-email Route
     Route::get('/dashboard/courses/{course}/email', [EmailController::class,'index'])->name('course.email');

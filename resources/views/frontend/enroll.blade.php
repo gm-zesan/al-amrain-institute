@@ -19,14 +19,9 @@
         <div class="enrol_course_area">
             <div class="container">
                 <div class="enrol_cont_wrap" style="background-image: url({{ asset('frontend/img/banner11.jpg') }});">
-                    <h2>Data Science and Machine Learning Career Path</h2>
-                    <ul>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-                    </ul>
-                    <h3><strong>Course Price :</strong> ৳ 6,000</h3>
+                    <h2>{{ $course->title }}</h2>
+                    {!! $course->description !!}
+                    <h3><strong>Course Price :</strong> ৳ {{ number_format($course->price,0) }}</h3>
                 </div>
             </div>
         </div>

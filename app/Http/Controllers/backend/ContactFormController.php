@@ -14,17 +14,11 @@ use DataTables;
 
 class ContactFormController extends Controller implements HasMiddleware
 {
-    function __construct()
-    {
-        $this->middleware('permission:contact-list|contact-delete', ['only' => ['index']]);
-        $this->middleware('permission:contact-form-delete', ['only' => ['delete']]);
-    }
-
     public static function middleware(): array
     {
         return [
             new Middleware('permission:contact-list|contact-delete', only: ['index']),
-            new Middleware('permission:contact-form-delete', only: ['delete']),
+            new Middleware('permission:contact-delete', only: ['delete']),
         ];
     }
 
@@ -35,6 +29,12 @@ class ContactFormController extends Controller implements HasMiddleware
             $contactForms = ContactForm::get()->all();
             return DataTables::of($contactForms)
                 ->addIndexColumn()
+                ->addColumn('important_status', function ($row) {
+                    return ['id' => $row->id, 'important_status' => $row->important_status];
+                })
+                ->addColumn('action-btn', function ($row) {
+                    return ['id' => $row->id, 'read_status' => $row->read_status, 'message' => $row->message];
+                })
                 ->rawColumns(['action-btn'])
                 ->make(true);
         }
@@ -42,38 +42,24 @@ class ContactFormController extends Controller implements HasMiddleware
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(ContactFormRequest $request)
+    function read(Request $request)
     {
-        $validated = $request->validated();
-        try {
-            // $mailData = [
-            //     'name' => $request->name,
-            //     'email' => $request->email,
-            //     'content' => $request->message,
-            // ];
-            // $replymailData = [
-            //     'name' => $request->name,
-            //     'content' => 'Thank you for contacting us. We will get back to you soon.'
-            // ];
-            ContactForm::create($validated);
-            // Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactMail($mailData));
-            // Mail::to($request->email)->send(new ReplyContactMail($replymailData));
-            return response()->json([
-                'status' => 201,
-                'data' => $validated,
-                'success' => true,
-                'message' => 'Message sent successfully'
-            ]);
-        } catch (ValidationException $e) {
-            $errors = $e->validator->errors()->toArray();
-            return response()->json([
-                'success' => false,
-                'errors' => $errors
-            ]);
-        }
+        $contactForm = ContactForm::find($request->id);
+        $contactForm->read_status = 1;
+        $contactForm->save();
+        return response()->json(['success' => 'Message read successfully']);
+    }
+
+
+    function important(Request $request)
+    {
+        $contactForm = ContactForm::find($request->id);
+        $contactForm->important_status = $request->important_status;
+        $contactForm->save();
+        return response()->json([
+            'success' => 'Message marked as important',
+            'important_status' => $request->important_status
+        ]);
     }
 
     /**

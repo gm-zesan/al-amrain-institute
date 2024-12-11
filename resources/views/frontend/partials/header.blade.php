@@ -45,14 +45,7 @@
                         <ul>
                             <li><a href="{{ route('frontend.home') }}">Home</a></li>
                             <li><a href="{{ route('frontend.about') }}">About</a></li>
-                            <li class="dropdown_wrap">
-                                <a href="{{ route('frontend.course') }}">Courses</a>
-                                <ul>
-                                    <li><a href="{{ route('frontend.course.details', 1) }}">Course - 1</a></li>
-                                    <li><a href="{{ route('frontend.course.details', 1) }}">Course - 2</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="{{ route('frontend.enroll') }}">Enrollment</a></li>
+                            <li><a href="{{ route('frontend.course') }}">Courses</a></li>
                             <li><a href="{{ route('frontend.team') }}">Our Team</a></li>
                             <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
                             <li><a href="{{ route('frontend.contact') }}">Contact</a></li>

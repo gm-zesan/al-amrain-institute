@@ -18,7 +18,7 @@
                     <div class="col-lg-6 mt_30">
                         <img src="{{ asset('frontend/img/text-img.png') }}" alt="" class="text-img">
                         <h1>Allah is the Best of Providers</h1>
-                        <a href="#" class="button mt_30">Discover Courses</a>
+                        <a href="{{ route('frontend.course') }}" class="button mt_30">Discover Courses</a>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                                 <li>Feeding Hungry People</li>
                                 <li>Helping CommunitiesLeads </li>
                             </ul>
-                            <a href="about.html" class="button mt_30">Read Our History</a>
+                            <a href="{{ route('frontend.about') }}" class="button mt_30">Read Our History</a>
                         </div>
                     </div>
                     <div class="col-lg-7 mt_50">
@@ -213,13 +213,22 @@
                 </div>
             </div>
         </div>
+
+        <div class="cont_link_area">
+            <div class="container">
+                <div class="cont_wrap_link" style="background-image: url({{ asset('frontend/img/cta-one_bg.png') }});">
+                    <h2> Do not let Shaitan delay you from starting to learn your deen</h2>
+                    <a href="#" class="button">Quick Start Now</a>
+                </div>
+            </div>
+        </div>
         <!-- selling_courses -->
         <div class="selling_courses_area" style="background-image: url({{ asset('frontend/img/courses-two_bg.png') }});">
             <div class="container">
                 <div class="heading text-center">
                     <img src="{{ asset('frontend/img/heading-img.png') }}" alt="icon">
                     <p>Adipiscing elit duis volutpat ligula nulla dapibus.</p>
-                    <h2>Best Selling Courses</h2>
+                    <h2>Ongoing Courses</h2>
                 </div>
                 <div class="row mt_70">
                     @foreach ($courses as $course)
@@ -253,116 +262,6 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
-            </div>
-        </div>
-        <div class="cont_link_area">
-            <div class="container">
-                <div class="cont_wrap_link" style="background-image: url({{ asset('frontend/img/cta-one_bg.png') }});">
-                    <h2> Do not let Shaitan delay you from starting to learn your deen</h2>
-                    <a href="#" class="button">Quick Start Now</a>
-                </div>
-            </div>
-        </div>
-        <!-- selling_courses -->
-        <div class="selling_courses_area" style="background-image: url({{ asset('frontend/img/courses-two_bg.png') }});">
-            <div class="container">
-                <div class="heading text-center">
-                    <img src="{{ asset('frontend/img/heading-img.png') }}" alt="icon">
-                    <p>Adipiscing elit duis volutpat ligula nulla dapibus.</p>
-                    <h2>Ongoing Courses</h2>
-                </div>
-                <div class="row mt_70">
-                    <div class="col-lg-4 mt_30">
-                        <div class="course-block_two-inner">
-                            <div class="course-block_two-image">
-                                <a href="course-detail.html"><img src="{{ asset('frontend/img/course-7.jpg') }}" alt=""></a>
-                            </div>
-                            <div class="course-block_two-content">
-                                <div class="course-block_two-icon">
-                                    <img src="{{ asset('frontend/img/course-block_two.png') }}" alt="">
-                                </div>
-                                <a href="course-detail.html" class="course-block_two-study">Study Now</a>
-                                <h4 class="course-block_two-heading"><a href="course-detail.html">Tafseer of Surah
-                                        Al-Fatiha Short Course </a></h4>
-                                <ul
-                                    class="course-block_two-list d-flex justify-content-between flex-wrap align-items-center">
-                                    <li><span>20</span>lessons</li>
-                                    <li><span>10</span>weeks</li>
-                                    <li><span>50</span>enroll</li>
-                                </ul>
-                                <div class="course-block_two-lower d-flex justify-content-between flex-wrap">
-                                    <div class="course-block_two-author">
-                                        <div class="course-block_two-author_image"><img src="{{ asset('frontend/img/author-4.png') }}"
-                                                alt=""></div>
-                                        <strong>Habib Al Noor</strong>
-                                        <p>Arabic Teacher</p>
-                                    </div>
-                                    <div class="course-block_two-price">2000৳ <span>course free</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mt_30">
-                        <div class="course-block_two-inner">
-                            <div class="course-block_two-image">
-                                <a href="course-detail.html"><img src="{{ asset('frontend/img/course-7.jpg') }}" alt=""></a>
-                            </div>
-                            <div class="course-block_two-content">
-                                <div class="course-block_two-icon">
-                                    <img src="{{ asset('frontend/img/course-block_two.png') }}" alt="">
-                                </div>
-                                <a href="course-detail.html" class="course-block_two-study">Study Now</a>
-                                <h4 class="course-block_two-heading"><a href="course-detail.html">Tafseer of Surah
-                                        Al-Fatiha Short Course </a></h4>
-                                <ul
-                                    class="course-block_two-list d-flex justify-content-between flex-wrap align-items-center">
-                                    <li><span>20</span>lessons</li>
-                                    <li><span>10</span>weeks</li>
-                                    <li><span>50</span>enroll</li>
-                                </ul>
-                                <div class="course-block_two-lower d-flex justify-content-between flex-wrap">
-                                    <div class="course-block_two-author">
-                                        <div class="course-block_two-author_image"><img src="{{ asset('frontend/img/author-4.png') }}"
-                                                alt=""></div>
-                                        <strong>Habib Al Noor</strong>
-                                        <p>Arabic Teacher</p>
-                                    </div>
-                                    <div class="course-block_two-price">2000৳ <span>course free</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mt_30">
-                        <div class="course-block_two-inner">
-                            <div class="course-block_two-image">
-                                <a href="course-detail.html"><img src="{{ asset('frontend/img/course-7.jpg') }}" alt=""></a>
-                            </div>
-                            <div class="course-block_two-content">
-                                <div class="course-block_two-icon">
-                                    <img src="{{ asset('frontend/img/course-block_two.png') }}" alt="">
-                                </div>
-                                <a href="course-detail.html" class="course-block_two-study">Study Now</a>
-                                <h4 class="course-block_two-heading"><a href="course-detail.html">Tafseer of Surah
-                                        Al-Fatiha Short Course </a></h4>
-                                <ul
-                                    class="course-block_two-list d-flex justify-content-between flex-wrap align-items-center">
-                                    <li><span>20</span>lessons</li>
-                                    <li><span>10</span>weeks</li>
-                                    <li><span>50</span>enroll</li>
-                                </ul>
-                                <div class="course-block_two-lower d-flex justify-content-between flex-wrap">
-                                    <div class="course-block_two-author">
-                                        <div class="course-block_two-author_image"><img src="{{ asset('frontend/img/author-4.png') }}"
-                                                alt=""></div>
-                                        <strong>Habib Al Noor</strong>
-                                        <p>Arabic Teacher</p>
-                                    </div>
-                                    <div class="course-block_two-price">2000৳ <span>course free</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

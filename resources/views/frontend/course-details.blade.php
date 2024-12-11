@@ -92,7 +92,7 @@
                             <h2>What is this course?</h2>
                             {!! $course->description !!}
                             <h3>৳ {{ number_format($course->price,0) }}</h3>
-                            <a href="{{ route('frontend.enroll') }}" class="button">Enroll Now</a>
+                            <a href="{{ route('frontend.enroll', $course->id) }}" class="button">Enroll Now</a>
                         </div>
                     </div>
                 </div>

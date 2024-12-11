@@ -48,7 +48,8 @@
                                     <th scope="col" style="width: 20%">Email</th>
                                     <th scope="col" style="width: 15%">Phone</th>
                                     <th scope="col" style="width: 17%">Subject</th>
-                                    <th scope="col" style="width: 25%">Message</th>
+                                    <th scope="col" style="width: 20%">Message</th>
+                                    <th scope="col" style="width: 5%">Important</th>
                                     <th scope="col" style="width: 5%">Action</th>
                                 </tr>
                             </thead>
@@ -56,6 +57,22 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="readMessage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="readMessageLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="readMessageLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
                 </div>
             </div>
         </div>
@@ -69,6 +86,8 @@
 
     <script type="text/javascript">
         var listUrl = SITEURL + '/dashboard/message';
+        var readStatusUrl = SITEURL + '/dashboard/message/read';
+        var importantStatusUrl = SITEURL + '/dashboard/message/important';
 
         $(document).ready(function() {
             var table = $('#data-table').DataTable({
@@ -76,74 +95,116 @@
                 responsive: true,
                 serverSide: true,
                 fixedHeader: true,
-                "pageLength": 20,
-                "lengthMenu": [20, 50, 100, 500],
+                pageLength: 20,
+                lengthMenu: [20, 50, 100, 500],
                 ajax: {
                     url: listUrl,
                     type: 'GET'
                 },
-                columns: [{
-                        data: 'id',
-                        name: 'id',
-                        orderable: true
-                    },
-                    {
-                        data: 'name',
-                        name: 'name',
-                        orderable: true
-                    },
-                    {
-                        data: 'email',
-                        name: 'email',
-                        orderable: true
-                    },
-                    {
-                        data: 'phone',
-                        name: 'phone',
-                        orderable: true
-                    },
-                    {
-                        data: 'subject',
-                        name: 'subject',
-                        orderable: true
-                    },
-                    {
-                        data: 'message',
-                        name: 'message',
-                        orderable: true,
+                columns: [
+                    { data: 'id', name: 'id', orderable: true },
+                    { data: 'name', name: 'name', orderable: true },
+                    { data: 'email', name: 'email', orderable: true },
+                    { data: 'phone', name: 'phone', orderable: true },
+                    { data: 'subject', name: 'subject', orderable: true },
+                    { 
+                        data: 'message', 
+                        name: 'message', 
+                        orderable: true, 
                         render: function(data) {
-                            return data.length > 50 ? data.substr(0, 47) + '...' : data;
+                            return data.length > 50 ? `${data.substr(0, 47)}...` : data;
                         }
                     },
-                    {
-                        data: 'action-btn',
-                        orderable: false,
-                        render: function(data, type, row, meta) {
-                            var trClass = data.read_status == 1 ? 'readColorTr' : '';
-                            var actionButtons = '<div class="action-btn">';
-                            actionButtons +=
-                                '<a class="btn btn-edit" data-bs-toggle="modal" onclick="modalRead(this,\'' +
-                                data.message + '\')" id="' + data.id +
-                                '"><i class="ri-book-read-line"></i></a>';
-                            actionButtons +=
-                                '<a href="javascript:void(0);" class="btn btn-delete" onclick="confirmDeletion(\'' +
-                                SITEURL + '/dashboard/message/delete/' + data +
-                                '\')"><i class="ri-delete-bin-2-line"></i></a>';
-                            actionButtons += '</div>';
-
-                            setTimeout(function() {
-                                $('.readColor').find('tbody tr').eq(meta.row).addClass(
-                                    trClass);
-                            }, 0);
-
-                            return actionButtons;
+                    { 
+                        data: 'important_status', 
+                        name: 'important_status', 
+                        orderable: true, 
+                        render: function(data) {
+                            const iconClass = data.important_status == 1 
+                                ? 'ri-star-s-fill' 
+                                : 'ri-star-s-line';
+                            return `
+                                <div id="status-${data.id}" 
+                                    class="important-status-change" 
+                                    data-id="${data.id}" 
+                                    data-status="${data.important_status}" 
+                                    style="font-size: 20px; text-align: center; cursor: pointer;" 
+                                    title="Toggle status">
+                                    <i class="${iconClass}" style="color: #f5c60d;"></i>
+                                </div>`;
+                        }
+                    },
+                    { 
+                        data: 'action-btn', 
+                        orderable: false, 
+                        render: function(data) {
+                            return `
+                                <div class="action-btn">
+                                    <a class="btn btn-edit" data-bs-toggle="modal" onclick="modalRead(this, '${data.message}')" id="${data.id}">
+                                        <i class="ri-book-read-line"></i>
+                                    </a>
+                                    <a href="message/delete/${data.id}" class="btn btn-delete">
+                                        <i class="ri-delete-bin-2-line"></i>
+                                    </a>
+                                </div>`;
                         }
                     }
                 ],
-                order: [
-                    [0, 'desc']
-                ],
+                order: [[0, 'desc']]
             });
         });
+
+
+
+        $('body').on('click', '.important-status-change', function() {
+            var id = $(this).data('id');
+            var status = $(this).data('status');
+            $('#status-' + id).html('<i class="ri-handbag-line"></i>');
+            var name;
+            if (status == 1) {
+                status = 0;
+                name = '<i class="ri-star-s-line" style="color: #f5c60d;"></i>';
+            } else {
+                status = 1;
+                name = '<i class="ri-star-s-fill" style="color: #f5c60d;"></i>';
+            }
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: importantStatusUrl,
+                data: {
+                    'important_status': status,
+                    'id': id
+                },
+                success: function(data) {
+                    $('#status-' + id).html(name);
+                    $('#status-' + id).attr('data-status', status);
+                    $('#data-table').DataTable().ajax.reload();
+                }
+            });
+        });
+
+        function modalRead(e, msg) {
+            var id = $(e).closest('tr').find('td').eq(0).text();
+            var name = $(e).closest('tr').find('td').eq(1).text();
+            var phone = $(e).closest('tr').find('td').eq(2).text();
+            var message = msg;
+            // var message = $(e).closest('tr').find('td').eq(5).text();
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: readStatusUrl,
+                data: {
+                    'id': id
+                },
+                success: function(data) {
+                    $(e).closest('tr').addClass('readColorTr');
+                    $('#readMessageLabel').text('Message from "' + name + '" (' + phone + ')');
+                    $('.modal-body').text(message);
+                    $('#readMessage').modal('show');
+                }
+            });
+        }
     </script>
 @endpush
