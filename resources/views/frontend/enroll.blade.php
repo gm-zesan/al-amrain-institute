@@ -15,6 +15,21 @@
                 <h2>Enroll</h2>
             </div>
         </div>
+        {{-- enrol_course_area --}}
+        <div class="enrol_course_area">
+            <div class="container">
+                <div class="enrol_cont_wrap" style="background-image: url({{ asset('frontend/img/banner11.jpg') }});">
+                    <h2>Data Science and Machine Learning Career Path</h2>
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
+                    </ul>
+                    <h3><strong>Course Price :</strong> ৳ 6,000</h3>
+                </div>
+            </div>
+        </div>
         <!-- donate_from_area -->
         <div class="donate_from_area">
             <div class="container">
@@ -44,10 +59,20 @@
                                     <li><strong>Nagad No-</strong> 01648888163</li>
                                 </ul>
                             </div>
+                            <img src="{{ asset('frontend/img/line.png') }}" alt="" class="w-100 line-opacity">
+                            <div class="bkash_wrap">
+                                <img src="{{ asset('frontend/img/Rocket.png') }}" alt="">
+                                <ul>
+                                    <li><strong>Rocket No-</strong> 01648888163</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6 mt_50">
                         <form action="#" class="donate_from_cart">
+                            <input type="text" placeholder="Full Name">
+                            <input type="email" placeholder="Enter Email">
+                            <input type="bumber" placeholder="Phone Number">
                             <select>
                                 <option value="Islami-Bank">Islami Bank Bangladesh Ltd</option>
                                 <option value="Bkash">Bkash</option>

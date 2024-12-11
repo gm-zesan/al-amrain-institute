@@ -1616,7 +1616,7 @@ ul.list li:before {
 	color: #fff;
 	line-height: 1;
 	display: block;
-	margin: .5rem 0 2.2rem;
+	margin: 1rem 0;
 	visibility: hidden;
 	opacity: 0;
 	-webkit-transition: all ease .5s;
@@ -1632,6 +1632,7 @@ ul.list li:before {
     display: flex;
     align-items: center;
     justify-content: center;
+	margin-top: 3rem;
 }
   
   .team-two__social a {
@@ -2065,6 +2066,53 @@ ul.list li:before {
 }
 .line-opacity{
 	opacity: 0.5;
+	margin: 1.5rem 0;
+}
+/* enrol_course_area */
+.enrol_course_area{
+	padding: 7rem 0 0;
+}
+.enrol_cont_wrap {
+    padding: 5rem 3rem;
+    border: 0.1rem solid var(--dark_blue);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right bottom;
+}
+.enrol_cont_wrap h2{
+	font-size: 4rem;
+	color: #444;
+}
+.enrol_cont_wrap h3{
+	font-size: 4rem;
+	margin-top: 2rem;
+	color: var(--yellow);
+}
+.enrol_cont_wrap h3 strong{
+	text-transform: capitalize;
+	font-weight: 500;
+}
+.enrol_cont_wrap ul{
+	margin-top: 2rem;
+}
+.enrol_cont_wrap ul li{
+	margin-bottom: 0.5rem;
+	font-size: 2.2rem;
+	color: #444;
+	position: relative;
+	padding-left: 4rem;
+}
+.enrol_cont_wrap ul li::before {
+    content: '';
+    position: absolute;
+    background-image: url(../img/right.svg);
+    background-size: contain;
+    background-position: center center;
+    width: 3rem;
+    height: 3rem;
+    left: 0;
+    top: 5%;
+    background-repeat: no-repeat;
 }
 /* features-section */
 .features-section {
@@ -2594,4 +2642,31 @@ ul.list li:before {
 	border: .1rem solid var(--dark_blue);
 	text-align: left;
 	padding: .8rem;
+  }
+
+  /* course_search */
+  .course_search{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	column-gap: 3rem;
+	border-radius: 1rem;
+	border: 0.2rem solid var(--dark_blue);
+	padding: 2rem;
+	width: 90rem;
+	margin: 0 auto;
+	background-color: var(--dark_blue);
+  }
+  .course_search select{
+	border: 0.1rem solid var(--dark_blue);
+	padding: 0.6rem 2rem;
+	border-radius: 0.7rem;
+	font-size: 2.5rem;
+  }
+  .course_search .button{
+	background-color: #fff;
+	color: #000;
+  }
+  ::-webkit-scrollbar {
+	display: none;
   }

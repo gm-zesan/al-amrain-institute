@@ -33,13 +33,12 @@ Route::get('/team', [TeamController::class, 'index'])->name('frontend.team');
 Route::get('/gallery', [GalleryController::class, 'index'])->name('frontend.gallery');
 Route::get('/course', [FrontendCourseController::class, 'index'])->name('frontend.course');
 Route::get('/course/{id}', [FrontendCourseController::class, 'details'])->name('frontend.course.details');
-
 Route::get('/enroll', [FrontendEnrollmentController::class, 'index'])->name('frontend.enroll');
 
 
 Route::get('/student-login', [AuthenticationController::class, 'index'])->name('student.login');
 Route::get('/my-account', [AccountController::class, 'index'])->name('student.my-account');
-Route::get('/courses', [CoursesController::class, 'index'])->name('student.courses');
+Route::get('/my-courses', [CoursesController::class, 'index'])->name('student.my-courses');
 Route::get('/certificate', [CertificateController::class, 'index'])->name('student.certificate');
 
 Route::middleware('auth')->group(function () {
