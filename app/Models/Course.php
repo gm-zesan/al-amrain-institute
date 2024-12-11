@@ -19,6 +19,7 @@ class Course extends Model
         'prerequisites',
         'time_schedule',
         'total_seats',
+        'total_lessons',
     ];
 
     public function enrollments()

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('prerequisites')->nullable();
             $table->text('time_schedule')->nullable();
             $table->integer('total_seats')->nullable();
+            $table->integer('total_lessons')->nullable();
             $table->timestamps();
         });
     }

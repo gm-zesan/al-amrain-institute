@@ -14,7 +14,41 @@ class CourseSeeder extends Seeder
     public function run(): void
     {
         $courses = array(
-            array('id' => '1','title' => 'New Course','description' => '<p>hay</p>','type' => 'recorded','price' => '6000.00','image' => 'courses/Oev2PfvsLbiTp5HGaJbD6O5Lky4q3lYsXhamPie5.jpg','starting_date' => '2024-12-07','end_date' => '2024-12-20','what_will_learn' => '<p>sad</p>','prerequisites' => '<p>sad</p>','time_schedule' => '<p>sad</p>','total_seats' => '60','created_at' => '2024-12-05 11:13:47','updated_at' => '2024-12-05 11:13:47')
+            array('id' => '1','title' => 'New Course','description' => '<ul>
+                                          <li>50+ live classes</li>
+                                          <li>200+ prerecorded videos</li>
+                                          <li>Support sessions daily</li>
+                                          <li>Mock interview session</li>
+                                          <li>Adequate practice materials</li>
+                                          <li>Lifetime access</li>
+                                      </ul>','type' => 'recorded','price' => '6000.00','image' => 'courses/Oev2PfvsLbiTp5HGaJbD6O5Lky4q3lYsXhamPie5.jpg','starting_date' => '2024-12-07','end_date' => '2024-12-20','google_classroom_code' => NULL,'what_will_learn' => '<ul>
+          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
+                                                  </li>
+                                                  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
+                                                  </li>
+                                                  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
+                                                  </li>
+                                                  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
+                                                  </li>
+                                                  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
+                                                  </li>
+          </ul>','prerequisites' => '<ul>
+          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
+                                                  </li>
+                                                  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
+                                                  </li>
+                                                  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
+                                                  </li>
+                                                  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
+                                                  </li>
+                                                  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
+                                                  </li>
+          </ul>','time_schedule' => '<ul>
+          <li><strong>Class Starts:</strong> October 15</li>
+                                                  <li><strong>Class Time:</strong></li>
+                                                  <li><strong>Monday:</strong> 9 PM - 10:30PM</li>
+                                                  <li><strong>Wednesday:</strong> 9 PM - 10.30 PM</li>
+          </ul>','total_seats' => '60','total_lessons' => '70','created_at' => '2024-12-05 11:13:47','updated_at' => '2024-12-11 05:28:44')
         );
 
         foreach ($courses as $course) {

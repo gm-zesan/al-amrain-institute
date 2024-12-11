@@ -12,7 +12,7 @@
         <div class="inner_home" style="background-image: url({{ asset('frontend/img/bannr-img.jpg') }});">
             <div class="container">
                 <img src="{{ asset('frontend/img/heading-img.png') }}" alt="icon">
-                <h2>Courses Details</h2>
+                <h2>{{ $course->title }}</h2>
             </div>
         </div>
         <!-- course_details_area -->
@@ -22,21 +22,21 @@
                     <div class="col-lg-8 mt_50">
                         <div class="courses-details_cont hoverimg">
                             <figure>
-                                <img src="{{ asset('frontend/img/dev_ops.jpg') }}" alt="img" class="w-100">
+                                <img src="{{ asset('storage/'.$course->image) }}" alt="{{ $course->title }}" class="w-100">
                             </figure>
-                            <h2>Tafseer of Surah Al-Fatiha Short Course- Batch 1</h2>
+                            <h2>{{ $course->title }}</h2>
                             <div class="total_student">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <h2>150</h2>
+                                        <h2>{{ $course->enrolled_students_count }}+</h2>
                                         <p>Student</p>
                                     </div>
                                     <div class="col-lg-4">
-                                        <h2>12+</h2>
-                                        <p>Hours of Lessons</p>
+                                        <h2>{{ $course->weeks }}+</h2>
+                                        <p>Weeks</p>
                                     </div>
                                     <div class="col-lg-4">
-                                        <h2>222</h2>
+                                        <h2>{{ $course->total_lessons }}+</h2>
                                         <p>Total Lessons</p>
                                     </div>
                                 </div>
@@ -66,76 +66,33 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="pills-paths" aria-labelledby="pills-paths-tab">
                                     <ul class="this_course_cont">
-                                        <li>
-                                            Nam vel lacus eu nisl bibendum accumsan vitae vitae nibh. Nam nec eros id magna
-                                            hendrerit sagittis. Nullam sed mi non odio feugiat volutpat sit amet nec elit.
-                                            Maecenas id hendrerit ipsum. Sed eget auctor metus, ac dapibus dolor. Nam vel
-                                            lacus eu nisl bibendum accumsan vitae vitae nibh.
-                                        </li>
-                                        <li>Himenaeos. Vestibulum sollicitudin varius mauris non dignissim. Sed quis iaculis
-                                            est. Nulla quam neque, interdum vitae fermentum lacinia, interdum eu magna.
-                                            Mauris non posuere tellus. Donec quis euismod tellus. Nam vel lacus eu nisl
-                                            bibendum accumsan vitae vitae nibh. Nam nec eros id magna hendrerit sagittis.
-                                            Nullam sed mi non odio feugiat volutpat sit amet nec elit. Maecenas id hendrerit
-                                            ipsum. Sed eget auctor metus, ac dapibus dolo</li>
-                                        <li>Nam vel lacus eu nisl bibendum accumsan vitae vitae nibh. Nam nec eros id magna
-                                            hendrerit sagittis. Nullam sed mi non odio feugiat volutpat sit amet nec elit.
-                                            Maecenas id hendrerit ipsum. Sed eget auctor metus, ac dapibus dolor. Nam vel
-                                            lacus eu nisl bibendum accumsan vitae vitae nibh.</li>
+                                        {!! $course->description !!}
                                     </ul>
                                 </div>
                                 <div class="tab-pane fade" id="pills-learn" aria-labelledby="pills-learn-tab">
                                     <ul class="this_course_cont">
-                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
-                                        </li>
-                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
-                                        </li>
-                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
-                                        </li>
-                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
-                                        </li>
-                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
-                                        </li>
+                                        {!! $course->what_will_learn !!}
                                     </ul>
                                 </div>
                                 <div class="tab-pane fade" id="pills-for" aria-labelledby="pills-for-tab">
                                     <ul class="this_course_cont">
-                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
-                                        </li>
-                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
-                                        </li>
-                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
-                                        </li>
-                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
-                                        </li>
-                                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsum?
-                                        </li>
+                                        {!! $course->prerequisites !!}
                                     </ul>
                                 </div>
                                 <div class="tab-pane fade" id="pills-time" aria-labelledby="pills-time-tab">
                                     <ul class="time_course">
-                                        <li><strong>Class Starts:</strong> October 15</li>
-                                        <li><strong>Class Time:</strong></li>
-                                        <li><strong>Monday:</strong> 9 PM - 10:30PM</li>
-                                        <li><strong>Wednesday:</strong> 9 PM - 10.30 PM</li>
+                                        {!! $course->time_schedule !!}
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 mt_50">
-                        <div class="path_box possition_fixed"> //id="course_right"//
-                            <h2>What is this career path?</h2>
-                            <ul>
-                                <li>50+ live classes</li>
-                                <li>200+ prerecorded videos</li>
-                                <li>Support sessions daily</li>
-                                <li>Mock interview session</li>
-                                <li>Adequate practice materials</li>
-                                <li>Lifetime access</li>
-                            </ul>
-                            <h3>৳ 2000</h3>
-                            <a href="#" class="button">Enroll Now</a>
+                        <div class="path_box possition_fixed">
+                            <h2>What is this course?</h2>
+                            {!! $course->description !!}
+                            <h3>৳ {{ number_format($course->price,0) }}</h3>
+                            <a href="{{ route('frontend.enroll') }}" class="button">Enroll Now</a>
                         </div>
                     </div>
                 </div>

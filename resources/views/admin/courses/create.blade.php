@@ -91,6 +91,14 @@
                                 @enderror
                             </div>
 
+                            <div class="col-md-6">
+                                <label for="total_lessons" class="form-label custom-label">Total Lessons</label>
+                                <input type="number" class="form-control custom-input" name="total_lessons" placeholder="Total Lessons">
+                                @error('total_lessons')
+                                    <div class="error_msg">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="col-md-12">
                                 <label for="description" class="form-label custom-label">Description</label>
                                 <textarea class="form-control custom-input" name="description" id="description" rows="5" placeholder="Course Description" style="resize: none; height: auto"></textarea>

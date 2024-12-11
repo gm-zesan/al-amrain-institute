@@ -17,7 +17,7 @@ class HomeController extends Controller
 
         foreach ($courses as $course) {
             $starting_date = Carbon::parse($course->starting_date);
-            $ending_date = Carbon::parse($course->ending_date);
+            $ending_date = Carbon::parse($course->end_date);
             $course->weeks = ceil($starting_date->diffInDays($ending_date) / 7);
         }
         return view('frontend.home', compact('courses'));
