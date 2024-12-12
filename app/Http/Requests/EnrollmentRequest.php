@@ -36,7 +36,6 @@ class EnrollmentRequest extends FormRequest
         return [
             'course_id.required' => 'Course is required',
             'course_id.exists' => 'Course does not exist',
-            'student_id.required' => 'Student is required',
             'student_id.exists' => 'Student does not exist',
             'payment_method.required' => 'Payment method is required',
             'transaction_id.required' => 'Transaction ID is required',

@@ -51,8 +51,11 @@
                             <li><a href="{{ route('frontend.contact') }}">Contact</a></li>
                         </ul>
                     </div>
-                    <a href="{{ route('student.login') }}" class="button">Login</a>
-                    <a href="{{ route('student.my-account') }}" class="button">My Account</a>
+                    @if (Session::get('student_id'))
+                        <a href="{{ route('student.my-account') }}" class="button">My Account</a>
+                    @else
+                        <a href="{{ route('student.login') }}" class="button">Login</a>
+                    @endif
                 </div>
                 <div class="mobile_content d-lg-none">
                     <!-- menu toggler -->

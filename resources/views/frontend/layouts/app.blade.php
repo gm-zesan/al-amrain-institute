@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div class="cursor"></div>
+    {{-- <div class="cursor"></div> --}}
     <!-- Preloader Start -->
     <!-- <div id="preloader">
         <div class="loader3">

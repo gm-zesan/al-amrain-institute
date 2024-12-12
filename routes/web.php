@@ -24,6 +24,7 @@ use App\Http\Controllers\student\AuthenticationController;
 use App\Http\Controllers\student\AccountController;
 use App\Http\Controllers\student\CoursesController;
 use App\Http\Controllers\student\CertificateController;
+use App\Http\Middleware\StudentMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('frontend.home');
@@ -34,20 +35,31 @@ Route::get('/team', [TeamController::class, 'index'])->name('frontend.team');
 Route::get('/gallery', [GalleryController::class, 'index'])->name('frontend.gallery');
 Route::get('/course', [FrontendCourseController::class, 'index'])->name('frontend.course');
 Route::get('/course/{id}', [FrontendCourseController::class, 'details'])->name('frontend.course.details');
+
 Route::get('/enroll/{course}', [FrontendEnrollmentController::class, 'index'])->name('frontend.enroll');
+Route::post('/enroll', [FrontendEnrollmentController::class, 'enroll'])->name('frontend.enroll.submit');
 
 
-Route::get('/student-login', [AuthenticationController::class, 'index'])->name('student.login');
-Route::get('/my-account', [AccountController::class, 'index'])->name('student.my-account');
-Route::get('/my-courses', [CoursesController::class, 'index'])->name('student.my-courses');
-Route::get('/certificate', [CertificateController::class, 'index'])->name('student.certificate');
+Route::prefix('student')->name('student.')->group(function () {
+    Route::get('/login', [AuthenticationController::class, 'index'])->name('login');
+    Route::post('/login', [AuthenticationController::class, 'login'])->name('processLogin');
+    Route::post('/register', [AuthenticationController::class, 'register'])->name('register');
+    
+    Route::middleware([StudentMiddleware::class])->group(function(){
+        Route::get('/my-account', [AccountController::class, 'index'])->name('my-account');
+        Route::get('/my-courses', [CoursesController::class, 'index'])->name('my-courses');
+        Route::get('/certificate', [CertificateController::class, 'index'])->name('certificate');
+        Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+    });
+});
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/profile/password-change', [DashboardController::class, 'changePassword'])->name('password-change.profile');
     Route::patch('/profile', [ProfileController::class, 'myProfileUpdate'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 
 
 

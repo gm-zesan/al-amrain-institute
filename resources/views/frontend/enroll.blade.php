@@ -21,7 +21,7 @@
                 <div class="enrol_cont_wrap" style="background-image: url({{ asset('frontend/img/banner11.jpg') }});">
                     <h2>{{ $course->title }}</h2>
                     {!! $course->description !!}
-                    <h3><strong>Course Price :</strong> ৳ {{ number_format($course->price,0) }}</h3>
+                    <h3><strong>Course Price :</strong> ৳ {{ number_format($course->price, 0) }}</h3>
                 </div>
             </div>
         </div>
@@ -64,18 +64,36 @@
                         </div>
                     </div>
                     <div class="col-lg-6 mt_50">
-                        <form action="#" class="donate_from_cart">
-                            <input type="text" placeholder="Full Name">
-                            <input type="email" placeholder="Enter Email">
-                            <input type="bumber" placeholder="Phone Number">
-                            <select>
+                        <form action="{{ route('frontend.enroll.submit') }}" method="POST" class="donate_from_cart">
+                            @csrf
+                            <input type="hidden" name="course_id" value="{{ $course->id }}">
+                            @if (isset($student->id))
+                                <input type="text" name="name" value="{{ $student->name }}" readonly required>
+                            @else
+                                <input type="text" name="name" placeholder="Full Name">
+                            @endif
+
+                            @if (isset($student->id))
+                                <input type="email" name="email" value="{{ $student->email }}" readonly required>
+                            @else
+                                <input type="email" name="email" placeholder="Email">
+                            @endif
+
+                            @if (isset($student->id))
+                                <input type="number" name="phone_no" value="{{ $student->phone_no }}" readonly required>
+                            @else
+                                <input type="number" name="phone_no" placeholder="Phone Number">
+                            @endif
+
+                            <select name="payment_method" id="payment_method" required>
                                 <option value="Islami-Bank">Islami Bank Bangladesh Ltd</option>
                                 <option value="Bkash">Bkash</option>
                                 <option value="Nagad">Nagad</option>
+                                <option value="Rocket">Rocket</option>
                             </select>
-                            <input type="text" placeholder="Transaction ID">
-                            <input type="number" placeholder="Amount">
-                            <button class="button">Submit</button>
+                            <input type="text" name="transaction_id" placeholder="Transaction ID">
+                            <input type="number" name="total_amount" placeholder="Amount">
+                            <button type="submit" class="button">Submit</button>
                         </form>
                     </div>
                 </div>
