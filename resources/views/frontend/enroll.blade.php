@@ -6,6 +6,70 @@
 @endsection
 
 
+@push('styles')
+    <style>
+        .alert-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .alert {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .alert.alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-left: 5px solid #721c24;
+        }
+        .alert.alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border-left: 5px solid #155724;
+        }
+
+        .alert-icon {
+            margin-right: 15px;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+        }
+        .alert-danger .icon {
+            stroke: #721c24;
+        }
+        .alert-success .icon {
+            stroke: #155724;
+        }
+
+        .alert-content {
+            flex-grow: 1;
+        }
+
+        .alert-heading {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .alert-content ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .alert-content ul li {
+            margin-bottom: 5px;
+        }
+    </style>    
+@endpush
+
 @section('content')
     <main class="overflow-hidden">
         <!-- inner home -->
@@ -29,6 +93,62 @@
         <div class="donate_from_area">
             <div class="container">
                 <div class="row">
+                    <div class="col-12">
+                        @if ($errors->any())
+                            <div class="alert-container">
+                                <div class="alert alert-danger">
+                                    <div class="alert-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M11 15h2m-1-7v4m4.938 4.5c.86 1.77-.293 3.5-2.128 3.5H7.19c-1.835 0-2.988-1.73-2.128-3.5l4.5-9a2 2 0 013.667 0l4.5 9z" />
+                                        </svg>
+                                    </div>
+                                    <div class="alert-content">
+                                        <h4 class="alert-heading">Oops! Please fix the following errors:</h4>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if(session('error'))
+                            <div class="alert-container">
+                                <div class="alert alert-danger">
+                                    <div class="alert-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M11 15h2m-1-7v4m4.938 4.5c.86 1.77-.293 3.5-2.128 3.5H7.19c-1.835 0-2.988-1.73-2.128-3.5l4.5-9a2 2 0 013.667 0l4.5 9z" />
+                                        </svg>
+                                    </div>
+                                    <div class="alert-content">
+                                        <h4 class="alert-heading">Oops! Please fix the following errors:</h4>
+                                        <ul>
+                                            <li>{{ session('error') }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if(session('success'))
+                            <div class="alert-container">
+                                <div class="alert alert-success">
+                                    <div class="alert-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <div class="alert-content">
+                                        <h4 class="alert-heading">Success!</h4>
+                                        <p>{{ session('success') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+
                     <div class="col-lg-6 mt_50">
                         <div class="donate_from_cart">
                             <div class="bank_wrap">

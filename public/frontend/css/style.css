@@ -1983,7 +1983,7 @@ ul.list li:before {
 }
 .login_main {
     width: 63rem;
-    height: 67rem;
+    height: 74rem;
     background: var(--dark_blue);
     overflow: hidden;
     border-radius: 1.0rem;
@@ -2043,7 +2043,7 @@ ul.list li:before {
 	background: #444;
 }
 .login_main .login {
-    height: 62rem;
+    height: 70rem;
     background: #eee;
     border-radius: 60% / 10%;
     transform: translateY(-18.0rem);
@@ -2054,12 +2054,20 @@ ul.list li:before {
 	transform: scale(.6);
 	user-select: none;
 }
+.login_main .login label.title_label{
+    padding-top: 1.5rem;
+}
+
 
 #chk:checked ~ .login{
-	transform: translateY(-66.0rem);
+	transform: translateY(-73.0rem);
 }
 #chk:checked ~ .login label{
 	transform: scale(1);	
+}
+#chk:checked ~ .login label.title_label{
+	padding-top: 5rem;
+    margin-bottom: 7rem;
 }
 #chk:checked ~ .signup label{
 	transform: scale(.6);

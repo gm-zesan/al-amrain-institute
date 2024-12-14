@@ -51,7 +51,7 @@ class StudentRequest extends FormRequest
             'name.required' => 'Name is required',
             'email.required' => 'Email is required',
             'email.email' => 'Email is not valid',
-            'email.unique' => 'Email is already taken',
+            'email.unique' => 'This email is already registered',
             'phone_no.required' => 'Phone number is required',
             'password.confirmed' => 'Password does not match',
             'password.min' => 'Password must be at least 8 characters',

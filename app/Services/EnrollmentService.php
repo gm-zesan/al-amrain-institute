@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use App\Http\Requests\StudentRequest;
 use App\Models\User;
 use App\Models\Enrollment;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class EnrollmentService
 {
@@ -17,7 +19,7 @@ class EnrollmentService
      */
     public function getOrCreateStudent(array $validatedStudentData): User
     {
-        if (Session::get('student_id')) {
+        if (Session::has('student_id')) {
             $student = User::find(Session::get('student_id'));
             if (!$student) {
                 throw new \Exception('Invalid session data. Please log in again.');
@@ -32,9 +34,9 @@ class EnrollmentService
         ]);
         Session::put('student_id', $student->id);
         Session::put('student_name', $student->name);
+    
         return $student;
     }
-
     /**
      * Enroll a student in a course.
      *
@@ -49,7 +51,7 @@ class EnrollmentService
             ->where('student_id', $student->id)
             ->exists();
         if ($existingEnrollment) {
-            throw new \Exception('You are already enrolled in this course.');
+            throw new \Exception('You have already enrolled in this course.');
         }
         return Enrollment::create([
             'course_id' => $validatedEnrollmentData['course_id'],

@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\EnrollmentRequest;
-use App\Http\Requests\StudentRequest;
+use App\Http\Requests\StudentEnrollmentRequest;
 use App\Models\Course;
-use App\Models\Enrollment;
 use App\Models\User;
 use App\Services\EnrollmentService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
 
 class EnrollmentController extends Controller
 {
@@ -29,21 +25,19 @@ class EnrollmentController extends Controller
     }
 
     
-    public function enroll(Request $request)
+    public function enroll(StudentEnrollmentRequest $request)
     {
-        dd('enroll');
-        DB::beginTransaction();
-        try {
-            $studentData = $request->only(['name', 'email', 'phone_no']);
-            $enrollmentData = $request->only(['course_id', 'payment_method', 'transaction_id', 'total_amount']);
-
-            $student = $this->enrollmentService->getOrCreateStudent($studentData);
-            $this->enrollmentService->enrollStudent($student, $enrollmentData);
-            DB::commit();
-            return redirect()->route('student.my-courses')->with('success', 'Enrollment successful');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with('error', $e->getMessage());
+        $existingStudent = User::where('email', $request->email)->first();
+        if ($existingStudent && !Session::has('student_id')) {
+            return redirect()->route('student.login')->with('error', 'You are already registered. Please log in to continue.')->with('status', 'login');
         }
+        $student = $this->enrollmentService->getOrCreateStudent($request->validated());
+        $enrollment = $this->enrollmentService->enrollStudent($student, $request->validated());
+        if ($enrollment) {
+            return redirect()->route('student.my-courses')->with('success', 'You have successfully enrolled in the course.');
+        }
+        return redirect()->back()->with('error', 'Failed to enroll in the course. Please try again.');
+       
     }
+    
 }
