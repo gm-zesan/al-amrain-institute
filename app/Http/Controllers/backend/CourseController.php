@@ -19,8 +19,19 @@ class CourseController extends Controller
                 ->addColumn('price', function($row){
                     return '৳ '.$row->price;
                 })
+                ->addColumn('is_certificate_enabled', function($row){
+                    return [
+                        'id' => $row->id,
+                        'is_certificate_enabled' => $row->is_certificate_enabled
+                    ];
+                })
                 ->addColumn('action-btn', function($row){
-                    return $row->id;
+                    $course = Course::find($row->id);
+                    $data = [
+                        'id' => $course->id,
+                        'is_certificate_enabled' => $course->id
+                    ];
+                    return $data;
                 })
                 ->rawColumns(['action-btn'])
                 ->make(true);
@@ -64,5 +75,10 @@ class CourseController extends Controller
         }
         $course->delete();
         return redirect()->route('courses.index')->with('success', 'Course deleted successfully.');
+    }
+
+    public function certificateStatus(Course $course){
+        $course->update(['is_certificate_enabled' => !$course->is_certificate_enabled]);
+        return redirect()->route('courses.index')->with('success', 'Course certificates enabled successfully.');
     }
 }

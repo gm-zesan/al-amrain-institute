@@ -49,6 +49,7 @@ Route::prefix('student')->name('student.')->group(function () {
         Route::get('/my-account', [AccountController::class, 'index'])->name('my-account');
         Route::get('/my-courses', [CoursesController::class, 'index'])->name('my-courses');
         Route::get('/certificate', [CertificateController::class, 'index'])->name('certificate');
+        Route::get('/certificate/{certificateId}/download', [CertificateController::class, 'downloadCertificate'])->name('certificate.download');
         Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
     });
 });
@@ -80,8 +81,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/dashboard/our-team/update/{id}', [OurTeamController::class,'update'])->name('our-team.update');
     Route::get('/dashboard/our-team/delete/{id}', [OurTeamController::class,'delete'])->name('our-team.delete');
 
-    // course resourse routes
+    // resourse routes
     Route::resource('/dashboard/courses', BackendCourseController::class)->except(['show']);
+    Route::get('/dashboard/courses/{course}/certificate-status', [BackendCourseController::class, 'certificateStatus'])->name('courses.certificate-status');
     Route::resource('/dashboard/enrollments', BackendEnrollmentController::class)->except(['show', 'edit']);
     Route::resource('/dashboard/reviews', ReviewController::class)->except(['show', 'edit']);
     Route::resource('/dashboard/students', StudentController::class)->except(['show']);

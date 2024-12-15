@@ -36,7 +36,8 @@
                                     <th scope="col" style="width: 8%">Price</th>
                                     <th scope="col" style="width: 12%">Starting Date</th>
                                     <th scope="col" style="width: 12%">Ending Date</th>
-                                    <th scope="col" style="width: 30%">Description</th>
+                                    <th scope="col" style="width: 22%">Description</th>
+                                    <th scope="col" style="width: 8%">Certificate</th>
                                     <th scope="col" style="width: 10%">Action</th>
                                 </tr>
                             </thead>
@@ -88,19 +89,37 @@
                         }
                     },
                     {
+                        data: 'is_certificate_enabled',
+                        name: 'is_certificate_enabled', 
+                        orderable: false, 
+                        render: function (data, type, row) {
+                            var btns = '<div class="action-btn">';
+                            if (data.is_certificate_enabled == 1) {
+                                btns += '<a href="' + SITEURL + '/dashboard/courses/' + data.id + '/certificate-status" title="Enabled Certificates" class="btn btn-show"><i class="ri-checkbox-circle-line"></i></a>';
+                            } else {
+                                btns += '<a href="' + SITEURL + '/dashboard/courses/' + data.id + '/certificate-status" title="Disabled Certificates" class="btn btn-delete"><i class="ri-close-circle-line"></i></a>';
+                            }
+
+                            btns += '</div>';
+                            return btns;
+                        }
+                    },
+                    {
                         data: 'id', 
                         orderable: false, 
                         render: function (data) {
                             var btns = '<div class="action-btn">';
-                            btns += '<a href="' + SITEURL + '/dashboard/courses/' + data + '/edit" title="Edit" class="btn btn-edit"><i class="ri-edit-line"></i></a>';
-                            
-                            btns += '<a href="' + SITEURL + '/dashboard/courses/' + data + '/email" title="Send Email" class="btn btn-show"><i class="ri-mail-line"></i></a>';
 
-                            btns += '<form action="' + SITEURL + '/dashboard/courses/' + data + '" method="POST" style="display: inline;" onsubmit="return confirm(\'Are you sure to delete this course?\');">' +
-                                '@csrf' +
-                                '@method("DELETE")' +
-                                '<button type="submit" class="btn btn-delete"><i class="ri-delete-bin-2-line"></i></button>' +
-                            '</form>';
+                                btns += '<a href="' + SITEURL + '/dashboard/courses/' + data + '/edit" title="Edit" class="btn btn-edit"><i class="ri-edit-line"></i></a>';
+                                
+                                btns += '<a href="' + SITEURL + '/dashboard/courses/' + data + '/email" title="Send Email" class="btn btn-show"><i class="ri-mail-line"></i></a>';
+                                
+
+                                btns += '<form action="' + SITEURL + '/dashboard/courses/' + data.id + '" method="POST" style="display: inline;" onsubmit="return confirm(\'Are you sure to delete this course?\');">' +
+                                    '@csrf' +
+                                    '@method("DELETE")' +
+                                    '<button type="submit" class="btn btn-delete"><i class="ri-delete-bin-2-line"></i></button>' +
+                                '</form>';
 
                             btns += '</div>';
                             return btns;

@@ -48,7 +48,7 @@ class CourseSeeder extends Seeder
                                                   <li><strong>Class Time:</strong></li>
                                                   <li><strong>Monday:</strong> 9 PM - 10:30PM</li>
                                                   <li><strong>Wednesday:</strong> 9 PM - 10.30 PM</li>
-          </ul>','total_seats' => '60','total_lessons' => '70','created_at' => '2024-12-05 11:13:47','updated_at' => '2024-12-11 05:28:44')
+          </ul>','total_seats' => '60','total_lessons' => '70','is_certificate_enabled' => '0','created_at' => '2024-11-28 08:44:39','updated_at' => '2024-11-28 08:44:39')
         );
 
         foreach ($courses as $course) {

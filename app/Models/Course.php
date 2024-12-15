@@ -20,6 +20,7 @@ class Course extends Model
         'time_schedule',
         'total_seats',
         'total_lessons',
+        'is_certificate_enabled',
     ];
 
     public function enrollments()

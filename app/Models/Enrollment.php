@@ -14,6 +14,7 @@ class Enrollment extends Model
         'total_amount',
         'is_certificate_enabled',
         'status'
+        
     ];
 
     public function student()

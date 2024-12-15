@@ -17,13 +17,8 @@ class CoursesController extends Controller
             return redirect()->route('student.login')->with('error', 'You need to login to access this page.')->with('status', 'login');
         }
 
-        $enrollments = $student->enrollments()->get();
-        dd($enrollments);
-
-        $courses = $enrollments->map(function ($enrollment) {
-            return $enrollment->course;
-        });
-
+        $approvedEnrollments = $student->enrollments()->where('status', 'approved')->with('course')->get();
+        $courses = $approvedEnrollments->pluck('course');
 
         foreach ($courses as $course) {
             $starting_date = Carbon::parse($course->starting_date);

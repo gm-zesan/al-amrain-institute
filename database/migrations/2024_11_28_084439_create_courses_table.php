@@ -26,6 +26,7 @@ return new class extends Migration
             $table->text('time_schedule')->nullable();
             $table->integer('total_seats')->nullable();
             $table->integer('total_lessons')->nullable();
+            $table->boolean('is_certificate_enabled')->default(false);
             $table->timestamps();
         });
     }
