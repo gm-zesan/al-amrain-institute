@@ -47,6 +47,7 @@ Route::prefix('student')->name('student.')->group(function () {
     
     Route::middleware([StudentMiddleware::class])->group(function(){
         Route::get('/my-account', [AccountController::class, 'index'])->name('my-account');
+        Route::put('/my-account/{student}', [AccountController::class, 'update'])->name('my-account.update');
         Route::get('/my-courses', [CoursesController::class, 'index'])->name('my-courses');
         Route::get('/certificate', [CertificateController::class, 'index'])->name('certificate');
         Route::get('/certificate/{certificateId}/download', [CertificateController::class, 'downloadCertificate'])->name('certificate.download');

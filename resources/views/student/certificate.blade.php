@@ -19,7 +19,7 @@
                     <td>{{ $certificate->title }}</td>
                     <td>{{ $certificate->updated_at->format('F j, Y') }}</td>
                     <td style="text-align: center">
-                        <a href="{{ route('student.certificate.download', $certificate->id) }}" class="button" title="Certificate Download">Download</a>
+                        <a target="_blank" href="{{ route('student.certificate.download', $certificate->id) }}" class="button" title="Certificate Download">Download</a>
                     </td>
                 </tr>
             @empty

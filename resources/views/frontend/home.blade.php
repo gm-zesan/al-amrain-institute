@@ -275,15 +275,15 @@
                 <div class="total_student loader">
                     <div class="row">
                         <div class="col-lg-4">
-                            <div class="count_flex"><h2 class="count">15712</h2> +</div>
+                            <div class="count_flex"><h2 class="count">{{ $total_students }}</h2> +</div>
                             <p>Total Student</p>
                         </div>
                         <div class="col-lg-4">
-                            <div class="count_flex"><h2 class="count">120</h2> +</div>
+                            <div class="count_flex"><h2 class="count">{{ $total_teacher }}</h2> +</div>
                             <p>All Teachers</p>
                         </div>
                         <div class="col-lg-4">
-                            <div class="count_flex"><h2 class="count">12</h2> +</div>
+                            <div class="count_flex"><h2 class="count">{{ $total_courses }}</h2> +</div>
                             <p>Total Courses</p>
                         </div>
                     </div>

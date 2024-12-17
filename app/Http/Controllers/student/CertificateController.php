@@ -30,12 +30,22 @@ class CertificateController extends Controller
             return redirect()->route('student.login')->with('error', 'You need to login to access this page.')->with('status', 'login');
         }
         $approvedEnrollments = $student->enrollments()->where('status', 'approved')->with('course')->get();
-        $certificates = $approvedEnrollments->pluck('course')->where('is_certificate_enabled', 1);
-        $certificate = $certificates->where('id', $certificateId)->first();
-        if(!$certificate){
+        $courses = $approvedEnrollments->pluck('course')->where('is_certificate_enabled', 1);
+        $course = $courses->where('id', $certificateId)->first();
+        if(!$course){
             return redirect()->route('student.certificate')->with('error', 'Certificate not found.');
         }
-        $pdf = Pdf::loadView('student.certificate-pdf', ['course' => $certificate, 'student' => $student]);
-        return $pdf->download($certificate->course->title . '_certificate.pdf');
+        // $pdf = Pdf::loadView('student.certificate-pdf', ['course' => $course, 'student' => $student]);
+        // return $pdf->download($course->title . '_certificate.pdf');
+        $data = [
+            [
+                'quantity' => 1,
+                'description' => '1 Year Subscription',
+                'price' => '129.00'
+            ]
+        ];
+        // $pdf = Pdf::loadView('student.certificate-pdf', ['data' => $data]);
+        // return $pdf->download();
+        return view('student.certificate-pdf', ['data' => $data]);
     }
 }

@@ -159,25 +159,30 @@
                             </div>
                         </div>
                         <div class="comment-form-wrapper mt_30">
-                            <h2> Write Your Comment</h2>
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="Name">
+                            @if (Session::get('student_id'))
+                                <h2> Write Your Comment</h2>
+                                <form action="#">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" placeholder="Name">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="email" class="form-control" placeholder="Email">
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <input type="email" class="form-control" placeholder="Email">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea name="comment_message" id="comment_message" cols="30" rows="10" class="form-control" placeholder="Write Your Comment"></textarea>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="submit" class="button">Submit</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <textarea name="comment_message" id="comment_message" cols="30" rows="10" class="form-control" placeholder="Write Your Comment"></textarea>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <button type="submit" class="button">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            @else
+                                <a href="{{ route('student.login') }}" class="button">Login</a>
+                            @endif
+                            
                         </div>
                     </div>
                 </div>
