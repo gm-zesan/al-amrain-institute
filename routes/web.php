@@ -35,6 +35,7 @@ Route::get('/team', [TeamController::class, 'index'])->name('frontend.team');
 Route::get('/gallery', [GalleryController::class, 'index'])->name('frontend.gallery');
 Route::get('/course', [FrontendCourseController::class, 'index'])->name('frontend.course');
 Route::get('/course/{id}', [FrontendCourseController::class, 'details'])->name('frontend.course.details');
+Route::get('/courses/search', [FrontendCourseController::class, 'search'])->name('courses.search');
 
 Route::get('/enroll/{course}', [FrontendEnrollmentController::class, 'index'])->name('frontend.enroll');
 Route::post('/enroll', [FrontendEnrollmentController::class, 'enroll'])->name('frontend.enroll.submit');
@@ -49,6 +50,7 @@ Route::prefix('student')->name('student.')->group(function () {
         Route::get('/my-account', [AccountController::class, 'index'])->name('my-account');
         Route::put('/my-account/{student}', [AccountController::class, 'update'])->name('my-account.update');
         Route::get('/my-courses', [CoursesController::class, 'index'])->name('my-courses');
+        Route::post('/reviews/{course}', [CoursesController::class, 'submitReview'])->name('reviews.store');
         Route::get('/certificate', [CertificateController::class, 'index'])->name('certificate');
         Route::get('/certificate/{certificateId}/download', [CertificateController::class, 'downloadCertificate'])->name('certificate.download');
         Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');

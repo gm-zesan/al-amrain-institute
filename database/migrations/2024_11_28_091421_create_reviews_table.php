@@ -16,12 +16,9 @@ return new class extends Migration
             $table->foreignId('student_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
             $table->tinyInteger('rating');
-            $table->text('feedback'); 
-            $table->string('status')->default('unpublished');
+            $table->text('feedback');
+            $table->enum('status', ['published', 'unpublished'])->default('unpublished');
             $table->timestamps();
-
-            $table->index('student_id');
-            $table->index('course_id');
         });
     }
 

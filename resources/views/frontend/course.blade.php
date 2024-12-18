@@ -18,23 +18,16 @@
         <!-- all_courses -->
         <div class="selling_courses_area" style="background-image: url({{ asset('frontend/img/courses-two_bg.png') }});">
             <div class="container">
-                <form action="#" class="course_search">
-                    <select>
-                        <option>Topic</option>
-                        <option>Web Development</option>
-                        <option>Laravel</option>
-                        <option>Data Science</option>
-                        <option>Graphic Design</option>
+                <form action="{{ route('courses.search') }}" method="GET" class="course_search">
+                    <select name="course_id" required>
+                        <option value="" selected disabled>Choose Your Course</option>
+                        @foreach ($searchCourses as $c)
+                            <option value="{{ $c->id }}">{{ $c->title }}</option>
+                        @endforeach
                     </select>
-                    <select>
-                        <option>Level</option>
-                        <option>Web Development</option>
-                        <option>Laravel</option>
-                        <option>Data Science</option>
-                        <option>Graphic Design</option>
-                    </select>
-                    <button class="button">Search</button>
+                    <button type="submit" class="button">Search</button>
                 </form>
+                
                 <div class="row mt_70">
                     @foreach ($courses as $course)
                         <div class="col-lg-4 mt_30">

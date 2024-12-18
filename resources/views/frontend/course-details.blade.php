@@ -5,6 +5,27 @@
     Course Details
 @endsection
 
+@push('styles')
+    <style>
+        /* .comment-form-wrapper{
+            padding: 0.6rem 2rem;
+            border-radius: 0.7rem;
+            font-size: 2.5rem;
+        } */
+        .text-warning {
+            color: #ffc107; /* Gold color for stars */
+        }
+        .text-muted {
+            color: #ddd; /* Light gray for empty stars */
+        }
+        .show-more {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+    </style>
+@endpush
+
 
 @section('content')
     <main class="overflow-hidden">
@@ -127,52 +148,63 @@
                             <div class="comments-count">
                                 <h2>02 Comments</h2>
                             </div>
-                            <div class="single-comment my-2">
-                                <div class="authors-info">
-                                    <div class="author-thumb">
-                                        <a href="#"><img src="{{ asset('frontend/img/author-4.png') }}" alt=""></a>
-                                    </div>
-                                    <div class="author-data">
-                                        <a href="#">Angel Mela</a>
-                                        <p>05 October, 2023</p>
-                                        <div class="comment">
-                                            <p>Proactively envisioned multimedia based expertise and cross-media growth strategies. Seamlessly ize quality intellectual capital without superior collaboration and idea-sharing. Holistically pontificate installed</p>
+                            @forelse ($reviews as $review)
+                                <div class="single-comment my-2">
+                                    <div class="authors-info">
+                                        <div class="author-thumb">
+                                            <a href="javascript:void(0)">
+                                                <img src="{{ asset('storage/'.$review->student->image) ?? asset('frontend/img/default-avatar.png') }}" alt="Author Avatar">
+                                            </a>
                                         </div>
-                                        <a href="#" class="reply-btn">Reply</a>
+                                        <div class="author-data">
+                                            <a href="javascript:void(0)">
+                                                {{ $review->student->name }}
+                                            </a>
+                                            <p>
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    @if ($i <= $review->rating)
+                                                        <span class="text-warning">&#9733;</span> 
+                                                    @else
+                                                        <span class="text-muted">&#9734;</span> 
+                                                    @endif
+                                                @endfor
+                                                 ({{ $review->created_at->diffForHumans() }})</p>
+                                            <div class="comment">
+                                                <p>
+                                                    <span class="short-feedback">{{ \Illuminate\Support\Str::limit($review->feedback, 150) }}</span>
+                                                    <span class="full-feedback d-none">{{ $review->feedback }}</span>
+                                                    @if (strlen($review->feedback) > 150)
+                                                        <span class="text-primary show-more">Read more</span>
+                                                    @endif
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="single-comment my-2">
-                                <div class="authors-info">
-                                    <div class="author-thumb">
-                                        <a href="#"><img src="{{ asset('frontend/img/author-4.png') }}" alt=""></a>
-                                    </div>
-                                    <div class="author-data">
-                                        <a href="#">Jhon Deo</a>
-                                        <p>05 October, 2023</p>
-                                        <div class="comment">
-                                            <p>Proactively envisioned multimedia based expertise and cross-media growth strategies. Seamlessly ize quality intellectual capital without superior collaboration and idea-sharing. Holistically pontificate installed</p>
-                                        </div>
-                                        <a href="#" class="reply-btn">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @empty
+                                <p class="text-center">No reviews yet. Be the first to review!</p>
+                            @endforelse
                         </div>
                         <div class="comment-form-wrapper mt_30">
                             @if (Session::get('student_id'))
                                 <h2> Write Your Comment</h2>
-                                <form action="#">
+                                <form action="{{ route('student.reviews.store', ['course' => $course->id]) }}" method="POST">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Name">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="email" class="form-control" placeholder="Email">
+                                            <select name="rating" id="rating" class="form-control" required>
+                                                <option disabled selected>Select Rating</option>
+                                                <option value="1">1 Star</option>
+                                                <option value="2">2 Star</option>
+                                                <option value="3">3 Star</option>
+                                                <option value="4">4 Star</option>
+                                                <option value="5">5 Star</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <textarea name="comment_message" id="comment_message" cols="30" rows="10" class="form-control" placeholder="Write Your Comment"></textarea>
+                                            <textarea name="feedback" id="feedback" class="form-control" rows="5" placeholder="Write your feedback" required></textarea>
                                         </div>
                                         <div class="col-md-12">
                                             <button type="submit" class="button">Submit</button>
@@ -190,3 +222,17 @@
           </div>
     </main>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('.show-more').on('click', function () {
+                const $parent = $(this).closest('.comment');
+                $parent.find('.short-feedback').addClass('d-none');
+                $parent.find('.full-feedback').removeClass('d-none');
+                $(this).hide();
+            });
+        });
+
+    </script>
+@endpush
