@@ -44,7 +44,7 @@ class CourseEnrollmentMail extends Mailable implements ShouldQueue
         return new Content(
             view: 'emails.course-enrolled',
             with: [
-                'userName' => $this->userName,
+                'student' => $this->userName,
                 'course' => $this->course,
             ]
         );
