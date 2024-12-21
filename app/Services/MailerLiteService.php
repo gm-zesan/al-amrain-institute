@@ -2,33 +2,33 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Log;
 use MailerLite\MailerLite;
 
 class MailerLiteService
 {
-    protected $mailerlite;
+    protected $MailerLite;
 
 
     public function __construct()
     {
-        $this->mailerlite = new MailerLite(['api_key' => env('MAILERLITE_API_KEY')]);
+        $this->MailerLite = new MailerLite(['api_key' => env('MAILERLITE_API_KEY')]);
     }
 
 
     public function addStudentToMailerLiteGroup($student, $groupId)
     {
         $subscriberId = $this->addStudentAsSubscriber($student);
-        $this->mailerlite->groups->assignSubscriber($groupId, $subscriberId);
-        $subscribers = $this->mailerlite->groups->getSubscribers($groupId);
+        $this->MailerLite->groups->assignSubscriber($groupId, $subscriberId);
+        $subscribers = $this->MailerLite->groups->getSubscribers($groupId);
         return $subscribers['body']['data'];
     }
 
 
-    public function sendMailViaMailerLite($student, $course, $groupId)
+    public function sendMailViaMailerLite($student, $course, $groupId, $emailContent)
     {
-        $emailContent = view('emails.course-enrolled', compact('student', 'course'))->render();
         $campaignData = [
-            'name' => 'Course Enrollment',
+            'name' => 'Course Enrollment: ' . $course->title,
             'type' => 'regular',
             'emails' => [
                 [
@@ -42,15 +42,15 @@ class MailerLiteService
             'groups' => [$groupId],
         ];
         try {
-            $campaign = $this->mailerlite->campaigns->create($campaignData);
+            $campaign = $this->MailerLite->campaigns->create($campaignData);
             $campaignId = $campaign['body']['data']['id'];
-            $scheduleResponse = $this->mailerlite->campaigns->schedule($campaignId, ['delivery' => 'instant']);
-            return $scheduleResponse;
-            if ($scheduleResponse['status_code'] == 200) {
-                return "Campaign scheduled successfully!";
-            } else {
-                return "Failed to schedule the campaign.";
+            $scheduleResponse = $this->MailerLite->campaigns->schedule($campaignId, ['delivery' => 'instant']);
+            if ($scheduleResponse['status_code'] === 200) {
+                Log::info("Campaign scheduled successfully for student: {$student->email}");
+                return true;
             }
+            Log::error("Failed to schedule campaign for student: {$student->email}");
+            return false;
         } catch (\Exception $e) {
             return "Error: " . $e->getMessage();
         }
@@ -60,7 +60,7 @@ class MailerLiteService
     protected function addStudentAsSubscriber($student)
     {
         try {
-            $subscriber = $this->mailerlite->subscribers->create([
+            $subscriber = $this->MailerLite->subscribers->create([
                 'email' => $student->email,
                 'fields' => [
                     'name' => $student->name,
@@ -69,13 +69,12 @@ class MailerLiteService
 
             if ($subscriber['status_code'] == 201) {
                 return $subscriber['body']['data']['id'];
-            } else {
-                $subscriberId = $this->mailerlite->subscribers->find($student->email)['body']['data']['id'];
-                return $subscriberId;
             }
+            return $this->MailerLite->subscribers->find($student->email)['body']['data']['id'];
         } catch (\Exception $e) {
             return "Error: " . $e->getMessage();
         }
     }
+
 
 }
