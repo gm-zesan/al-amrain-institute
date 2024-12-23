@@ -5,7 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\OurTeam;
 use Illuminate\Http\Request;
-use DataTables;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 
 class OurTeamController extends Controller

@@ -19,12 +19,11 @@ class EnrollmentService
      */
     public function getOrCreateStudent(array $validatedStudentData): User
     {
-        if (Session::has('student_id')) {
-            $student = User::find(Session::get('student_id'));
-            if (!$student) {
-                throw new \Exception('Invalid session data. Please log in again.');
-            }
-            return $student;
+        $existingStudent = User::where('email', $validatedStudentData['email'])->first();
+        if ($existingStudent) {
+            Session::put('student_id', $existingStudent->id);
+            Session::put('student_name', $existingStudent->name);
+            return $existingStudent;
         }
         $student = User::create([
             'name' => $validatedStudentData['name'],

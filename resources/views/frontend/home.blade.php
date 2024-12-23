@@ -268,7 +268,7 @@
         <div class="counter_area">
             <div class="container">
                 <div class="heading text-center mb_70">
-                    <img src="http://127.0.0.1:8000/frontend/img/heading-img.png" alt="icon">
+                    <img src="{{ asset('frontend/img/heading-img.png') }}" alt="icon">
                     <p>Al Amrain Institute Admission Success for 2022-24 academic year</p>
                     <h2>Your success is our inspiration</h2>
                 </div>

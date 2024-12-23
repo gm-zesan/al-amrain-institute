@@ -8,7 +8,7 @@ use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\User;
 use Illuminate\Http\Request;
-use DataTables;
+use Yajra\DataTables\DataTables;
 class EnrollmentController extends Controller
 {
     public function index(Request $request){

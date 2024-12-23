@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CourseRequest;
 use App\Models\Course;
 use Illuminate\Support\Facades\Storage;
-use DataTables;
+use Yajra\DataTables\DataTables;
 
 class CourseController extends Controller
 {
@@ -79,6 +79,6 @@ class CourseController extends Controller
 
     public function certificateStatus(Course $course){
         $course->update(['is_certificate_enabled' => !$course->is_certificate_enabled]);
-        return redirect()->route('courses.index')->with('success', 'Course certificates enabled successfully.');
+        return redirect()->route('courses.index')->with('success', 'Certificates status change successfully.');
     }
 }

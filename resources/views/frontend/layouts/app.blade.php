@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') || Al Amrain</title>
-    <link href="assets/img/favicon.png" type="image/png" rel="icon">
     @include('frontend.partials.styles')
+    @include('frontend.partials.favicon')
     @stack('styles')
 </head>
 

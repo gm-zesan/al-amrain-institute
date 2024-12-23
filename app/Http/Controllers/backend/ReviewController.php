@@ -8,7 +8,7 @@ use App\Models\Course;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
-use DataTables;
+use Yajra\DataTables\DataTables;
 
 class ReviewController extends Controller
 {

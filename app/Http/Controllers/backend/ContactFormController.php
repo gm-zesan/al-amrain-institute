@@ -9,8 +9,7 @@ use App\Http\Requests\ContactFormRequest;
 use App\Models\ContactForm;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use DataTables;
-
+use Yajra\DataTables\DataTables;
 
 class ContactFormController extends Controller implements HasMiddleware
 {

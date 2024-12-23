@@ -27,17 +27,16 @@ class EnrollmentController extends Controller
     
     public function enroll(StudentEnrollmentRequest $request)
     {
-        $existingStudent = User::where('email', $request->email)->first();
-        if ($existingStudent && !Session::has('student_id')) {
-            return redirect()->route('student.login')->with('error', 'You are already registered. Please log in to continue.')->with('status', 'login');
+        try{
+            $student = $this->enrollmentService->getOrCreateStudent($request->validated());
+            $enrollment = $this->enrollmentService->enrollStudent($student, $request->validated());
+            if ($enrollment) {
+                return redirect()->route('student.my-courses')->with('success', 'You have successfully enrolled in the course.');
+            }
+            return redirect()->back()->with('error', 'Failed to enroll in the course. Please try again.');
+        }catch (\Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
         }
-        $student = $this->enrollmentService->getOrCreateStudent($request->validated());
-        $enrollment = $this->enrollmentService->enrollStudent($student, $request->validated());
-        if ($enrollment) {
-            return redirect()->route('student.my-courses')->with('success', 'You have successfully enrolled in the course.');
-        }
-        return redirect()->back()->with('error', 'Failed to enroll in the course. Please try again.');
-       
     }
     
 }

@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use App\Models\Course;
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,19 +10,19 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CourseEnrollmentMail extends Mailable
+class CourseEnrollmentMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $student;
+    public $userName;
     public $course;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(User $user, Course $course)
+    public function __construct($userName, Course $course)
     {
-        $this->student = $user;
+        $this->userName = $userName;
         $this->course = $course;
     }
 
@@ -45,7 +44,7 @@ class CourseEnrollmentMail extends Mailable
         return new Content(
             view: 'emails.course-enrolled',
             with: [
-                'student' => $this->student,
+                'student' => $this->userName,
                 'course' => $this->course,
             ]
         );
