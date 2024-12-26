@@ -5,9 +5,9 @@
 
 @push('custom-style')
     <style>
-        .select2-container.select2-container--default {
-            max-width: 694.656px;
-            width: 100% !important;
+        .select2-container--default .select2-search--inline .select2-search__field {
+            font-size: 12px;
+            font-weight: 500;
         }
     </style>
 @endpush
@@ -101,6 +101,39 @@
                                     <div class="error_msg">{{ $errors->first('total_lessons') }}</div>
                                 @endif
                             </div>
+
+                            <div class="col-12">
+                                <label for="teacher_ids" class="form-label custom-label">Teachers</label>
+                                <select class="form-select multiple-select2" name="teacher_ids[]" multiple>
+                                    <option value="" disabled>Select Teachers</option>
+                                    @foreach ($teachers as $teacher)
+                                        <option value="{{ $teacher->id }}" 
+                                            {{ in_array($teacher->id, $selectedTeacherIds) ? 'selected' : '' }}>
+                                            {{ $teacher->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('teacher_ids')
+                                    <div class="error_msg">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="main_teacher_id" class="form-label custom-label">Main Teacher</label>
+                                <select class="form-select single-select2" name="main_teacher_id">
+                                    <option value="" disabled selected>Select Main Teacher</option>
+                                    @foreach ($teachers as $teacher)
+                                        <option value="{{ $teacher->id }}" 
+                                            {{ $mainTeacherId == $teacher->id ? 'selected' : '' }}>
+                                            {{ $teacher->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('main_teacher_id')
+                                    <div class="error_msg">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            
 
                             <div class="col-md-12">
                                 <label for="description" class="form-label custom-label">Description</label>

@@ -74,7 +74,7 @@ class EmailController extends Controller
         $course->enrollments()->where('status', 'approved')->chunk(50, function ($enrollments) use ($course) {
             foreach ($enrollments as $enrollment) {
                 $student = $enrollment->student;
-                Mail::to($student->email)->send(new CourseEnrollmentMail($student, $course));
+                Mail::to($student->email)->queue(new CourseEnrollmentMail($student, $course));
             }
         });
         return redirect()->route('courses.index')->with('success', 'Emails sent successfully');

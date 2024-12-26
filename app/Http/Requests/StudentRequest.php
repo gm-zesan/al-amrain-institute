@@ -36,7 +36,11 @@ class StudentRequest extends FormRequest
                     ->letters()
                     ->numbers(),
             ],
+            'image' => 'nullable',
             'address' => 'nullable|string|max:255',
+            'details' => 'nullable|string',
+            'is_blocked' => 'nullable|boolean',
+            'is_certificate_enable' => 'nullable|boolean',
         ];
     }
 

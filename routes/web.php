@@ -18,6 +18,7 @@ use App\Http\Controllers\backend\ContactFormController as BackendContactFormCont
 use App\Http\Controllers\backend\EmailController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\StudentController;
+use App\Http\Controllers\backend\TeacherController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\student\AuthenticationController;
@@ -90,6 +91,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dashboard/enrollments', BackendEnrollmentController::class)->except(['show', 'edit']);
     Route::resource('/dashboard/reviews', ReviewController::class)->except(['show', 'edit']);
     Route::resource('/dashboard/students', StudentController::class)->except(['show']);
+    Route::resource('/dashboard/teachers', TeacherController::class)->except(['show']);
 
     //message Route
     Route::get('/dashboard/message', [BackendContactFormController::class,'index'])->name('message');

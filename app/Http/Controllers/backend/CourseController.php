@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CourseRequest;
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
@@ -40,7 +41,8 @@ class CourseController extends Controller
     }
 
     public function create(){
-        return view('admin.courses.create');
+        $teachers = User::role('teacher')->get();
+        return view('admin.courses.create', compact('teachers'));
     }
 
     public function store(CourseRequest $request){
@@ -48,13 +50,25 @@ class CourseController extends Controller
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('courses', 'public');
         }
-        Course::create($validated);
+        $course = Course::create($validated);
+        if ($request->has('teacher_ids')) {
+            $teacherData = [];
+            foreach ($request->teacher_ids as $teacherId) {
+                $teacherData[$teacherId] = [
+                    'is_main' => $request->main_teacher_id == $teacherId,
+                ];
+            }
+            $course->teachers()->sync($teacherData);
+        }
         return redirect()->route('courses.index')->with('success', 'Course created successfully.');
     }
 
 
     public function edit(Course $course){
-        return view('admin.courses.edit', compact('course'));
+        $teachers = User::role('teacher')->get();
+        $selectedTeacherIds = $course->teachers->pluck('id')->toArray();
+        $mainTeacherId = $course->teachers->where('pivot.is_main', 1)->first()?->id;
+        return view('admin.courses.edit', compact('course', 'teachers', 'selectedTeacherIds', 'mainTeacherId'));
     }
 
     public function update(CourseRequest $request, Course $course){
@@ -66,6 +80,17 @@ class CourseController extends Controller
             $validated['image'] = $request->file('image')->store('courses', 'public');
         }
         $course->update($validated);
+
+        if ($request->has('teacher_ids')) {
+            $teacherData = [];
+            foreach ($request->teacher_ids as $teacherId) {
+                $teacherData[$teacherId] = [
+                    'is_main' => $request->main_teacher_id == $teacherId,
+                ];
+            }
+            $course->teachers()->sync($teacherData);
+        }
+    
         return redirect()->route('courses.index')->with('success', 'Course updated successfully.');
     }
 

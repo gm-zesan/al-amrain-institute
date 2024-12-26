@@ -26,7 +26,7 @@ class CourseController extends Controller
 
     public function details($id)
     {
-        $course = Course::withCount(['enrollments as enrolled_students_count' => function ($query) {
+        $course = Course::with('teachers')->withCount(['enrollments as enrolled_students_count' => function ($query) {
             $query->where('status', 'approved');
         }])->findOrFail($id);
     

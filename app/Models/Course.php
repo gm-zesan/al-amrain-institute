@@ -38,6 +38,15 @@ class Course extends Model
             'status'
         )->withTimestamps();
     }
+    
+    public function teachers()
+    {
+        return $this->belongsToMany(User::class, 'course_teacher', 'course_id', 'teacher_id')
+                    ->withPivot('is_main')
+                    ->withTimestamps();
+    }
+
+
 
     public function reviews()
     {

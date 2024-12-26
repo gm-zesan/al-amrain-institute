@@ -252,9 +252,18 @@
                                     <div class="course-block_two-lower d-flex justify-content-between flex-wrap">
                                         <div class="course-block_two-author">
                                             <div class="course-block_two-author_image">
-                                                <img src="{{ asset('frontend/img/author-4.png') }}" alt=""></div>
-                                            <strong>Habib Al Noor</strong>
-                                            <p>Arabic Teacher</p>
+                                                @if ($course->teachers->isNotEmpty())
+                                                    <img src="{{ asset('storage/'.$course->teachers->first()->image) }}" alt="{{ $course->teachers->first()->name }}">
+                                                @else
+                                                    <img src="{{ asset('frontend/img/author-4.png') }}" alt="Admin">
+                                                @endif
+                                            </div>
+                                            @if ($course->teachers->isNotEmpty())
+                                                <strong>{{ $course->teachers->first()->name }}</strong>
+                                            @else
+                                                <strong>Admin</strong>
+                                            @endif
+                                            
                                         </div>
                                         <div class="course-block_two-price">{{ number_format($course->price,0) }} ৳ <span>course fee</span></div>
                                     </div>
@@ -325,8 +334,7 @@
                     <div class="item">
                         <div class="testi-box">
                             <div class="testi-desc">
-                                <p>Lorem ipsum dolor sit amet, consect etur adipiscing elit, sed do eiusmoed tempor
-                                    incididunt.</p>
+                                <p>Lorem ipsum dolor sit amet, consect etur adipiscing elit, sed do eiusmoed tempor incididunt.</p>
                             </div>
                             <div class="text-img-bott">
                                 <img src="{{ asset('frontend/img/testi-img4.jpg') }}" alt="">

@@ -40,7 +40,7 @@ class StudentController extends Controller
         $validated['password'] = bcrypt($request->password);
         $user = User::create($validated);
         $user->assignRole('student');
-        return redirect()->route('students.index')->with('success','User created successfully');
+        return redirect()->route('students.index')->with('success','Student created successfully');
     }
 
     public function edit(User $student){
@@ -56,7 +56,7 @@ class StudentController extends Controller
             $validated['image'] = $request->file('image')->store('all-users', 'public');
         }
         $student->update($validated);
-        return redirect()->route('students.index')->with('success','User updated successfully');
+        return redirect()->route('students.index')->with('success','Student updated successfully');
     }
 
     public function destroy(User $student){
@@ -64,6 +64,6 @@ class StudentController extends Controller
             Storage::disk('public')->delete($student->image);
         }
         $student->delete();
-        return redirect()->route('students.index')->with('success','User deleted successfully');
+        return redirect()->route('students.index')->with('success','Student deleted successfully');
     }
 }

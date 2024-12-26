@@ -16,11 +16,11 @@ class UserController extends Controller
         if ($request->ajax()) {
             $auth_user = Auth::user();
             if ($auth_user->hasRole('superadmin')) {
-                $users = User::withoutRole('student')->get();
+                $users = User::withoutRole(['student','teacher'])->get();
             } else {
                 $users = User::whereHas('roles', function ($query) {
                     return $query->where('name','!=', 'superadmin');
-                })->where('id','!=',$auth_user->id)->withoutRole('student')->get();
+                })->where('id','!=',$auth_user->id)->withoutRole(['student','teacher'])->get();
             }
             return DataTables::of($users)
                 ->addIndexColumn()

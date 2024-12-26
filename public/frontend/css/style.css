@@ -1224,6 +1224,8 @@ figure {
     margin-top: 1rem;
     margin-left: 1rem;
     padding-left: 7rem;
+    display: flex;
+    align-items: center;
 }
 .course-block_two-author p{
 	font-size: 2.1rem;
@@ -1236,6 +1238,11 @@ figure {
     height: 6rem;
     overflow: hidden;
     border-radius: 50%;
+}
+.course-block_two-author_image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .course-block_two-author strong {
@@ -1765,12 +1772,37 @@ ul.list li:before {
     top: 5%;
     background-repeat: no-repeat;
 }
+.teacher_info{
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin: 3rem 0 3rem;
+    color: #444;
+}
+
+.teacher_info h2{
+    color: #444;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+.teacher_info .teacher_data{
+    color: #444;
+}
+.teacher_img img{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
 .course_details_area{
 	position: relative;
 }
 .path_box{
 	padding: 3rem 1.5rem;
 	background-color: var(--dark_blue);
+    color: #fff;
+}
+.path_box p{
+    color: #fff;
 }
 /* .possition_fixed{
 	position: fixed;

@@ -12,7 +12,9 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        $courses = Course::withCount(['enrollments as enrolled_students_count' => function ($query) {
+        $courses = Course::with(['teachers' => function ($query) {
+            $query->wherePivot('is_main', true);
+        }])->withCount(['enrollments as enrolled_students_count' => function ($query) {
             $query->where('status', 'approved');
         }])->latest()->take(6)->get(); 
 

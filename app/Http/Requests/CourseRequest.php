@@ -23,16 +23,21 @@ class CourseRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'description' => 'required',
+            'description' => 'nullable|string',
             'type' => 'required|string|max:50',
             'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'starting_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:starting_date',
+            'google_classroom_code' => 'nullable|string',
             'what_will_learn' => 'nullable|string',
             'prerequisites' => 'nullable|string',
             'time_schedule' => 'nullable|string',
             'total_seats' => 'nullable|integer|min:1',
+            'total_lessons' => 'nullable|integer|min:1',
+            'teacher_ids' => 'nullable|array',
+            'teacher_ids.*' => 'exists:users,id',
+            'is_certificate_enabled' => 'nullable|boolean',
         ];
     }
 
@@ -41,7 +46,6 @@ class CourseRequest extends FormRequest
     {
         return [
             'title.required' => 'The course title is required.',
-            'description.required' => 'The course description is required.',
             'end_date.after_or_equal' => 'End date must be the same or later than the starting date.',
             'price.min' => 'Price cannot be negative.',
         ];

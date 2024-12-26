@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'image',
         'address',
+        'details',
         'is_blocked',
         'is_certificate_enable',
     ];
@@ -67,6 +68,14 @@ class User extends Authenticatable
             'status'
         )->withTimestamps();
     }
+
+    // public function coursesAsTeacher()
+    // {
+    //     return $this->belongsToMany(Course::class, 'course_teacher', 'teacher_id', 'course_id')
+    //                 ->withPivot('is_main')
+    //                 ->withTimestamps();
+    // }
+
 
 
     public function reviews()

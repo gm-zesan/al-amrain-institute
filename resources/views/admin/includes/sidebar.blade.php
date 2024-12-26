@@ -72,6 +72,13 @@
             </a>
         </li>
         <li>
+            <a href="{{ route('teachers.index') }}"
+               class="{{ in_array(Route::currentRouteName(), ['teachers.index', 'teachers.create', 'teachers.edit']) ? 'active-focus' : '' }}">
+                <i class="ri-presentation-line"></i>
+                <span class="link_names">Teachers</span>
+            </a>
+        </li>
+        <li>
             <a href="{{ route('enrollments.index') }}"
                class="{{ in_array(Route::currentRouteName(), ['enrollments.index', 'enrollments.create', 'enrollments.edit']) ? 'active-focus' : '' }}">
                <i class="ri-arrow-up-line"></i>

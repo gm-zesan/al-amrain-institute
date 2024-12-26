@@ -41,7 +41,7 @@
     });
     $(document).ready(function() {
         $('.multiple-select2').select2({
-            placeholder: "Select options from here",
+            placeholder: "Select teachers from here",
             allowClear: true
         });
     });
@@ -149,6 +149,21 @@
     btn.onclick = function() {
         sidebar.classList.toggle("active");
     }
+
+    function checkScreenSize() {
+        const sidebar = document.querySelector('.sidebar');
+        if (window.innerWidth < 991) {
+            if (sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        } else {
+            if (!sidebar.classList.contains('active')) {
+                sidebar.classList.add('active');
+            }
+        }
+    }
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
 </script>
 
 
