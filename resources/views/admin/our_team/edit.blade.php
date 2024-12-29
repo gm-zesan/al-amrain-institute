@@ -6,8 +6,9 @@ Our Team
 
 
 <div class="container-fluid my-3">
-    <form action="{{ route('our-team.update', ['id' => $ourTeam->id]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('our-teams.update', ['our_team' => $ourTeam->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div class="row g-4">
             <div class="col-md-8 col-12">
                 <div class="card table-card">
@@ -20,13 +21,13 @@ Our Team
                                         <a href="{{route('dashboard')}}">Dashboard</a>
                                     </li>
                                     <li class="breadcrumb-item">
-                                        <a href="{{route('our-teams')}}">Our Team</a>
+                                        <a href="{{route('our-teams.index')}}">Our Team</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page"> Edit Our Team</li>
                                 </ol>
                             </nav>
                         </div>
-                        <a href="{{route('our-teams')}}" class="add-new">Our Team<i class="ms-1 ri-list-ordered-2"></i></a>
+                        <a href="{{route('our-teams.index')}}" class="add-new">Our Team<i class="ms-1 ri-list-ordered-2"></i></a>
                     </div>
                     <div class="card-body custom-form">
                         
@@ -127,7 +128,7 @@ Our Team
                                         </button>
                                     </div>
                                     <div class="col-6">
-                                        <a href="{{route('our-teams')}}" class="btn leave-button">Leave</a>
+                                        <a href="{{route('our-teams.index')}}" class="btn leave-button">Leave</a>
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +148,7 @@ Our Team
                                         <input type="hidden" id="cover_image_data" class="form-control custom-input" name="cover_image_data">
                                         <input type="file" id="cover_image" class="form-file-input form-control custom-input d-none" onchange="imageUpload(this)" name="image">
                                         <div class="user-image">
-                                            <img id="cover_imagePreview" src="{{ $ourTeam->image ? asset('storage/'.$ourTeam->image) : asset('admin/assets/images/default.jpg') }}" alt="image" class="image-preview">
+                                            <img id="cover_imagePreview" src="{{ $ourTeam->image ? asset('storage/'.$ourTeam->image) : asset('admin/images/default.jpg') }}" alt="image" class="image-preview">
                                             <span class="formate-error cover_imageerror"></span>
                                         </div>
                                         <span class="upload-btn">Upload Image</span>
@@ -183,18 +184,6 @@ Our Team
             $(this).closest('form').submit();
         });
     </script>
-
-    {{-- CK Editor --}}
-    <script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
-    <script type="text/javascript">
-        setTimeout(function(){
-                CKEDITOR.replace('description', {
-                    filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
-                    filebrowserUploadMethod: 'form'
-                });
-            },100);
-    </script>
-
      
     {{-- image upload and preview js --}}
     <script>

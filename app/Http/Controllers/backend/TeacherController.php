@@ -7,10 +7,22 @@ use App\Http\Requests\TeacherRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Yajra\DataTables\DataTables;
 
-class TeacherController extends Controller
+class TeacherController extends Controller implements HasMiddleware
 {
+
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:teacher-list|teacher-create|teacher-edit|teacher-delete', only: ['index']),
+            new Middleware('permission:teacher-create', only: ['create', 'store']),
+            new Middleware('permission:teacher-edit', only: ['edit', 'update']),
+            new Middleware('permission:teacher-delete', only: ['destroy']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */

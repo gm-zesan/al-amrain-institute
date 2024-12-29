@@ -47,7 +47,7 @@
                             <input type="hidden" name="course_id" value="{{ $course->id }}">
                             <div class="col-md-6 col-12">
                                 <label for="google_classroom_code" class="form-label custom-label">Google Classroom Code</label>
-                                <input type="text" class="form-control custom-input" name="google_classroom_code" placeholder="Google Classroom Code">
+                                <input type="text" class="form-control custom-input" name="google_classroom_code" placeholder="Google Classroom Code" value="{{ $course->google_classroom_code }}">
                                 @error('google_classroom_code')
                                     <div class="error_msg">{{ $message }}</div>
                                 @enderror

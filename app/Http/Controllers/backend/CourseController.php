@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Http\Request;
 use App\Http\Requests\CourseRequest;
 use App\Models\Course;
@@ -10,8 +12,20 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
-class CourseController extends Controller
+class CourseController extends Controller implements HasMiddleware
 {
+
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:course-list|course-create|course-edit|course-delete|course-certificate-status', only: ['index']),
+            new Middleware('permission:course-create', only: ['create', 'store']),
+            new Middleware('permission:course-edit', only: ['edit', 'update']),
+            new Middleware('permission:course-delete', only: ['destroy']),
+            new Middleware('permission:course-certificate-status', only: ['certificateStatus']),
+        ];
+    }
+
     public function index(Request $request){
         if($request->ajax()){
             $courses = Course::all();

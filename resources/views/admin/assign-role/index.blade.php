@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('title')
-    User
+    Assign Role
 @endsection
 
 @push('custom-style')
@@ -57,7 +57,7 @@
                     <span id="modalEmail"></span>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="POST" action="{{route('assignrole.store')}}">
+                <form method="POST" action="{{route('assign-roles.store')}}">
                     <div class="modal-body">
                         @csrf
                         <input type="hidden" name="email" value="" class="modalEmail">
@@ -85,20 +85,11 @@
 @endsection
 
 @push('custom-scripts')
-    {{-- sweet alert --}}
-    @if(Session::has('success'))
-        <script>
-            swal("success", "{{ Session::get('success') }}", "success", {
-                timer: 1000,
-                button: false,
-            });
-        </script>
-    @endif
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js" defer></script>
 
     <script type="text/javascript">
-        var listUrl = SITEURL + '/dashboard/assign-role';
+        var listUrl = SITEURL + '/dashboard/assign-roles';
 
         function assignRole(id, name, email, role) {
             var emailbracket = "( "+email+" )"

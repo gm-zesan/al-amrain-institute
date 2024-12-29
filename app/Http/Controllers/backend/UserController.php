@@ -3,15 +3,28 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StudentRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class UserController extends Controller
+class UserController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:user-list|user-create|user-edit|user-delete', only: ['index']),
+            new Middleware('permission:user-create', only: ['create', 'store']),
+            new Middleware('permission:user-edit', only: ['edit', 'update']),
+            new Middleware('permission:user-delete', only: ['destroy']),
+        ];
+    }
+
+    
     public function index(Request $request){
         if ($request->ajax()) {
             $auth_user = Auth::user();
@@ -24,12 +37,6 @@ class UserController extends Controller
             }
             return DataTables::of($users)
                 ->addIndexColumn()
-                ->addColumn('name', function($row){
-                    return $row->name;
-                })
-                ->addColumn('email', function($row){
-                    return $row->email;
-                })
                 ->addColumn('phone_no', function($row){
                     return $row->phone_no ?? 'N / A';
                 })
@@ -48,7 +55,7 @@ class UserController extends Controller
     }
 
 
-    public function store(StudentRequest $request){
+    public function store(UserRequest $request){
         $validated = $request->validated();
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('all-user', 'public');
@@ -56,37 +63,34 @@ class UserController extends Controller
         $validated['password'] = bcrypt($request->password);
         $user = User::create($validated);
         $user->assignRole('admin');
-        return redirect()->route('users')->with('success','User created successfully');
+        return redirect()->route('users.index')->with('success','User created successfully');
     }
 
 
-    public function edit($id){
-        $user = User::find($id);
+    public function edit(User $user){
         return view('admin.users.edit',[
             'user'=>$user,
         ]);
     }
 
 
-    public function update(StudentRequest $request, $id){
+    public function update(UserRequest $request, User $user){
         $validated = $request->validated();
-        $old_data = User::find($id);
         if ($request->hasFile('image')) {
-            if ($old_data->image) {
-                Storage::disk('public')->delete($old_data->image);
+            if ($user->image) {
+                Storage::disk('public')->delete($user->image);
             }
             $validated['image'] = $request->file('image')->store('all-user', 'public');
         }
-        $old_data->update($validated);
-        return redirect()->route('users')->with('success','User updated successfully');
+        $user->update($validated);
+        return redirect()->route('users.index')->with('success','User updated successfully');
     }
 
-    public function delete($id){
-        $old_data = User::find($id);
-        if ($old_data->image) {
-            Storage::disk('public')->delete($old_data->image);
+    public function destroy(User $user){
+        if ($user->image) {
+            Storage::disk('public')->delete($user->image);
         }
-        $old_data->delete();
-        return redirect()->route('users')->with('success','User deleted successfully');
+        $user->delete();
+        return redirect()->route('users.index')->with('success','User deleted successfully');
     }
 }

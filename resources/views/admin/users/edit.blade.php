@@ -4,9 +4,10 @@
 @endsection
 @section('content')
     <div class="container-fluid my-3">
-        <form action="{{ route('user.update', ['id' => $user->id]) }}" method="POST"
+        <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST"
             enctype="multipart/form-data" autocomplete="off">
             @csrf
+            @method('PUT')
             <div class="row">
                 <div class="col-md-8 col-12">
                     <div class="card table-card">
@@ -19,13 +20,13 @@
                                             <a href="{{route('dashboard')}}">Dashboard</a>
                                         </li>
                                         <li class="breadcrumb-item">
-                                            <a href="{{route('users')}}">User</a>
+                                            <a href="{{route('users.index')}}">User</a>
                                         </li>
                                         <li class="breadcrumb-item active" aria-current="page"> Create User</li>
                                     </ol>
                                 </nav>
                             </div>
-                            <a href="{{route('users')}}" class="add-new">User List<i class="ms-1 ri-list-ordered-2"></i></a>
+                            <a href="{{route('users.index')}}" class="add-new">User List<i class="ms-1 ri-list-ordered-2"></i></a>
                         </div>
                         <div class="card-body custom-form">
                             
@@ -53,7 +54,7 @@
 
                                 <div class="col-md-6">
                                     <label for="" class="form-label custom-label">Phone No</label>
-                                    <input type="text" class="form-control custom-input" name="phone_no" value="{{$user->phone_no}}">
+                                    <input type="number" class="form-control custom-input" name="phone_no" value="{{$user->phone_no}}">
                                     @if($errors->has('phone_no'))
                                         <div class="error_msg">
                                             {{ $errors->first('phone_no') }}
@@ -95,7 +96,7 @@
                                             </button>
                                         </div>
                                         <div class="col-6">
-                                            <a href="{{route('users')}}" class="btn leave-button">Leave</a>
+                                            <a href="{{route('users.index')}}" class="btn leave-button">Leave</a>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +119,7 @@
                                                 @else
                                                     <i id="cover_imagePreviewNo" class="ri-user-3-line no-image-preview"></i>
                                                 @endif
-                                                <img id="cover_imagePreview" src="{{asset('admin/assets/images/default.jpg')}}" alt="" class="image-preview d-none">
+                                                <img id="cover_imagePreview" src="{{asset('admin/images/default.jpg')}}" alt="" class="image-preview d-none">
                                                 <span class="formate-error cover_imageerror"></span>
                                                 <div class="user-info">
                                                     <h5 id="setName">{{$user->first_name}} </h5>

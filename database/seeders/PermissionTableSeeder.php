@@ -36,31 +36,40 @@ class PermissionTableSeeder extends Seeder
             ['name' => 'user-edit', 'display_name' => 'User edit', 'module' => 'user'],
             ['name' => 'user-delete', 'display_name' => 'User delete', 'module' => 'user'],
 
+            // student
+            ['name' => 'student-list', 'display_name' => 'Student list', 'module' => 'student'],
+            ['name' => 'student-create', 'display_name' => 'Student create', 'module' => 'student'],
+            ['name' => 'student-edit', 'display_name' => 'Student edit', 'module' => 'student'],
+            ['name' => 'student-delete', 'display_name' => 'Student delete', 'module' => 'student'],
 
-            // commontype
-            ['name' => 'commontype-list', 'display_name' => 'Common Type list', 'module' => 'commontype'],
-            ['name' => 'commontype-create', 'display_name' => 'Common Type create', 'module' => 'commontype'],
-            ['name' => 'commontype-edit', 'display_name' => 'Common Type edit', 'module' => 'commontype'],
-            ['name' => 'commontype-delete', 'display_name' => 'Common Type delete', 'module' => 'commontype'],
+            // teacher
+            ['name' => 'teacher-list', 'display_name' => 'Teacher list', 'module' => 'teacher'],
+            ['name' => 'teacher-create', 'display_name' => 'Teacher create', 'module' => 'teacher'],
+            ['name' => 'teacher-edit', 'display_name' => 'Teacher edit', 'module' => 'teacher'],
+            ['name' => 'teacher-delete', 'display_name' => 'Teacher delete', 'module' => 'teacher'],
 
+            // course
+            ['name' => 'course-list', 'display_name' => 'Course list', 'module' => 'course'],
+            ['name' => 'course-create', 'display_name' => 'Course create', 'module' => 'course'],
+            ['name' => 'course-edit', 'display_name' => 'Course edit', 'module' => 'course'],
+            ['name' => 'course-delete', 'display_name' => 'Course delete', 'module' => 'course'],
+            ['name' => 'course-certificate-status', 'display_name' => 'Course certificate status', 'module' => 'course'],
 
-            // website-content
-            ['name' => 'website-content-list', 'display_name' => 'Website Content list', 'module' => 'website-content'],
-            ['name' => 'website-content-create', 'display_name' => 'Website Content create', 'module' => 'website-content'],
-            ['name' => 'website-content-edit', 'display_name' => 'Website Content edit', 'module' => 'website-content'],
-            ['name' => 'website-content-delete', 'display_name' => 'Website Content delete', 'module' => 'website-content'],
+            // enrollment
+            ['name' => 'enrollment-list', 'display_name' => 'Enrollment list', 'module' => 'enrollment'],
+            ['name' => 'enrollment-create', 'display_name' => 'Enrollment create', 'module' => 'enrollment'],
+            ['name' => 'enrollment-edit', 'display_name' => 'Enrollment edit', 'module' => 'enrollment'],
+            ['name' => 'enrollment-delete', 'display_name' => 'Enrollment delete', 'module' => 'enrollment'],
 
-            
+            // review
+            ['name' => 'review-list', 'display_name' => 'Review list', 'module' => 'review'],
+            ['name' => 'review-create', 'display_name' => 'Review create', 'module' => 'review'],
+            ['name' => 'review-edit', 'display_name' => 'Review edit', 'module' => 'review'],
+            ['name' => 'review-delete', 'display_name' => 'Review delete', 'module' => 'review'],
+
             // contact
             ['name' => 'contact-list', 'display_name' => 'Contact list', 'module' => 'contact'],
             ['name' => 'contact-delete', 'display_name' => 'Contact delete', 'module' => 'contact'],
-
-
-            // blog
-            ['name' => 'blog-list', 'display_name' => 'Blog list', 'module' => 'blog'],
-            ['name' => 'blog-create', 'display_name' => 'Blog create', 'module' => 'blog'],
-            ['name' => 'blog-edit', 'display_name' => 'Blog edit', 'module' => 'blog'],
-            ['name' => 'blog-delete', 'display_name' => 'Blog delete', 'module' => 'blog'],
 
             // our-team
             ['name' => 'our-team-list', 'display_name' => 'Our Team list', 'module' => 'our-team'],

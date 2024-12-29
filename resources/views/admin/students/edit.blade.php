@@ -119,7 +119,7 @@
                                                 @else
                                                     <i id="cover_imagePreviewNo" class="ri-user-3-line no-image-preview"></i>
                                                 @endif
-                                                <img id="cover_imagePreview" src="{{asset('admin/assets/images/default.jpg')}}" alt="" class="image-preview d-none">
+                                                <img id="cover_imagePreview" src="{{asset('admin/images/default.jpg')}}" alt="" class="image-preview d-none">
                                                 <span class="formate-error cover_imageerror"></span>
                                                 <div class="user-info">
                                                     <h5 id="setName">{{$student->first_name}} </h5>

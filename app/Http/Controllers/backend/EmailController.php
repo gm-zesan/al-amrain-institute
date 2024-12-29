@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use App\Mail\CourseEnrollmentMail;
+use App\Jobs\SendEnrolledStudentMail;
 use App\Models\Course;
 use App\Services\MailerLiteService;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class EmailController extends Controller
 {
@@ -71,12 +69,9 @@ class EmailController extends Controller
         $course = Course::findOrFail($validated['course_id']);
         $course->google_classroom_code = $validated['google_classroom_code'];
         $course->save();
-        $course->enrollments()->where('status', 'approved')->chunk(50, function ($enrollments) use ($course) {
-            foreach ($enrollments as $enrollment) {
-                $student = $enrollment->student;
-                Mail::to($student->email)->queue(new CourseEnrollmentMail($student, $course));
-            }
-        });
+
+        SendEnrolledStudentMail::dispatch($course);
+
         return redirect()->route('courses.index')->with('success', 'Emails sent successfully');
     }
 }

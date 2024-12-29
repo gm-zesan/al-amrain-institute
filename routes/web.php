@@ -66,56 +66,40 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'myProfileUpdate'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
-
-    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
-    Route::get('/dashboard/cache-clear', [DashboardController::class,'cacheClear'])->name('cache-clear');
-
     
     // Ck editor routes
     Route::get('ckeditor', [CkeditorController::class, 'index']);
     Route::post('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
 
     
+    Route::prefix('dashboard')->group(function(){
+        Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+        Route::get('/cache-clear', [DashboardController::class,'cacheClear'])->name('cache-clear');
 
-    Route::get('/dashboard/our-team', [OurTeamController::class,'index'])->name('our-teams');
-    Route::get('/dashboard/our-team/create', [OurTeamController::class,'create'])->name('our-team.create');
-    Route::post('/dashboard/our-team/store', [OurTeamController::class,'store'])->name('our-team.store');
-    Route::get('/dashboard/our-team/edit/{id}', [OurTeamController::class,'edit'])->name('our-team.edit');
-    Route::post('/dashboard/our-team/update/{id}', [OurTeamController::class,'update'])->name('our-team.update');
-    Route::get('/dashboard/our-team/delete/{id}', [OurTeamController::class,'delete'])->name('our-team.delete');
+        // resourse routes
+        Route::resource('/our-teams', OurTeamController::class)->except(['show']);
+        Route::resource('/courses', BackendCourseController::class)->except(['show']);
+        Route::resource('/enrollments', BackendEnrollmentController::class)->except(['show', 'edit']);
+        Route::resource('/reviews', ReviewController::class)->except(['show', 'edit']);
+        Route::resource('/students', StudentController::class)->except(['show']);
+        Route::resource('/teachers', TeacherController::class)->except(['show']);
+        Route::resource('/users', UserController::class)->except(['show']);
+        Route::resource('/roles', RoleController::class)->except(['show']);
+        Route::resource('/assign-roles', AssignRoleController::class)->only(['index', 'store']);
 
-    // resourse routes
-    Route::resource('/dashboard/courses', BackendCourseController::class)->except(['show']);
-    Route::get('/dashboard/courses/{course}/certificate-status', [BackendCourseController::class, 'certificateStatus'])->name('courses.certificate-status');
-    Route::resource('/dashboard/enrollments', BackendEnrollmentController::class)->except(['show', 'edit']);
-    Route::resource('/dashboard/reviews', ReviewController::class)->except(['show', 'edit']);
-    Route::resource('/dashboard/students', StudentController::class)->except(['show']);
-    Route::resource('/dashboard/teachers', TeacherController::class)->except(['show']);
+        // course certificate-status update
+        Route::get('/courses/{course}/certificate-status', [BackendCourseController::class, 'certificateStatus'])->name('courses.certificate-status');
 
-    //message Route
-    Route::get('/dashboard/message', [BackendContactFormController::class,'index'])->name('message');
-    Route::get('/dashboard/message/read/', [BackendContactFormController::class, 'read'])->name('message.read');
-    Route::get('/dashboard/message/important/', [BackendContactFormController::class, 'important'])->name('message.important');
-    Route::get('/dashboard/message/delete/{id}', [BackendContactFormController::class,'delete'])->name('message.delete');
+        //message Route
+        Route::get('/message', [BackendContactFormController::class,'index'])->name('message');
+        Route::get('/message/read/', [BackendContactFormController::class, 'read'])->name('message.read');
+        Route::get('/message/important/', [BackendContactFormController::class, 'important'])->name('message.important');
+        Route::get('/message/delete/{id}', [BackendContactFormController::class,'delete'])->name('message.delete');
 
-    // send-email Route
-    Route::get('/dashboard/courses/{course}/email', [EmailController::class,'index'])->name('course.email');
-    Route::post('/dashboard/courses/send-email', [EmailController::class,'sendEmail'])->name('course.send-email');
-
-
-    // users and roles
-    // User Route
-    Route::get('/dashboard/users', [UserController::class,'index'])->name('users');
-    Route::get('/dashboard/user/create', [UserController::class,'create'])->name('user.create');
-    Route::post('/dashboard/user/store', [UserController::class,'store'])->name('user.store');
-    Route::get('/dashboard/user/edit/{id}', [UserController::class,'edit'])->name('user.edit');
-    Route::post('/dashboard/user/update/{id}', [UserController::class,'update'])->name('user.update');
-    Route::get('/dashboard/user/delete/{id}', [UserController::class,'delete'])->name('user.delete');
-
-    // Assign Role Route
-    Route::get('/dashboard/assign-role', [AssignRoleController::class,'index'])->name('assignrole.index');
-    Route::post('/dashboard/assign-role/store', [AssignRoleController::class,'assignRole'])->name('assignrole.store');
+        // send-email Route
+        Route::get('/courses/{course}/email', [EmailController::class,'index'])->name('course.email');
+        Route::post('/courses/send-email', [EmailController::class,'sendEmail'])->name('course.send-email');
+    });
 });
 
 require __DIR__.'/auth.php';

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
-class StudentRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class StudentRequest extends FormRequest
      */
     public function rules(): array
     {
-        $userId = $this->route('student') ? $this->route('student')->id : null;
+        $userId = $this->route('user') ? $this->route('user')->id : null;
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $userId,
@@ -40,28 +40,6 @@ class StudentRequest extends FormRequest
             'details' => 'nullable|string',
             'is_blocked' => 'nullable|boolean',
             'is_certificate_enable' => 'nullable|boolean',
-        ];
-    }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array<string, string>
-     */
-    public function messages(): array
-    {
-        return [
-            'name.required' => 'Name is required',
-            'email.required' => 'Email is required',
-            'email.email' => 'Email is not valid',
-            'email.unique' => 'This email is already registered',
-            'phone_no.required' => 'Phone number is required',
-            'password.confirmed' => 'Password does not match',
-            'password.min' => 'Password must be at least 8 characters',
-            'password.mixed_case' => 'Password must contain at least one uppercase and one lowercase letter',
-            'password.letters' => 'Password must contain at least one letter',
-            'password.numbers' => 'Password must contain at least one number',
-            'address.max' => 'Address must not be more than 255 characters',
         ];
     }
 }

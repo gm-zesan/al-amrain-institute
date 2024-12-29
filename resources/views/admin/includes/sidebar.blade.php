@@ -23,75 +23,56 @@
         <li class="category-li">
             <span class="link_names">Main</span>
         </li>
-        @canany(['donation-fund-list', 'donation-fund-create', 'donation-fund-edit', 'donation-fund-delete', 'donation-list', 'donation-create', 'donation-edit', 'donation-delete'])
+
+        @canany(['course-list', 'course-create', 'course-edit', 'course-delete', 'course-certificate-status'])
             <li>
-                <a href="#" class="drop-list">
-                    <div class="drop">
-                        <i class="ri-menu-unfold-fill"></i>
-                        <span class="link_names">Donate</span>
-                    </div>
-                    <i class="fa-solid fa-angle-down link_names"></i>
+                <a href="{{ route('courses.index') }}"
+                class="{{ in_array(Route::currentRouteName(), ['courses.index', 'courses.create', 'courses.edit']) ? 'active-focus' : '' }}">
+                    <i class="ri-git-repository-line"></i>
+                    <span class="link_names">Course</span>
                 </a>
-                <ul>
-                    @canany(['donation-fund-list', 'donation-fund-create', 'donation-fund-edit', 'donation-fund-delete'])
-                        <li class="drop-item">
-                            <a href="{{ route('donation-funds') }}"
-                                class="{{ in_array(Route::currentRoutename(), ['donation-funds', 'donation-fund.create', 'donation-fund.edit']) ? 'active-focus' : '' }}">
-                                <i class="ri-gift-line"></i>
-                                <span class="link_names">Donation Funds
-                                </span>
-                            </a>
-                        </li>
-                    @endcan
-                    @canany(['donation-list', 'donation-create', 'donation-edit', 'donation-delete'])
-                        <li class="drop-item">
-                            <a href="{{ route('donations') }}"
-                                class="{{ in_array(Route::currentRoutename(), ['donations', 'donation.create', 'donation.edit']) ? 'active-focus' : '' }}">
-                                <i class="ri-hand-coin-line"></i>
-                                <span class="link_names">Donation
-                                </span>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
             </li>
         @endcan
 
-        <li>
-            <a href="{{ route('courses.index') }}"
-               class="{{ in_array(Route::currentRouteName(), ['courses.index', 'courses.create', 'courses.edit']) ? 'active-focus' : '' }}">
-                <i class="ri-git-repository-line"></i>
-                <span class="link_names">Course</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('students.index') }}"
-               class="{{ in_array(Route::currentRouteName(), ['students.index', 'students.create', 'students.edit']) ? 'active-focus' : '' }}">
-                <i class="ri-user-3-line"></i>
-                <span class="link_names">Students</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('teachers.index') }}"
-               class="{{ in_array(Route::currentRouteName(), ['teachers.index', 'teachers.create', 'teachers.edit']) ? 'active-focus' : '' }}">
-                <i class="ri-presentation-line"></i>
-                <span class="link_names">Teachers</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('enrollments.index') }}"
-               class="{{ in_array(Route::currentRouteName(), ['enrollments.index', 'enrollments.create', 'enrollments.edit']) ? 'active-focus' : '' }}">
-               <i class="ri-arrow-up-line"></i>
-                <span class="link_names">Enrollments</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('reviews.index') }}"
-               class="{{ in_array(Route::currentRouteName(), ['reviews.index', 'reviews.create', 'reviews.edit']) ? 'active-focus' : '' }}">
-               <i class="ri-shining-line"></i>
-                <span class="link_names">Reviews</span>
-            </a>
-        </li>
+        @canany(['student-list', 'student-create', 'student-edit', 'student-delete'])
+            <li>
+                <a href="{{ route('students.index') }}"
+                class="{{ in_array(Route::currentRouteName(), ['students.index', 'students.create', 'students.edit']) ? 'active-focus' : '' }}">
+                    <i class="ri-user-3-line"></i>
+                    <span class="link_names">Students</span>
+                </a>
+            </li>
+        @endcan
+
+        @canany(['teacher-list', 'teacher-create', 'teacher-edit', 'teacher-delete'])
+            <li>
+                <a href="{{ route('teachers.index') }}"
+                class="{{ in_array(Route::currentRouteName(), ['teachers.index', 'teachers.create', 'teachers.edit']) ? 'active-focus' : '' }}">
+                    <i class="ri-presentation-line"></i>
+                    <span class="link_names">Teachers</span>
+                </a>
+            </li>
+        @endcan
+
+        @canany(['enrollment-list', 'enrollment-create', 'enrollment-edit', 'enrollment-delete'])
+            <li>
+                <a href="{{ route('enrollments.index') }}"
+                class="{{ in_array(Route::currentRouteName(), ['enrollments.index', 'enrollments.create', 'enrollments.edit']) ? 'active-focus' : '' }}">
+                <i class="ri-arrow-up-line"></i>
+                    <span class="link_names">Enrollments</span>
+                </a>
+            </li>
+        @endcan
+
+        @canany(['review-list', 'review-create', 'review-edit', 'review-delete'])
+            <li>
+                <a href="{{ route('reviews.index') }}"
+                class="{{ in_array(Route::currentRouteName(), ['reviews.index', 'reviews.create', 'reviews.edit']) ? 'active-focus' : '' }}">
+                <i class="ri-shining-line"></i>
+                    <span class="link_names">Reviews</span>
+                </a>
+            </li>
+        @endcan
         
         
 
@@ -101,8 +82,8 @@
 
         @canany(['our-team-list', 'our-team-create', 'our-team-edit', 'our-team-delete'])
             <li>
-                <a href="{{ route('our-teams') }}"
-                    class="{{ in_array(Route::currentRoutename(), ['our-teams', 'our-team.create', 'our-team.edit']) ? 'active-focus' : '' }}">
+                <a href="{{ route('our-teams.index') }}"
+                    class="{{ in_array(Route::currentRoutename(), ['our-teams.index', 'our-teams.create', 'our-teams.edit']) ? 'active-focus' : '' }}">
                     <i class="ri-group-line"></i>
                     <span class="link_names">Team Member
                     </span>
@@ -121,16 +102,15 @@
         @endcan
 
         @if(Auth::user()->hasRole('superadmin'))
-            @canany(['user-list', 'user-create', 'user-edit', 'user-delete', 'role-list', 'role-create', 'role-edit',
-                'role-delete'])
+            @canany(['user-list', 'user-create', 'user-edit', 'user-delete', 'role-list', 'role-create', 'role-edit', 'role-delete'])
                 <li class="category-li">
                     <span class="link_names">Users</span>
                 </li>
             @endcan
             @canany(['user-list', 'user-create', 'user-edit', 'user-delete'])
                 <li class="drop-item">
-                    <a href="{{ route('users') }}"
-                        class="{{ in_array(Route::currentRouteName(), ['users', 'user.create', 'user.edit']) ? 'active-focus' : '' }}">
+                    <a href="{{ route('users.index') }}"
+                        class="{{ in_array(Route::currentRouteName(), ['users.index', 'users.create', 'users.edit']) ? 'active-focus' : '' }}">
                         <i class="ri-user-3-line"></i>
                         <span class="link_names">User List</span>
                     </a>
@@ -138,8 +118,15 @@
             @endcan
             @canany(['role-list', 'role-create', 'role-edit', 'role-delete'])
                 <li class="drop-item">
-                    <a href="{{ route('assignrole.index') }}"
-                        class="{{ in_array(Route::currentRouteName(), ['assignrole.index', 'assignrole.edit']) ? 'active-focus' : '' }}">
+                    <a href="{{ route('roles.index') }}"
+                        class="{{ in_array(Route::currentRouteName(), ['roles.index', 'roles.create', 'roles.edit']) ? 'active-focus' : '' }}">
+                        <i class="ri-shield-user-line"></i>
+                        <span class="link_names">Role</span>
+                    </a>
+                </li>
+                <li class="drop-item">
+                    <a href="{{ route('assign-roles.index') }}"
+                        class="{{ in_array(Route::currentRouteName(), ['assign-roles.index']) ? 'active-focus' : '' }}">
                         <i class="ri-user-settings-line"></i>
                         <span class="link_names">Assign Role</span>
                     </a>

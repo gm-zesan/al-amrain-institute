@@ -5,10 +5,8 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-use App\Http\Requests\ContactFormRequest;
 use App\Models\ContactForm;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Yajra\DataTables\DataTables;
 
 class ContactFormController extends Controller implements HasMiddleware

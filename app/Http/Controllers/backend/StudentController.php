@@ -7,10 +7,23 @@ use App\Http\Requests\StudentRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Yajra\DataTables\DataTables;
 
-class StudentController extends Controller
+class StudentController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:student-list|student-create|student-edit|student-delete', only: ['index']),
+            new Middleware('permission:student-create', only: ['create', 'store']),
+            new Middleware('permission:student-edit', only: ['edit', 'update']),
+            new Middleware('permission:student-delete', only: ['destroy']),
+        ];
+    }
+
+    
     public function index(Request $request){
         if ($request->ajax()) {
             $students = User::role('student')->get();

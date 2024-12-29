@@ -3,14 +3,26 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use App\Http\Requests\EnrollmentRequest;
 use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-class EnrollmentController extends Controller
+class EnrollmentController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:enrollment-list|enrollment-create|enrollment-edit|enrollment-delete', only: ['index']),
+            new Middleware('permission:enrollment-create', only: ['create', 'store']),
+            new Middleware('permission:enrollment-edit', only: ['edit', 'update']),
+            new Middleware('permission:enrollment-delete', only: ['destroy']),
+        ];
+    }
+
     public function index(Request $request){
         if($request->ajax()){
             $enrollments = Enrollment::all();

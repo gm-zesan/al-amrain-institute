@@ -23,13 +23,13 @@
                             <nav aria-label="breadcrumb"> 
                                 <ol class="breadcrumb mb-0"> 
                                     <li class="breadcrumb-item">
-                                        <a href="{{route('our-teams')}}">Dashboard</a>
+                                        <a href="{{route('our-teams.index')}}">Dashboard</a>
                                     </li> 
                                     <li class="breadcrumb-item active" aria-current="page">Our Team</li> 
                                 </ol> 
                             </nav>
                         </div>
-                        <a href="{{route('our-team.create')}}" class="add-new">Create Member<i class="ms-1 ri-add-line"></i></a>
+                        <a href="{{route('our-teams.create')}}" class="add-new">Create Member<i class="ms-1 ri-add-line"></i></a>
                     </div>
                     <div class="card-body" style="overflow-x: auto">
                         <table class="table dataTable w-100" id="data-table" style="min-width: 800px;">
@@ -68,7 +68,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js" defer></script>
 
     <script type="text/javascript">
-        var listUrl = SITEURL + '/dashboard/our-team';
+        var listUrl = SITEURL + '/dashboard/our-teams';
 
         $(document).ready( function () {
             var table = $('#data-table').DataTable({
@@ -92,13 +92,19 @@
                         data: 'action-btn',
                         orderable: false,
                         render: function (data) {
-                            var btn1 = '';
-                            btn1 += '<div class="action-btn">';
-                            btn1 += '<a href="' + SITEURL + '/dashboard/our-team/edit/' + data + '" class="btn btn-edit"><i class="ri-edit-line"></i></a>';
-                            btn1 += '<a href="' + SITEURL + '/dashboard/our-team/delete/' + data + '" class="btn btn-delete"><i class="ri-delete-bin-2-line"></i></a>';
-                            
-                            btn1 += '</div>';
-                            return btn1;
+                            var btns = '';
+                                btns += '<div class="action-btn">';
+
+                                btns += '<a href="' + SITEURL + '/dashboard/our-teams/' + data + '/edit" title="Edit" class="btn btn-edit"><i class="ri-edit-line"></i></a>';
+
+                                btns += '<form action="' + SITEURL + '/dashboard/our-teams/' + data + '" method="POST" style="display: inline;" onsubmit="return confirm(\'Are you sure to delete this member?\');">' +
+                                    '@csrf' +
+                                    '@method("DELETE")' +
+                                    '<button type="submit" class="btn btn-delete"><i class="ri-delete-bin-2-line"></i></button>' +
+                                '</form>';
+
+                            btns += '</div>';
+                            return btns;
                         }
                     }
                 ],

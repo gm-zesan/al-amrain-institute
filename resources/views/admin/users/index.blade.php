@@ -27,8 +27,8 @@
                                 </ol>
                             </nav>
                         </div>
-                        @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
-                            <a href="{{route('user.create')}}" class="add-new">Create User<i class="ms-1 ri-add-line"></i></a>
+                        @if(Auth::user()->hasRole('superadmin'))
+                            <a href="{{route('users.create')}}" class="add-new">Create User<i class="ms-1 ri-add-line"></i></a>
                         @endif
                     </div>
                     <div class="card-body" style="overflow-x: auto">
@@ -94,12 +94,19 @@
                         data: 'action-btn',
                         orderable: false,
                         render: function (data) {
-                            var btn1 = '';
-                            btn1 += '<div class="action-btn">';
-                            btn1 += '<a href="' + SITEURL + '/dashboard/user/edit/' + data + '"title="edit" class="btn btn-edit"><i class="ri-edit-line"></i></a>';
-                            btn1 += '<a href="' + SITEURL + '/dashboard/user/delete/' + data + '" title="delete" class="btn btn-delete"><i class="ri-delete-bin-2-line"></i></a>';
-                            btn1 += '</div>';
-                            return btn1;
+                            var btns = '';
+                                btns += '<div class="action-btn">';
+
+                                btns += '<a href="' + SITEURL + '/dashboard/users/' + data + '/edit" title="Edit" class="btn btn-edit"><i class="ri-edit-line"></i></a>';
+
+                                btns += '<form action="' + SITEURL + '/dashboard/users/' + data + '" method="POST" style="display: inline;" onsubmit="return confirm(\'Are you sure to delete this user?\');">' +
+                                    '@csrf' +
+                                    '@method("DELETE")' +
+                                    '<button type="submit" class="btn btn-delete"><i class="ri-delete-bin-2-line"></i></button>' +
+                                '</form>';
+
+                            btns += '</div>';
+                            return btns;
                         }
                     }
                 ],

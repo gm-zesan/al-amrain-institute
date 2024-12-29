@@ -3,13 +3,24 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use App\Models\OurTeam;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 
-class OurTeamController extends Controller
+class OurTeamController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:our-team-list|our-team-create|our-team-edit|our-team-delete', only: ['index']),
+            new Middleware('permission:our-team-create', only: ['create', 'store']),
+            new Middleware('permission:our-team-edit', only: ['edit', 'update']),
+            new Middleware('permission:our-team-delete', only: ['destroy']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
@@ -24,7 +35,6 @@ class OurTeamController extends Controller
                 })
                 ->rawColumns(['action-btn'])
                 ->make(true);
-
         }
         return view('admin.our_team.index');
     }
@@ -55,23 +65,22 @@ class OurTeamController extends Controller
         }
 
         OurTeam::create($data);
-        return redirect()->route('our-teams')->with('success', 'Our Team created successfully');
+        return redirect()->route('our-teams.index')->with('success', 'Our Team created successfully');
     }
 
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(OurTeam $ourTeam)
     {
-        $ourTeam = OurTeam::find($id);
         return view('admin.our_team.edit', ['ourTeam' => $ourTeam]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, OurTeam $ourTeam)
     {
         $request->validate([
             'name' => 'required',
@@ -81,28 +90,26 @@ class OurTeamController extends Controller
             'email.required' => 'The email field is required.',
         ]);
         $data = $request->all();
-        $old_data = OurTeam::find($id);
         if($request->hasFile('image') && $data['cover_image_data'] != ""){
-            if($old_data->image != "" && Storage::disk('public')->exists($old_data->image)){
-                Storage::disk('public')->delete($old_data->image);
+            if($ourTeam->image != "" && Storage::disk('public')->exists($ourTeam->image)){
+                Storage::disk('public')->delete($ourTeam->image);
             }
             $imagePath = $request->file('image')->store('our-teams', 'public');
             $data['image'] = $imagePath;
         }
-        OurTeam::find($id)->update($data);
-        return redirect()->route('our-teams')->with('success', 'Our Team updated successfully');
+        $ourTeam->update($data);
+        return redirect()->route('our-teams.index')->with('success', 'Our Team updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function delete($id)
+    public function destroy(OurTeam $ourTeam)
     {
-        $ourTeam = OurTeam::find($id);
         if($ourTeam->image != "" && Storage::disk('public')->exists($ourTeam->image)){
             Storage::disk('public')->delete($ourTeam->image);
         }
         $ourTeam->delete();
-        return redirect()->route('our-teams')->with('success', 'Our Team deleted successfully');
+        return redirect()->route('our-teams.index')->with('success', 'Our Team deleted successfully');
     }
 }

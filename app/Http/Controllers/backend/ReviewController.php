@@ -3,15 +3,27 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+
 use App\Http\Requests\ReviewRequest;
 use App\Models\Course;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Yajra\DataTables\DataTables;
 
-class ReviewController extends Controller
+class ReviewController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:review-list|review-create|review-edit|review-delete', only: ['index']),
+            new Middleware('permission:review-create', only: ['create', 'store']),
+            new Middleware('permission:review-edit', only: ['edit', 'update']),
+            new Middleware('permission:review-delete', only: ['destroy']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
