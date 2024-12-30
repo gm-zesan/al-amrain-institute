@@ -6,10 +6,10 @@ use Illuminate\Support\Facades\Artisan;
 class DashboardController extends Controller
 {
     public function index(){
-        $donation_fund_count = 1;
-        $donation_count = 1;
+        $course_count = 1;
+        $student_count = 1;
         $team_member_count = 1;
-        return view('admin.home.index', compact('donation_fund_count', 'donation_count', 'team_member_count'));
+        return view('admin.home.index', compact('course_count', 'student_count', 'team_member_count'));
     }
 
     public function cacheClear(){
