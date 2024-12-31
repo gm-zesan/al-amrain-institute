@@ -21,25 +21,9 @@
         
         <div class="row mb-5">
             <div class="col-md-4">
-                @canany(['course-list', 'course-create', 'course-edit', 'course-delete'])
-                    <div class="card dashboard-card">
-                        <div class="card-body target-bg">
-                            <div class="dashboard-icon">
-                                <a href="{{ route('courses.index') }}"><i class="ri-file-list-line"></i></a>
-                            </div>
-                            <div class="dashboard-info">
-                                <h4 class="target-title">Courses</h4>
-                                <h3 class="numbers"> {{ $course_count }} + </h3>
-                                <a href="{{ route('courses.index') }}">View all<i class="ms-2 ri-arrow-right-line"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                @endcan
-            </div>
-            <div class="col-md-4">
                 @canany(['student-list', 'student-create', 'student-edit', 'student-delete'])
                     <div class="card dashboard-card">
-                        <div class="card-body target-bg non">
+                        <div class="card-body target-bg">
                             <div class="dashboard-icon">
                                 <a href="{{ route('students.index') }}"><i class="ri-user-3-line"></i></a>
                             </div>
@@ -52,17 +36,35 @@
                     </div>
                 @endcan
             </div>
+
             <div class="col-md-4">
-                @canany(['our-team-list', 'our-team-create', 'our-team-edit', 'our-team-delete'])
+                @canany(['course-list', 'course-create', 'course-edit', 'course-delete'])
+                    <div class="card dashboard-card">
+                        <div class="card-body target-bg non">
+                            <div class="dashboard-icon">
+                                <a href="{{ route('courses.index') }}"><i class="ri-file-list-line"></i></a>
+                            </div>
+                            <div class="dashboard-info">
+                                <h4 class="target-title">Courses</h4>
+                                <h3 class="numbers"> {{ $course_count }} + </h3>
+                                <a href="{{ route('courses.index') }}">View all<i class="ms-2 ri-arrow-right-line"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                @endcan
+            </div>
+            
+            <div class="col-md-4">
+                @canany(['teacher-list', 'teacher-create', 'teacher-edit', 'teacher-delete'])
                     <div class="card dashboard-card">
                         <div class="card-body target-bg">
                             <div class="dashboard-icon">
-                                <a href="{{ route('our-teams.index') }}"><i class="ri-user-3-line"></i></a>
+                                <a href="{{ route('teachers.index') }}"><i class="ri-user-3-line"></i></a>
                             </div>
                             <div class="dashboard-info">
-                                <h4 class="target-title">Team Member</h4>
-                                <h3 class="numbers"> {{ $team_member_count }} + </h3>
-                                <a href="{{ route('our-teams.index') }}">View all<i class="ms-2 ri-arrow-right-line"></i></a>
+                                <h4 class="target-title">Teacher</h4>
+                                <h3 class="numbers"> {{ $teacher_count }} + </h3>
+                                <a href="{{ route('teachers.index') }}">View all<i class="ms-2 ri-arrow-right-line"></i></a>
                             </div>
                         </div>
                     </div>

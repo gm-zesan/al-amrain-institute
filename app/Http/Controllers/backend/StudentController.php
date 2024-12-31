@@ -48,7 +48,7 @@ class StudentController extends Controller implements HasMiddleware
     public function store(StudentRequest $request){
         $validated = $request->validated();
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('all-users', 'public');
+            $validated['image'] = $request->file('image')->store('all-students', 'public');
         }
         $validated['password'] = bcrypt($request->password);
         $user = User::create($validated);
@@ -66,7 +66,7 @@ class StudentController extends Controller implements HasMiddleware
             if ($student->image) {
                 Storage::disk('public')->delete($student->image);
             }
-            $validated['image'] = $request->file('image')->store('all-users', 'public');
+            $validated['image'] = $request->file('image')->store('all-students', 'public');
         }
         $student->update($validated);
         return redirect()->route('students.index')->with('success','Student updated successfully');

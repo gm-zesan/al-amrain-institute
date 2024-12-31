@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backend;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class ProfileController extends Controller
             $user->email_verified_at = null;
         }
         if ($request->hasFile('image') && !empty($request->input('cover_image_data'))) {
-            $imagePath = $request->file('image')->store('all-user', 'public');
+            $imagePath = $request->file('image')->store('all-users', 'public');
             if ($user->image && Storage::disk('public')->exists($user->image)) {
                 Storage::disk('public')->delete($user->image);
             }

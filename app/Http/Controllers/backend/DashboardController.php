@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backend;
 
+use App\Http\Controllers\Controller;
+use App\Models\Course;
+use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 class DashboardController extends Controller
 {
     public function index(){
-        $course_count = 1;
-        $student_count = 1;
-        $team_member_count = 1;
-        return view('admin.home.index', compact('course_count', 'student_count', 'team_member_count'));
+        $course_count = Course::count();
+        $student_count = User::role('student')->count();
+        $teacher_count = User::role('teacher')->count();
+        return view('admin.home.index', compact('course_count', 'student_count', 'teacher_count'));
     }
 
     public function cacheClear(){
@@ -18,13 +21,7 @@ class DashboardController extends Controller
         Artisan::call('config:clear');
         Artisan::call('cache:clear');
         Artisan::call('route:clear');
-
         return back()->with('success', 'Cache Cleared Successfully');
-    }
-    
-    public function settings()
-    {
-        return view('admin.home.settings');
     }
 
     public function changePassword()

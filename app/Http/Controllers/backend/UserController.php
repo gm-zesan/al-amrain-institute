@@ -58,7 +58,7 @@ class UserController extends Controller implements HasMiddleware
     public function store(UserRequest $request){
         $validated = $request->validated();
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('all-user', 'public');
+            $validated['image'] = $request->file('image')->store('all-users', 'public');
         }
         $validated['password'] = bcrypt($request->password);
         $user = User::create($validated);
@@ -80,7 +80,7 @@ class UserController extends Controller implements HasMiddleware
             if ($user->image) {
                 Storage::disk('public')->delete($user->image);
             }
-            $validated['image'] = $request->file('image')->store('all-user', 'public');
+            $validated['image'] = $request->file('image')->store('all-users', 'public');
         }
         $user->update($validated);
         return redirect()->route('users.index')->with('success','User updated successfully');

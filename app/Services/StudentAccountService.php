@@ -37,7 +37,7 @@ class StudentAccountService
             if ($student->image) {
                 Storage::disk('public')->delete($student->image);
             }
-            $student->image = $request->file('image')->store('all-users', 'public');
+            $student->image = $request->file('image')->store('all-students', 'public');
         }
 
         $student->save();

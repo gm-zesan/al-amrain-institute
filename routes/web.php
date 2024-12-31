@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\backend\AssignRoleController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\frontend\AboutController;
 use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\CourseController as FrontendCourseController;
 use App\Http\Controllers\backend\CourseController as BackendCourseController;
-use App\Http\Controllers\CkeditorController;
+use App\Http\Controllers\backend\CkeditorController;
 use App\Http\Controllers\frontend\EnrollmentController as FrontendEnrollmentController;
 use App\Http\Controllers\backend\EnrollmentController as BackendEnrollmentController;
 use App\Http\Controllers\frontend\HomeController;
@@ -20,7 +20,7 @@ use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\StudentController;
 use App\Http\Controllers\backend\TeacherController;
 use App\Http\Controllers\backend\UserController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\backend\ProfileController;
 use App\Http\Controllers\student\AuthenticationController;
 use App\Http\Controllers\student\AccountController;
 use App\Http\Controllers\student\CoursesController;
