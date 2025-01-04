@@ -150,7 +150,12 @@
                         }
                     }
                 ],
-                order: [[0, 'desc']]
+                order: [[0, 'desc']],
+                rowCallback: function(row, data) {
+                    if (data.read_status == 1) {
+                        $(row).addClass('readColorTr');
+                    }
+                }
             });
         });
 
