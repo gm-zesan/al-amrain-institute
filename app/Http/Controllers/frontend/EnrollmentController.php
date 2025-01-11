@@ -18,9 +18,14 @@ class EnrollmentController extends Controller
         $this->enrollmentService = $enrollmentService;
     }
 
-    public function index(Course $course)
+    public function index(?Course $course = null)
     {
         $student = Session::get('student_id') ? User::find(Session::get('student_id')) : null;
+        $courses = Course::all();
+
+        if (!$course) {
+            return view('frontend.enroll', compact('student', 'courses'));
+        }
         return view('frontend.enroll', compact('course', 'student'));
     }
 

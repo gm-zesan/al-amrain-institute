@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
                 PermissionTableSeeder::class,
                 RoleSeeder::class,
                 CreateAdminUserSeeder::class,
-                // CourseSeeder::class,
+                CourseSeeder::class,
                 // EnrollmentSeeder::class,
                 // OurTeamSeeder::class,
             ]

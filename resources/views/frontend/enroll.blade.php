@@ -80,15 +80,17 @@
             </div>
         </div>
         {{-- enrol_course_area --}}
-        <div class="enrol_course_area">
-            <div class="container">
-                <div class="enrol_cont_wrap" style="background-image: url({{ asset('frontend/img/banner11.jpg') }});">
-                    <h2>{{ $course->title }}</h2>
-                    {!! $course->description !!}
-                    <h3><strong>Course Price :</strong> ৳ {{ number_format($course->price, 0) }}</h3>
+        @if (isset($course))
+            <div class="enrol_course_area">
+                <div class="container">
+                    <div class="enrol_cont_wrap" style="background-image: url({{ asset('frontend/img/banner11.jpg') }});">
+                        <h2>{{ $course->title }}</h2>
+                        {!! $course->description !!}
+                        <h3><strong>Course Price :</strong> ৳ {{ number_format($course->price, 0) }}</h3>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
         <!-- donate_from_area -->
         <div class="donate_from_area">
             <div class="container">
@@ -186,7 +188,16 @@
                     <div class="col-lg-6 mt_50">
                         <form action="{{ route('frontend.enroll.submit') }}" method="POST" class="donate_from_cart">
                             @csrf
-                            <input type="hidden" name="course_id" value="{{ $course->id }}">
+                            @if (isset($course))
+                                <input type="hidden" name="course_id" value="{{ $course->id }}">
+                            @else
+                                <select name="course_id" id="course_id" required>
+                                    <option value="" selected disabled>Select Course</option>
+                                    @foreach ($courses as $course)
+                                        <option value="{{ $course->id }}">{{ $course->title }}</option>
+                                    @endforeach
+                                </select>
+                            @endif
                             @if (isset($student->id))
                                 <input type="text" name="name" value="{{ $student->name }}" readonly required>
                             @else

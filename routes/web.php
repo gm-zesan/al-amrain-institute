@@ -38,7 +38,7 @@ Route::get('/course', [FrontendCourseController::class, 'index'])->name('fronten
 Route::get('/course/{id}', [FrontendCourseController::class, 'details'])->name('frontend.course.details');
 Route::get('/courses/search', [FrontendCourseController::class, 'search'])->name('courses.search');
 
-Route::get('/enroll/{course}', [FrontendEnrollmentController::class, 'index'])->name('frontend.enroll');
+Route::get('/enroll/{course?}', [FrontendEnrollmentController::class, 'index'])->name('frontend.enroll');
 Route::post('/enroll', [FrontendEnrollmentController::class, 'enroll'])->name('frontend.enroll.submit');
 
 

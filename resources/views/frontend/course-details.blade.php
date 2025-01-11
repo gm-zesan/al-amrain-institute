@@ -171,7 +171,7 @@
                         </div>
                         <div class="comments-box-wrapper">
                             <div class="comments-count">
-                                <h2>02 Comments</h2>
+                                <h2>Comments</h2>
                             </div>
                             @forelse ($reviews as $review)
                                 <div class="single-comment my-2">
